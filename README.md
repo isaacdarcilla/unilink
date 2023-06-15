@@ -1,4 +1,4 @@
-<p align=" "><img src="https://raw.githubusercontent.com/isaacdarcilla/unilink/main/public/logo.png?token=GHSAT0AAAAAAB757GWL6SFVOEWVJ5UUSN2YZELAFRQ" width="70"></p>
+<p align=" "><img src="https://github.com/isaacdarcilla/unilink/assets/22732118/bac4107d-6b0d-47a8-a375-88caee2db911" width="70"></p>
 
 ## **UNILink**
 

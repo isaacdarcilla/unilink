@@ -2,7 +2,7 @@
     <x-authentication-card>
         <x-slot name="logo">
             <x-authentication-card-logo/>
-            <x-label class="text-center mx-auto font-bold text-xl mt-3">Seamless solution with <span
+            <x-label class="text-center mx-auto font-bold text-xl mt-3">School management with <span
                         class="text-border-black text-shadow-black text-gray-600">UNILink&trade;</span>
             </x-label>
             <div class="max-w-md mx-auto text-center mt-3">

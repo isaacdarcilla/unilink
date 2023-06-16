@@ -4,7 +4,7 @@
     "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
     "This file is @generated automatically"
   ],
-  "content-hash": "292033638d529620f622ce34aa45187b",
+  "content-hash": "34715be500cf2cefeb9fdabb12947a6b",
   "packages": [
     {
       "name": "bacon/bacon-qr-code",
@@ -15,16 +15,16 @@
         "reference": "8674e51bb65af933a5ffaf1c308a660387c35c22"
       },
       "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Bacon/BaconQrCode/zipball/8674e51bb65af933a5ffaf1c308a660387c35c22",
-                "reference": "8674e51bb65af933a5ffaf1c308a660387c35c22",
-                "shasum": ""
-            },
-            "require": {
-                "dasprid/enum": "^1.0.3",
-                "ext-iconv": "*",
-                "php": "^7.1 || ^8.0"
-            },
+        "type": "zip",
+        "url": "https://api.github.com/repos/Bacon/BaconQrCode/zipball/8674e51bb65af933a5ffaf1c308a660387c35c22",
+        "reference": "8674e51bb65af933a5ffaf1c308a660387c35c22",
+        "shasum": ""
+      },
+      "require": {
+        "dasprid/enum": "^1.0.3",
+        "ext-iconv": "*",
+        "php": "^7.1 || ^8.0"
+      },
             "require-dev": {
                 "phly/keep-a-changelog": "^2.1",
                 "phpunit/phpunit": "^7 | ^8 | ^9",
@@ -3605,26 +3605,108 @@
             "funding": [
                 {
                     "url": "https://github.com/ramsey",
-                    "type": "github"
+                  "type": "github"
                 },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/ramsey/uuid",
-                    "type": "tidelift"
-                }
+              {
+                "url": "https://tidelift.com/funding/github/packagist/ramsey/uuid",
+                "type": "tidelift"
+              }
             ],
-            "time": "2023-04-15T23:01:58+00:00"
+          "time": "2023-04-15T23:01:58+00:00"
         },
+    {
+      "name": "spatie/laravel-permission",
+      "version": "5.10.1",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/spatie/laravel-permission.git",
+        "reference": "d08b3ffc5870cce4a47a39f22174947b33c191ae"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/d08b3ffc5870cce4a47a39f22174947b33c191ae",
+        "reference": "d08b3ffc5870cce4a47a39f22174947b33c191ae",
+        "shasum": ""
+      },
+      "require": {
+        "illuminate/auth": "^7.0|^8.0|^9.0|^10.0",
+        "illuminate/container": "^7.0|^8.0|^9.0|^10.0",
+        "illuminate/contracts": "^7.0|^8.0|^9.0|^10.0",
+        "illuminate/database": "^7.0|^8.0|^9.0|^10.0",
+        "php": "^7.3|^8.0"
+      },
+      "require-dev": {
+        "orchestra/testbench": "^5.0|^6.0|^7.0|^8.0",
+        "phpunit/phpunit": "^9.4",
+        "predis/predis": "^1.1"
+      },
+      "type": "library",
+      "extra": {
+        "branch-alias": {
+          "dev-main": "5.x-dev",
+          "dev-master": "5.x-dev"
+        },
+        "laravel": {
+          "providers": [
+            "Spatie\\Permission\\PermissionServiceProvider"
+          ]
+        }
+      },
+      "autoload": {
+        "files": [
+          "src/helpers.php"
+        ],
+        "psr-4": {
+          "Spatie\\Permission\\": "src"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
         {
-            "name": "symfony/console",
-            "version": "v6.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/console.git",
-                "reference": "8788808b07cf0bdd6e4b7fdd23d8ddb1470c83b7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/8788808b07cf0bdd6e4b7fdd23d8ddb1470c83b7",
+          "name": "Freek Van der Herten",
+          "email": "freek@spatie.be",
+          "homepage": "https://spatie.be",
+          "role": "Developer"
+        }
+      ],
+      "description": "Permission handling for Laravel 6.0 and up",
+      "homepage": "https://github.com/spatie/laravel-permission",
+      "keywords": [
+        "acl",
+        "laravel",
+        "permission",
+        "permissions",
+        "rbac",
+        "roles",
+        "security",
+        "spatie"
+      ],
+      "support": {
+        "issues": "https://github.com/spatie/laravel-permission/issues",
+        "source": "https://github.com/spatie/laravel-permission/tree/5.10.1"
+      },
+      "funding": [
+        {
+          "url": "https://github.com/spatie",
+          "type": "github"
+        }
+      ],
+      "time": "2023-04-12T17:08:32+00:00"
+    },
+    {
+      "name": "symfony/console",
+      "version": "v6.3.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/symfony/console.git",
+        "reference": "8788808b07cf0bdd6e4b7fdd23d8ddb1470c83b7"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/console/zipball/8788808b07cf0bdd6e4b7fdd23d8ddb1470c83b7",
                 "reference": "8788808b07cf0bdd6e4b7fdd23d8ddb1470c83b7",
                 "shasum": ""
             },
@@ -6105,16 +6187,16 @@
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Bernhard Schussek",
-                    "email": "bschussek@gmail.com"
-                }
-            ],
-            "description": "Assertions to validate method input/output with nice error messages.",
+          "license": [
+            "MIT"
+          ],
+          "authors": [
+            {
+              "name": "Bernhard Schussek",
+              "email": "bschussek@gmail.com"
+            }
+          ],
+          "description": "Assertions to validate method input/output with nice error messages.",
           "keywords": [
             "assert",
             "check",
@@ -6201,16 +6283,16 @@
       "time": "2023-02-01T05:47:14+00:00"
     }
   ],
-    "packages-dev": [
-        {
-            "name": "fakerphp/faker",
-            "version": "v1.23.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/FakerPHP/Faker.git",
-                "reference": "e3daa170d00fde61ea7719ef47bb09bb8f1d9b01"
-            },
-            "dist": {
+  "packages-dev": [
+    {
+      "name": "fakerphp/faker",
+      "version": "v1.23.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/FakerPHP/Faker.git",
+        "reference": "e3daa170d00fde61ea7719ef47bb09bb8f1d9b01"
+      },
+      "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/FakerPHP/Faker/zipball/e3daa170d00fde61ea7719ef47bb09bb8f1d9b01",
                 "reference": "e3daa170d00fde61ea7719ef47bb09bb8f1d9b01",

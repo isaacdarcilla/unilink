@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Arr;
 
 class UserSeeder extends Seeder
 {
@@ -12,6 +13,11 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(10)->create();
+        $role = new RoleSeeder();
+        $users = User::factory(10)->create();
+
+        $users->each(function (User $user) use ($role) {
+            $user->assignRole(Arr::random($role->roles));
+        });
     }
 }

@@ -1,39 +1,51 @@
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
-            <x-authentication-card-logo />
+            <x-authentication-card-logo/>
+            <x-label class="text-center mx-auto font-bold text-xl mt-3">Seamless solution with <span
+                        class="text-border-black text-shadow-black text-gray-600">UNILink&trade;</span>
+            </x-label>
         </x-slot>
 
-        <x-validation-errors class="mb-4" />
+        <x-errors class="mb-4"/>
 
-        <form method="POST" action="{{ route('register') }}">
+        <x-label class="font-bold pt-3 text-lg">Register new account</x-label>
+
+        <form method="POST" class="space-y-4" action="{{ route('register') }}">
             @csrf
 
-            <div>
-                <x-label for="name" value="{{ __('Name') }}" />
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            </div>
+            <x-input id="first_name" placeholder="{{ __('first name')}}" class="block mt-1 w-full" type="text"
+                     name="first_name" :value="old('first_name')" autofocus
+                     autocomplete="first_name"/>
 
-            <div class="mt-4">
-                <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            </div>
+            <x-input id="middle_name" placeholder="{{ __('middle name')}}" class="block mt-1 w-full" type="text"
+                     name="middle_name" :value="old('middle_name')" autofocus
+                     autocomplete="middle_name"/>
 
-            <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            </div>
+            <x-input id="last_name" placeholder="{{ __('last name')}}" class="block mt-1 w-full" type="text"
+                     name="last_name" :value="old('last_name')" autofocus
+                     autocomplete="last_name"/>
 
-            <div class="mt-4">
-                <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
-            </div>
+            <x-input id="phone_number" placeholder="{{ __('phone number')}}" class="block mt-1 w-full"
+                     type="text"
+                     name="phone_number" :value="old('phone_number', '+63')"/>
+
+            <x-input id="email" placeholder="{{ __('you@email.com')}}" class="block mt-1 w-full" type="text"
+                     name="email" :value="old('email')"/>
+
+            <x-inputs.password id="password" placeholder="{{ __('password')}}" class="block mt-1 w-full"
+                               type="password" name="password"
+                               autocomplete="new-password"/>
+
+            <x-inputs.password id="password_confirmation" placeholder="{{ __('confirm password')}}"
+                               class="block mt-1 w-full" type="password"
+                               name="password_confirmation" autocomplete="new-password"/>
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                 <div class="mt-4">
                     <x-label for="terms">
                         <div class="flex items-center">
-                            <x-checkbox name="terms" id="terms" required />
+                            <x-checkbox name="terms" checked id="terms" required/>
 
                             <div class="ml-2">
                                 {!! __('I agree to the :terms_of_service and :privacy_policy', [
@@ -46,12 +58,13 @@
                 </div>
             @endif
 
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
+            <div class="flex items-center justify-between mt-5">
+                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md"
+                   href="{{ route('login') }}">
                     {{ __('Already registered?') }}
                 </a>
 
-                <x-button class="ml-4">
+                <x-button class="ml-4" type="submit">
                     {{ __('Register') }}
                 </x-button>
             </div>

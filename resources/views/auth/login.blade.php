@@ -21,14 +21,12 @@
             @csrf
 
             <div>
-                <x-label for="email" value="{{ __('Email') }}"/>
                 <x-input placeholder="you@email.com" id="email" class="block mt-1 w-full" type="text" name="email"
                          :value="old('email')" autofocus
                          autocomplete="username"/>
             </div>
 
             <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}"/>
                 <x-inputs.password placeholder="password" id="password" class="block mt-1 w-full" type="password"
                                    name="password"
                                    autocomplete="current-password"/>

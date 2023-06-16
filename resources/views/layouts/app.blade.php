@@ -17,16 +17,16 @@
 <body class="font-sans antialiased">
 <x-banner/>
 
-<div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
+<div class="min-h-screen bg-zinc-100">
+    @livewire('navigation-menu')
 
-            <main>
-                {{ $slot }}
-            </main>
-        </div>
+    <main>
+        {{ $slot }}
+    </main>
+</div>
 
-        @stack('modals')
+@stack('modals')
 
-        @livewireScripts
-    </body>
+@livewireScripts
+</body>
 </html>

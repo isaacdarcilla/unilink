@@ -1,14 +1,20 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-
+    <div class="py-6">
+        <div class="max-w-7xl mx-auto p-3 sm:px-6 lg:px-6">
+            <div class="overflow-hidden sm:rounded-lg">
+                <div class="grid grid-cols-1 md:grid-cold-2 lg:grid-cols-3 gap-4">
+                    <div class="block max-w-sm p-6 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-slate-100 via-slate-200 to-sky-100 border border-gray-200 rounded-lg shadow hover:opacity-80">
+                        <div class="p-2 space-y-2">
+                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Admission for New
+                                Students</h5>
+                            <x-label
+                                    label="Admission for S.Y 2023-2024 is now open. Get started by filling up the form. "/>
+                            <a href="{{route('admission.index') }}">
+                                <x-button info label="Start" class="mt-2" right-icon="arrow-right"/>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\RoleEnum;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Arr;
@@ -13,11 +14,10 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $role = new RoleSeeder();
         $users = User::factory(10)->create();
 
-        $users->each(function (User $user) use ($role) {
-            $user->assignRole(Arr::random($role->roles));
+        $users->each(function (User $user) {
+            $user->assignRole(Arr::random(RoleEnum::toValues()));
         });
     }
 }

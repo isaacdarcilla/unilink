@@ -51,7 +51,9 @@ class User extends Authenticatable implements MustVerifyEmail
     protected function fullName(): Attribute
     {
         return new Attribute(
-            get: fn() => "$this->prefix_name $this->first_name $this->middle_name $this->last_name $this->suffix_name",
+            get: fn() => str(
+                "$this->prefix_name $this->first_name $this->middle_name $this->last_name $this->suffix_name"
+            )->title(),
         );
     }
 }

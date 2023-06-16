@@ -21,7 +21,7 @@
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <!-- Settings Dropdown -->
                 <div class="ml-3 relative">
-                    <x-dropdown align="right" width="48">
+                    <x-jet-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                 <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
@@ -51,22 +51,22 @@
                                 {{ __('Manage Account') }}
                             </div>
 
-                            <x-dropdown-link href="{{ route('profile.show') }}">
+                            <x-jet-dropdown-link href="{{ route('profile.show') }}">
                                 {{ __('Profile') }}
-                            </x-dropdown-link>
+                            </x-jet-dropdown-link>
 
                             <div class="border-t border-gray-200"></div>
 
                             <!-- Authentication -->
                             <form method="POST" action="{{ route('logout') }}" x-data>
                                 @csrf
-                                <x-dropdown-link href="{{ route('logout') }}"
-                                                 @click.prevent="$root.submit();">
+                                <x-jet-dropdown-link href="{{ route('logout') }}"
+                                                     @click.prevent="$root.submit();">
                                     {{ __('Log Out') }}
-                                </x-dropdown-link>
+                                </x-jet-dropdown-link>
                             </form>
                         </x-slot>
-                    </x-dropdown>
+                    </x-jet-dropdown>
                 </div>
             </div>
 

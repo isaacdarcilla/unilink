@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\DashboardController;
+use Domain\Admission\Controllers\AdmissionController;
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
@@ -17,7 +17,8 @@ Route::middleware([
     InitializeTenancyByDomain::class,
     PreventAccessFromCentralDomains::class,
 ])->group(function () {
-    Route::controller(DashboardController::class)->group(function () {
-        Route::get('dashboard', 'index')->name('dashboard');
+    Route::controller(AdmissionController::class)->prefix('admission')->group(function () {
+        Route::get('/', 'index')->name('admission.index');
+        Route::get('/personal_data/{user?}', 'personal_data')->name('admission.personal_data');
     });
 });

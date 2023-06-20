@@ -19,7 +19,7 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link class="font-bold" href="{{ route('admission.index') }}"
-                                :active="request()->routeIs('admission.index')">
+                                :active="request()->routeIs(['admission.index', 'admission.personal_data'])">
                         {{ __('Admission') }}
                     </x-nav-link>
                 </div>
@@ -100,7 +100,7 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link href="{{ route('admission.index') }}"
-                                   :active="request()->routeIs('admission.index')">
+                                   :active="request()->routeIs(['admission.index', 'admission.personal_data'])">
                 {{ __('Admission') }}
             </x-responsive-nav-link>
         </div>

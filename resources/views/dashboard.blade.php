@@ -8,7 +8,7 @@
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Admission for New
                                 Students</h5>
                             <x-label
-                                    label="Admission for incoming college students in S.Y. 2023-2024 is now open."/>
+                                    label="Admission for incoming college students in A.Y. 2023-2024 is now open."/>
                             <a href="{{route('admission.index') }}">
                                 <x-button info label="{{ $role ? 'Fill Form' : 'View Applications' }}" class="mt-2"
                                           right-icon="arrow-right"/>

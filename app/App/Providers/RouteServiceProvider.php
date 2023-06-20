@@ -32,6 +32,9 @@ class RouteServiceProvider extends ServiceProvider
             $this->mapApiRoutes();
             $this->mapWebRoutes();
         });
+
+        Route::namespace($this->namespace)
+            ->group(base_path('routes/tenant_admission.php'));
     }
 
     protected function mapWebRoutes(): void

@@ -45,8 +45,8 @@
 
             <x-native-select label="{{ __('I am a...') }}" name="role">
                 <option selected disabled>{{ __('Select a role..') }}.</option>
-                <option value="{{ RoleEnum::student()->value }}">{{ RoleEnum::student()->label }}</option>
-                <option value="{{ RoleEnum::parent()->label }}">{{ RoleEnum::parent()->label }}</option>
+                <option @selected(old('role') == RoleEnum::student()->value) value="{{ RoleEnum::student()->value }}">{{ RoleEnum::student()->label }}</option>
+                <option @selected(old('role') == RoleEnum::parent()->value) value="{{ RoleEnum::parent()->value }}">{{ RoleEnum::parent()->label }}</option>
             </x-native-select>
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())

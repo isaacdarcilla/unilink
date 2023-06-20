@@ -1,3 +1,4 @@
+@php use App\Enums\RoleEnum; @endphp
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
@@ -40,6 +41,12 @@
             <x-inputs.password id="password_confirmation" placeholder="{{ __('confirm password')}}"
                                class="block mt-1 w-full" type="password"
                                name="password_confirmation" autocomplete="new-password"/>
+
+            <x-native-select label="{{ __('I am a...') }}" name="role">
+                <option selected disabled>{{ __('Select a role..') }}.</option>
+                <option value="{{ RoleEnum::student()->value }}">{{ RoleEnum::student()->label }}</option>
+                <option value="{{ RoleEnum::parent()->label }}">{{ RoleEnum::parent()->label }}</option>
+            </x-native-select>
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                 <div class="mt-4">

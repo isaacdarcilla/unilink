@@ -2,7 +2,6 @@
 
 namespace App\Actions\Fortify;
 
-use App\Enums\RoleEnum;
 use App\Models\User;
 use App\Rules\PhoneNumber;
 use Illuminate\Support\Facades\Hash;
@@ -27,9 +26,10 @@ class CreateNewUser implements CreatesNewUsers
             'first_name' => ['required', 'string', 'max:255'],
             'middle_name' => ['nullable', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            'phone_number' => ['required', 'string', 'max:13', 'min:13', new PhoneNumber],
+            'phone_number' => ['required', 'string', 'max:13', 'min:13', new PhoneNumber()],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
+            'role' => ['required'],
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
@@ -42,7 +42,7 @@ class CreateNewUser implements CreatesNewUsers
             'password' => Hash::make($input['password']),
         ]);
 
-        $user->assignRole(RoleEnum::student()->value);
+        $user->assignRole($input['role']);
 
         return $user;
     }

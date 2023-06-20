@@ -6,8 +6,8 @@ if (!function_exists('role_is')) {
     /**
      * Check if authenticated user has given role
      */
-    function role_is(RoleEnum $role): bool
+    function role_is(array|string|RoleEnum $roles): bool
     {
-        return auth()->user()->hasRole($role->value);
+        return auth()->user()->hasRole($roles);
     }
 }

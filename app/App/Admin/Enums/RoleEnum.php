@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Enums;
+namespace App\Admin\Enums;
 
 use Spatie\Enum\Enum;
 
 /**
  * @method static self student()
- * @method static self parent()
+ * @method static self parents()
  * @method static self super_admin()
  * @method static self admin()
  */
@@ -16,7 +16,7 @@ class RoleEnum extends Enum
     {
         return [
             'student' => 'Student',
-            'parent' => 'Parent',
+            'parents' => 'Parent',
             'super_admin' => 'Super Admin',
             'admin' => 'admin',
         ];

@@ -2,8 +2,8 @@
 
 namespace App\Actions\Fortify;
 
-use App\Models\User;
-use App\Rules\PhoneNumber;
+use App\Admin\Models\User;
+use App\Admin\Rules\PhoneNumber;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -26,7 +26,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'first_name' => ['required', 'string', 'max:255'],
             'middle_name' => ['nullable', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            'phone_number' => ['required', 'string', 'max:13', 'min:13', new PhoneNumber],
+            'phone_number' => ['required', 'string', 'max:13', 'min:13', new PhoneNumber()],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
         ])->validateWithBag('updateProfileInformation');

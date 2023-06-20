@@ -1,1 +1,1 @@
-<img class="mx-auto" src="/logo-outlined.png" alt="UNILink" width="100"/>
+<img class="mx-auto" src="{{ asset('logo-outlined.png') }}" alt="UNILink" width="100"/>

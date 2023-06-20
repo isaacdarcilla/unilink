@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\RoleEnum;
+use App\Admin\Enums\RoleEnum;
 use Illuminate\View\View;
 
 class DashboardController extends Controller
@@ -11,7 +11,7 @@ class DashboardController extends Controller
     {
         $role = role_is([
             RoleEnum::student()->value,
-            RoleEnum::parent()->value,
+            RoleEnum::parents()->value,
         ]);
 
         return view('dashboard', compact('role'));

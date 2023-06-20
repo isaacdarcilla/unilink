@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Enums\RoleEnum;
-use App\Models\User;
+use App\Admin\Enums\RoleEnum;
+use App\Admin\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Arr;
 

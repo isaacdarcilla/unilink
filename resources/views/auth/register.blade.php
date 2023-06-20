@@ -1,4 +1,4 @@
-@php use App\Enums\RoleEnum; @endphp
+@php use App\Admin\Enums\RoleEnum; @endphp
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
@@ -46,7 +46,7 @@
             <x-native-select label="{{ __('I am a...') }}" name="role">
                 <option selected disabled>{{ __('Select a role..') }}.</option>
                 <option @selected(old('role') == RoleEnum::student()->value) value="{{ RoleEnum::student()->value }}">{{ RoleEnum::student()->label }}</option>
-                <option @selected(old('role') == RoleEnum::parent()->value) value="{{ RoleEnum::parent()->value }}">{{ RoleEnum::parent()->label }}</option>
+                <option @selected(old('role') == RoleEnum::parents()->value) value="{{ RoleEnum::parents()->value }}">{{ RoleEnum::parents()->label }}</option>
             </x-native-select>
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())

@@ -39,7 +39,7 @@
         </div>
 
         <div class="col-span-6 sm:col-span-4">
-            <x-input id="phone_number" type="text" class="mt-1 block w-full" placeholder="phone_number"
+            <x-input id="phone_number" type="text" class="mt-1 block w-full" placeholder="phone number"
                      wire:model.defer="state.phone_number"/>
             <x-input-error for="phone_number" class="mt-2"/>
         </div>

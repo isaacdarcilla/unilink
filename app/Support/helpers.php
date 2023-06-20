@@ -1,6 +1,6 @@
 <?php
 
-use App\App\Admin\Enums\RoleEnum;
+use App\Admin\Enums\RoleEnum;
 
 if (!function_exists('role_is')) {
     /**

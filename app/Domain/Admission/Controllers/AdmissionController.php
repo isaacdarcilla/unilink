@@ -2,8 +2,8 @@
 
 namespace Domain\Admission\Controllers;
 
+use App\Admin\Models\User;
 use App\Http\Controllers\Controller;
-use Domain\Campus\Models\User;
 use Illuminate\View\View;
 
 class AdmissionController extends Controller

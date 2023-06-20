@@ -3,7 +3,7 @@
         <div class="max-w-7xl mx-auto p-3 sm:px-6 lg:px-6">
             <div class="overflow-hidden sm:rounded-lg space-y-4">
                 <div class="flex justify-between items-center align-middle p-3 gap-3">
-                    <x-label link class="font-bolder text-[16px]"><a class="underline text-gray-500"
+                    <x-label link class="font-bolder text-[16px]"><a class="text-gray-500"
                                                                      href="{{ route('admission.index') }}">Admission
                             History</a> > Personal Data
                     </x-label>

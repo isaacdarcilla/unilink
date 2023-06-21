@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             UserSeeder::class,
             CampusSeeder::class,
+            AcademicYearSeeder::class,
         ]);
     }
 }

@@ -3,6 +3,7 @@
 namespace Database\Factories\Domain\Admission\Models;
 
 use App\Admin\Models\User;
+use Domain\AcademicYear\Enums\ModuleType;
 use Domain\AcademicYear\Models\AcademicYear;
 use Domain\Admission\Enums\CivilStatusEnum;
 use Domain\Admission\Enums\GadgetEnum;
@@ -22,18 +23,20 @@ class AdmissionPersonalProfileFactory extends Factory
     {
         return [
             'user_id' => $this->faker->randomElement(User::pluck('id')),
-            'academic_year_id' => $this->faker->randomElement(AcademicYear::pluck('id')),
+            'academic_year_id' => $this->faker->randomElement(
+                AcademicYear::where('module_type', ModuleType::admission()->value)->pluck('id')
+            ),
             'campus_id' => $this->faker->randomElement(Campus::pluck('id')),
             'first_name' => $this->faker->firstName(),
             'middle_name' => $this->faker->lastName(),
             'last_name' => $this->faker->lastName(),
-            'prefix_name' => $this->faker->randomElement(['Mr.', 'Mrs.', 'Ms.', null]),
+            'prefix_name' => $this->faker->title(),
             'suffix_name' => $this->faker->randomElement(['Jr.', 'Sr.', null]),
             'profile_photo' => null,
             'sex_at_birth' => $this->faker->randomElement(SexEnum::toValues()),
             'gender_preference' => $this->faker->randomElement(GenderPreferenceEnum::toValues()),
             'street' => $this->faker->streetName(),
-            'barangay' => $this->faker->address(),
+            'barangay' => $this->faker->city(),
             'municipality' => $this->faker->city(),
             'province' => $this->faker->streetName(),
             'region' => $this->faker->country(),

@@ -12,6 +12,6 @@ class AdmissionPersonalProfileSeeder extends Seeder
      */
     public function run(): void
     {
-        AdmissionPersonalProfile::factory(10)->create();
+        AdmissionPersonalProfile::factory(50)->create();
     }
 }

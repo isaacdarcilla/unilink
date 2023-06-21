@@ -10,11 +10,23 @@ class AdmissionPersonalDataForm extends Component
 {
     public ?User $user;
 
-    public string $first_name;
+    public string $first_name, $middle_name, $last_name, $sex, $gender_preference;
 
-    public ?string $region_code;
+    public ?string $region_code, $temporary_region_code;
 
-    public ?string $province_code;
+    public ?string $province_code, $temporary_province_code;
+
+    public ?string $city_code, $temporary_city_code;
+
+    public ?string $barangay_code, $temporary_barangay_code;
+
+    public ?string $street, $temporary_street;
+
+    public ?string $zip_code, $temporary_zip_code;
+
+    public bool $same_address = false;
+
+    public ?string $phone_number, $landline_number, $email_address, $facebook_account, $citizenship, $civil_status;
 
     public function render(): View
     {

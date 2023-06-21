@@ -7,7 +7,6 @@
                                                                      href="{{ route('admission.index') }}">Admission
                             History</a> > Personal Data
                     </x-label>
-                    <x-button positive sm icon="save" label="Save"/>
                 </div>
                 <div class="relative shadow-md sm:rounded-lg">
                     @livewire('admission.components.admission-personal-data-form', ['user' => $user])

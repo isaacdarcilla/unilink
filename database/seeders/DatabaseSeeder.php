@@ -15,6 +15,10 @@ class DatabaseSeeder extends Seeder
             CampusSeeder::class,
             AcademicYearSeeder::class,
             AdmissionPersonalProfileSeeder::class,
+            RegionSeeder::class,
+            ProvinceSeeder::class,
+            CitySeeder::class,
+            BarangaySeeder::class,
         ]);
     }
 }

@@ -15,6 +15,6 @@ class AdmissionController extends Controller
 
     public function personal_data(?User $user): View
     {
-        return view('users.student.admission.admission_personal_data');
+        return view('users.student.admission.admission_personal_data', compact('user'));
     }
 }

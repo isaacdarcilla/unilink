@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @property mixed $id
  * @method static create(array $array)
+ * @method static pluck(string $string)
  */
 class Campus extends Model
 {

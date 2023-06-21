@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->foreignId('user_id')->constrained();
             $table->foreignId('academic_year_id')->constrained();
             $table->foreignId('campus_id')->constrained();
-            $table->text('profile_photo');
+            $table->text('profile_photo')->nullable();
             $table->string('first_name');
             $table->string('middle_name')->nullable();
             $table->string('last_name');

@@ -22,6 +22,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property mixed $id
  * @method static create(array $array)
  * @method static hasRole(string $string)
+ * @method static pluck(string $string)
  */
 class User extends Authenticatable implements MustVerifyEmail
 {

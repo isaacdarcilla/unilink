@@ -26,7 +26,9 @@ class AdmissionPersonalDataForm extends Component
 
     public bool $same_address = false;
 
-    public ?string $phone_number, $landline_number, $email_address, $facebook_account, $citizenship, $civil_status;
+    public ?string $phone_number, $landline_number, $email_address, $facebook_account, $citizenship, $civil_status, $religion, $rank_in_family, $number_of_siblings, $ages_of_siblings;
+
+    public array $special_skills = [];
 
     public function render(): View
     {

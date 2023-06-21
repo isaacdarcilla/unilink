@@ -153,6 +153,28 @@
                         :options="CivilStatusEnum::toLabels()"
                         wire:model="civil_status"
                 />
+                <x-select
+                        label="{{ __('Religion') }}"
+                        placeholder="select religion..."
+                        :options="religions()"
+                        wire:model="religion"
+                />
+                <x-input label="{{ __('Rank in the Family') }}" wire:model="rank_in_family"
+                         placeholder="{{ __('rank in the family') }}"/>
+                <x-input label="{{ __('Number of Siblings') }}" wire:model="number_of_siblings"
+                         placeholder="{{ __('number of siblings') }}"/>
+                <x-input label="{{ __('Ages of Siblings in the Family') }}" wire:model="ages_of_siblings"
+                         placeholder="{{ __('ages of siblings') }}"/>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 p-3">
+                <x-select
+                        label="{{ __('Special Skills') }}"
+                        placeholder="select special skills..."
+                        :options="skills()"
+                        multiselect
+                        wire:model="special_skills"
+                />
             </div>
         </form>
     </x-card>

@@ -36,7 +36,9 @@
         },
         "files": [
             "app/Support/helpers.php",
-            "app/Support/citizenship.php"
+            "app/Support/citizenship.php",
+            "app/Support/religion.php",
+            "app/Support/skills.php"
         ]
     },
     "autoload-dev": {

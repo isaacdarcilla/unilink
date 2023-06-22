@@ -50,14 +50,14 @@ return new class extends Migration {
             $table->string('rank_in_family')->nullable();
             $table->string('number_of_siblings')->nullable();
             $table->string('mean_ages_of_siblings')->nullable();
-            $table->text('special_skills')->nullable();
-            $table->string('favorite_sports')->nullable();
+            $table->json('special_skills')->nullable();
+            $table->json('favorite_sports')->nullable();
             $table->integer('scholarship_grantee')->nullable()->comment('Yes or no');
             $table->text('lrn')->nullable();
             $table->text('program_first_choice')->nullable();
             $table->text('program_second_choice')->nullable();
             $table->text('program_third_choice')->nullable();
-            $table->text('gadget')->nullable()->comment('Cellphone or laptop or tablet or desktop');
+            $table->json('gadget')->nullable()->comment('Cellphone or laptop or tablet or desktop');
             $table->integer('internet_status')->nullable()->comment('Unstable or stable or none');
             $table->timestamps();
             $table->softDeletes();

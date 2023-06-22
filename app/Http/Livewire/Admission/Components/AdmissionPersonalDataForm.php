@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admission\Components;
 use App\Admin\Models\User;
 use App\Domain\Admission\Requests\AdmissionPersonalDataRequest;
 use App\Domain\Campus\Services\CampusService;
+use Domain\Admission\Models\AdmissionPersonalProfile;
 use Domain\Campus\Enums\CampusStatus;
 use Domain\Program\Enums\ProgramStatus;
 use Domain\Program\Services\ProgramService;
@@ -30,21 +31,21 @@ class AdmissionPersonalDataForm extends Component
 
     public ?string $gender_preference;
 
-    public ?string $region_code;
+    public ?string $region;
 
-    public ?string $temporary_region_code;
+    public ?string $temporary_region;
 
-    public ?string $province_code;
+    public ?string $province;
 
-    public ?string $temporary_province_code;
+    public ?string $temporary_province;
 
-    public ?string $city_code;
+    public ?string $city;
 
-    public ?string $temporary_city_code;
+    public ?string $temporary_city;
 
-    public ?string $barangay_code;
+    public ?string $barangay;
 
-    public ?string $temporary_barangay_code;
+    public ?string $temporary_barangay;
 
     public ?string $street;
 
@@ -116,6 +117,12 @@ class AdmissionPersonalDataForm extends Component
 
     public function submit(): void
     {
-        $this->validate((new AdmissionPersonalDataRequest())->rules());
+        $this->validate(
+            (new AdmissionPersonalDataRequest())->rules($this->same_address)
+        );
+
+        AdmissionPersonalProfile::create([
+
+        ]);
     }
 }

@@ -33,38 +33,40 @@
                         :options="get_regions()"
                         option-label="region_description"
                         option-value="region_code"
-                        wire:model="region_code"
+                        wire:model="region"
                 />
                 <x-select
                         label="{{ __('Province') }}"
                         placeholder="select province..."
-                        :options="get_provinces($region_code)"
+                        :options="get_provinces($region)"
                         option-label="province_description"
                         option-value="province_code"
-                        wire:model="province_code"
+                        wire:model="province"
                 />
                 <x-select
                         label="{{ __('City/Town') }}"
                         placeholder="select city or town..."
-                        :options="get_cities($province_code)"
+                        :options="get_cities($province)"
                         option-label="city_municipality_description"
                         option-value="city_municipality_code"
-                        wire:model="city_code"
+                        wire:model="city"
                 />
                 <x-select
                         label="{{ __('Barangay') }}"
                         placeholder="select barangay..."
-                        :options="get_barangays($city_code)"
+                        :options="get_barangays($city)"
                         option-label="barangay_description"
                         option-value="barangay_code"
-                        wire:model="barangay_code"
+                        wire:model="barangay"
                 />
                 <x-input label="{{ __('Street') }}" wire:model="street" placeholder="{{ __('street') }}"/>
                 <x-input label="{{ __('Zip Code') }}" wire:model="zip_code" placeholder="{{ __('zip code') }}"/>
             </div>
             <x-label class="mx-3 pb-3 pt-3">{{ __('Temporary Address') }}</x-label>
-            <x-checkbox id="right-label" class="pt-3 ml-3" label="Same with Permanent Address"
-                        wire:model="same_address"/>
+            @if(address_enabled($region, $province, $city, $barangay, $street, $zip_code))
+                <x-checkbox id="right-label" class="pt-3 ml-3" label="Same with Permanent Address"
+                            wire:model="same_address"/>
+            @endif
             <div @class([
                     'grid grid-cols-1 sm:grid-cols-3 gap-4 p-3',
                     'hidden' => $same_address,
@@ -75,31 +77,31 @@
                         :options="get_regions()"
                         option-label="region_description"
                         option-value="region_code"
-                        wire:model="temporary_region_code"
+                        wire:model="temporary_region"
                 />
                 <x-select
                         label="{{ __('Province') }}"
                         placeholder="select province..."
-                        :options="get_provinces($temporary_region_code)"
+                        :options="get_provinces($temporary_region)"
                         option-label="province_description"
                         option-value="province_code"
-                        wire:model="temporary_province_code"
+                        wire:model="temporary_province"
                 />
                 <x-select
                         label="{{ __('City/Town') }}"
                         placeholder="select city or town..."
-                        :options="get_cities($temporary_province_code)"
+                        :options="get_cities($temporary_province)"
                         option-label="city_municipality_description"
                         option-value="city_municipality_code"
-                        wire:model="temporary_city_code"
+                        wire:model="temporary_city"
                 />
                 <x-select
                         label="{{ __('Barangay') }}"
                         placeholder="select barangay..."
-                        :options="get_barangays($temporary_city_code)"
+                        :options="get_barangays($temporary_city)"
                         option-label="barangay_description"
                         option-value="barangay_code"
-                        wire:model="temporary_barangay_code"
+                        wire:model="temporary_barangay"
                 />
                 <x-input label="{{ __('Street') }}" wire:model="temporary_street"
                          placeholder="{{ __('temporary street') }}"/>
@@ -110,9 +112,9 @@
             <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 p-3">
                 <x-inputs.maskable
                         label="Phone Number"
-                        mask="+## ### ### ####"
+                        mask="#### ### ####"
                         placeholder="phone number"
-                        wire:model.defer="phone_number"
+                        wire:model="phone_number"
                 />
                 <x-inputs.maskable
                         label="Landline Number"
@@ -155,7 +157,7 @@
                 />
                 <x-input label="{{ __('Rank in the Family') }}" wire:model="rank_in_family"
                          placeholder="{{ __('rank in the family') }}"/>
-                <x-input label="{{ __('Number of Siblings') }}" 1wire:model="number_of_siblings"
+                <x-input label="{{ __('Number of Siblings') }}" wire:model="number_of_siblings"
                          placeholder="{{ __('number of siblings') }}"/>
                 <x-input label="{{ __('Ages of Siblings in the Family') }}" wire:model="ages_of_siblings"
                          placeholder="{{ __('ages of siblings') }}"/>

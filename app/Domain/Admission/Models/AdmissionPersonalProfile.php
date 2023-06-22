@@ -21,5 +21,8 @@ class AdmissionPersonalProfile extends Model
         'date_of_birth' => 'datetime',
         'scholarship_grantee' => 'integer',
         'integer' => 'integer',
+        'special_skills' => 'array',
+        'favorite_sports' => 'array',
+        'gadget' => 'array',
     ];
 }

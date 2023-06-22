@@ -82,3 +82,19 @@ if (!function_exists('get_barangays')) {
         return null;
     }
 }
+
+if (!function_exists('address_enabled')) {
+    /**
+     * Check if address can be enabled
+     * @param  mixed  ...$props
+     * @return bool
+     */
+    function address_enabled(...$props): bool
+    {
+        if (in_array(null, $props, true)) {
+            return false;
+        }
+
+        return true;
+    }
+}

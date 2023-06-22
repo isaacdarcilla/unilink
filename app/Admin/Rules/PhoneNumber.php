@@ -9,8 +9,8 @@ class PhoneNumber implements ValidationRule
 {
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if (!str($value)->startsWith("+63")) {
-            $fail('The :attribute must start with +63.');
+        if (!str($value)->startsWith("09")) {
+            $fail('The :attribute must start with 09.');
         }
     }
 }

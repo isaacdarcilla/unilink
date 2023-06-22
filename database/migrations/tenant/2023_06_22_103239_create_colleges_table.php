@@ -10,12 +10,10 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('campuses', function (Blueprint $table) {
+        Schema::create('colleges', function (Blueprint $table) {
             $table->id();
-            $table->text('name')->nullable();
-            $table->text('description')->nullable();
-            $table->text('address')->nullable();
-            $table->integer('status')->nullable()->default(1)->comment('Enabled or disabled');
+            $table->string('name')->nullable();
+            $table->string('short_name')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -26,6 +24,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('campuses');
+        Schema::dropIfExists('colleges');
     }
 };

@@ -3,6 +3,9 @@
 namespace App\Http\Livewire\Admission\Components;
 
 use App\Admin\Models\User;
+use App\Domain\Admission\Requests\AdmissionPersonalDataRequest;
+use App\Domain\Campus\Services\CampusService;
+use Domain\Campus\Enums\CampusStatus;
 use Domain\Program\Enums\ProgramStatus;
 use Domain\Program\Services\ProgramService;
 use Illuminate\Contracts\View\View;
@@ -14,6 +17,8 @@ class AdmissionPersonalDataForm extends Component
     public ?User $user;
 
     public Collection $programs;
+
+    public Collection $campuses;
 
     public ?string $first_name;
 
@@ -89,15 +94,28 @@ class AdmissionPersonalDataForm extends Component
 
     public ?string $program_third_choice;
 
+    public array $gadget = [];
+
+    public ?string $internet_status;
+
+    public ?string $campus;
+
     public function mount(): void
     {
         $programService = new ProgramService();
+        $campusService = new CampusService();
 
         $this->programs = $programService->all(ProgramStatus::enabled());
+        $this->campuses = $campusService->all(CampusStatus::enabled());
     }
 
     public function render(): View
     {
         return view('livewire.admission.components.admission-personal-data-form');
+    }
+
+    public function submit(): void
+    {
+        $this->validate((new AdmissionPersonalDataRequest())->rules());
     }
 }

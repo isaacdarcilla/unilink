@@ -12,7 +12,9 @@ return new class extends Migration {
     {
         Schema::create('programs', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('college_id')->nullable();
             $table->string('name')->nullable();
+            $table->string('short_name')->nullable();
             $table->integer('status')->default(1)->nullable()->comment('Enabled or disabled');
             $table->timestamps();
             $table->softDeletes();

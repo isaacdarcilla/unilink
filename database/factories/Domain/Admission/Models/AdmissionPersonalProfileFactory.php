@@ -27,6 +27,7 @@ class AdmissionPersonalProfileFactory extends Factory
                 AcademicYear::where('module_type', ModuleType::admission()->value)->pluck('id')
             ),
             'campus_id' => $this->faker->randomElement(Campus::pluck('id')),
+            'application_status' => null,
             'first_name' => $this->faker->firstName(),
             'middle_name' => $this->faker->lastName(),
             'last_name' => $this->faker->lastName(),

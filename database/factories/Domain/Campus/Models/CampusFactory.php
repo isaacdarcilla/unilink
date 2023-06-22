@@ -15,6 +15,7 @@ class CampusFactory extends Factory
         return [
             'name' => $this->faker->company(),
             'description' => $this->faker->sentence(),
+            'address' => $this->faker->address(),
             'status' => $this->faker->randomElement(CampusStatus::toValues()),
         ];
     }

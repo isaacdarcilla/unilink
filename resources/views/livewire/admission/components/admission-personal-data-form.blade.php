@@ -1,10 +1,10 @@
 @php
-    use Domain\Admission\Enums\CivilStatusEnum;use Domain\Admission\Enums\GenderPreferenceEnum;use Domain\Admission\Enums\ScholarshipGranteeEnum;use Domain\Admission\Enums\SexEnum;
+    use Domain\Admission\Enums\CivilStatusEnum;use Domain\Admission\Enums\GadgetEnum;use Domain\Admission\Enums\GenderPreferenceEnum;use Domain\Admission\Enums\ScholarshipGranteeEnum;use Domain\Admission\Enums\SexEnum; use \Domain\Admission\Enums\InternetStatus;
 @endphp
 <div>
     <x-stepper/>
     <x-card class="-space-y-2 bg-gradient-to-bl from-slate-100 via-slate-100 to-gray-100">
-        <form>
+        <form wire:submit.prevent="submit">
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 p-3">
                 <x-input label="{{ __('First Name') }}" wire:model="first_name" placeholder="{{ __('first name') }}"/>
                 <x-input label="{{ __('Middle Name') }}" wire:model="middle_name"
@@ -110,9 +110,9 @@
             <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 p-3">
                 <x-inputs.maskable
                         label="Phone Number"
-                        mask="+63 ### ### ####"
+                        mask="+## ### ### ####"
                         placeholder="phone number"
-                        wire:model="phone_number"
+                        wire:model.defer="phone_number"
                 />
                 <x-inputs.maskable
                         label="Landline Number"
@@ -213,6 +213,34 @@
                         <x-select.option :label="$program->name" :value="$program->name"/>
                     @endforeach
                 </x-select>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 p-3">
+                <x-select
+                        label="{{ __('Gadgets Used in Studying') }}"
+                        placeholder="select gadgets..."
+                        :options="GadgetEnum::toLabels()"
+                        multiselect
+                        wire:model="gadget"
+                />
+                <x-select
+                        label="{{ __('Internet Connectivity Status') }}"
+                        placeholder="select internet status..."
+                        :options="InternetStatus::toLabels()"
+                        wire:model="internet_status"
+                />
+                <x-select
+                        label="{{ __('Campus') }}"
+                        placeholder="select campus..."
+                        wire:model="campus"
+                >
+                    @foreach($campuses as $campus)
+                        <x-select.option :label="$campus->name" :value="$campus->id"/>
+                    @endforeach
+                </x-select>
+            </div>
+
+            <div class="p-3">
+                <x-button type="submit" info label="Save Information"/>
             </div>
         </form>
     </x-card>

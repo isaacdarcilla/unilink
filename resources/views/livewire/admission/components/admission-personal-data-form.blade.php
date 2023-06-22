@@ -185,8 +185,34 @@
                 <x-input label="{{ __('Learner Reference Number') }}" wire:model="lrn"
                          placeholder="{{ __('learner\'s reference number') }}"/>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 p-3">
-
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 p-3">
+                <x-select
+                        label="{{ __('Program First Choice') }}"
+                        placeholder="first choice..."
+                        wire:model="program_first_choice"
+                >
+                    @foreach($programs as $program)
+                        <x-select.option :label="$program->name" :value="$program->name"/>
+                    @endforeach
+                </x-select>
+                <x-select
+                        label="{{ __('Program Second Choice') }}"
+                        placeholder="second choice..."
+                        wire:model="program_second_choice"
+                >
+                    @foreach($programs as $program)
+                        <x-select.option :label="$program->name" :value="$program->name"/>
+                    @endforeach
+                </x-select>
+                <x-select
+                        label="{{ __('Program Third Choice') }}"
+                        placeholder="third choice..."
+                        wire:model="program_third_choice"
+                >
+                    @foreach($programs as $program)
+                        <x-select.option :label="$program->name" :value="$program->name"/>
+                    @endforeach
+                </x-select>
             </div>
         </form>
     </x-card>

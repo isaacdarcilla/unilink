@@ -22,13 +22,13 @@ class AdmissionPersonalDataForm extends Component
 
     public ?string $street, $temporary_street;
 
-    public ?string $zip_code, $temporary_zip_code;
+    public ?string $zip_code, $temporary_zip_code, $scholarship_grantee, $lrn;
 
     public bool $same_address = false;
 
     public ?string $phone_number, $landline_number, $email_address, $facebook_account, $citizenship, $civil_status, $religion, $rank_in_family, $number_of_siblings, $ages_of_siblings;
 
-    public array $special_skills = [];
+    public array $special_skills = [], $favorite_sports = [];
 
     public function render(): View
     {

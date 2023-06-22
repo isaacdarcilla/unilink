@@ -1,5 +1,5 @@
 @php
-    use Domain\Admission\Enums\CivilStatusEnum;use Domain\Admission\Enums\GenderPreferenceEnum;use Domain\Admission\Enums\SexEnum;
+    use Domain\Admission\Enums\CivilStatusEnum;use Domain\Admission\Enums\GenderPreferenceEnum;use Domain\Admission\Enums\ScholarshipGranteeEnum;use Domain\Admission\Enums\SexEnum;
 @endphp
 <div>
     <x-stepper/>
@@ -15,21 +15,15 @@
                 <x-select
                         label="{{ __('Sex') }}"
                         placeholder="select sex..."
+                        :options="SexEnum::toLabels()"
                         wire:model="sex"
-                >
-                    @foreach(SexEnum::toArray() as $sex)
-                        <x-select.option label="{{ $sex }}" value="{{ str($sex)->lower() }}"/>
-                    @endforeach
-                </x-select>
+                />
                 <x-select
                         label="{{ __('Gender Preference') }}"
                         placeholder="select gender preference..."
+                        :options="GenderPreferenceEnum::toLabels()"
                         wire:model="gender_preference"
-                >
-                    @foreach(GenderPreferenceEnum::toArray() as $gender)
-                        <x-select.option label="{{ $gender }}" value="{{ str($gender)->lower() }}"/>
-                    @endforeach
-                </x-select>
+                />
             </div>
             <x-label class="mx-3 pt-3">{{ __('Permanent Address') }}</x-label>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 p-3">
@@ -161,7 +155,7 @@
                 />
                 <x-input label="{{ __('Rank in the Family') }}" wire:model="rank_in_family"
                          placeholder="{{ __('rank in the family') }}"/>
-                <x-input label="{{ __('Number of Siblings') }}" wire:model="number_of_siblings"
+                <x-input label="{{ __('Number of Siblings') }}" 1wire:model="number_of_siblings"
                          placeholder="{{ __('number of siblings') }}"/>
                 <x-input label="{{ __('Ages of Siblings in the Family') }}" wire:model="ages_of_siblings"
                          placeholder="{{ __('ages of siblings') }}"/>
@@ -175,6 +169,24 @@
                         multiselect
                         wire:model="special_skills"
                 />
+                <x-select
+                        label="{{ __('Favorite Sports') }}"
+                        placeholder="select favorite sports..."
+                        :options="sports()"
+                        multiselect
+                        wire:model="favorite_sports"
+                />
+                <x-select
+                        label="{{ __('STUFAP Grantee') }}"
+                        placeholder="are you STUFAP grantee..."
+                        :options="ScholarshipGranteeEnum::toLabels()"
+                        wire:model="scholarship_grantee"
+                />
+                <x-input label="{{ __('Learner Reference Number') }}" wire:model="lrn"
+                         placeholder="{{ __('learner\'s reference number') }}"/>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 p-3">
+
             </div>
         </form>
     </x-card>

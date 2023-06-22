@@ -10,6 +10,14 @@ use Spatie\Enum\Enum;
  */
 class ScholarshipGranteeEnum extends Enum
 {
+    protected static function labels(): array
+    {
+        return [
+            'yes' => 'Yes',
+            'no' => 'No',
+        ];
+    }
+
     protected static function values(): array
     {
         return [

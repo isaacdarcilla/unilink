@@ -15,6 +15,9 @@ return new class extends Migration {
             $table->foreignId('user_id')->constrained();
             $table->foreignId('academic_year_id')->constrained();
             $table->foreignId('campus_id')->constrained();
+            $table->integer('application_status')->nullable()->comment(
+                'application pending, application approved, application declined, on exam, exam completed, exam passed, exam failed, approved'
+            );
             $table->text('profile_photo')->nullable();
             $table->string('first_name');
             $table->string('middle_name')->nullable();

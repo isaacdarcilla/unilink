@@ -15,6 +15,7 @@
     @livewireStyles
 </head>
 <body class="font-sans antialiased">
+<x-notifications/>
 <x-banner/>
 
 <div class="min-h-screen bg-zinc-100">

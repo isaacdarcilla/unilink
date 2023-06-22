@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property mixed $id
  * @method static create(array $array)
  * @method static pluck(string $string)
- * @method static where(string $string, int|string $value)
  */
 class AcademicYear extends Model
 {

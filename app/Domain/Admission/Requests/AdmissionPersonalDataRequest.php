@@ -47,7 +47,7 @@ class AdmissionPersonalDataRequest extends FormRequest
             'special_skills' => ['required'],
             'favorite_sports' => ['required'],
             'scholarship_grantee' => ['required', 'string', 'max:255'],
-            'lrn' => ['required', 'string', 'max:12', 'min:12'],
+            'lrn' => ['nullable', 'string', 'max:12', 'min:12'],
             'program_first_choice' => ['required', 'string', 'max:255'],
             'program_second_choice' => ['required', 'string', 'max:255'],
             'program_third_choice' => ['required', 'string', 'max:255'],

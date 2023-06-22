@@ -3,23 +3,33 @@
 namespace App\Http\Livewire\Admission\Components;
 
 use App\Admin\Models\User;
+use App\Domain\AcademicYear\Services\AcademicYearService;
+use App\Domain\Admission\Dto\CreateAdmissionProfileDto;
 use App\Domain\Admission\Requests\AdmissionPersonalDataRequest;
+use App\Domain\Admission\Services\AdmissionService;
 use App\Domain\Campus\Services\CampusService;
-use Domain\Admission\Models\AdmissionPersonalProfile;
+use Domain\AcademicYear\Enums\AcademicYearStatus;
+use Domain\AcademicYear\Enums\ModuleType;
+use Domain\AcademicYear\Models\AcademicYear;
 use Domain\Campus\Enums\CampusStatus;
 use Domain\Program\Enums\ProgramStatus;
 use Domain\Program\Services\ProgramService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
+use WireUi\Traits\Actions;
 
 class AdmissionPersonalDataForm extends Component
 {
+    use Actions;
+
     public ?User $user;
 
     public Collection $programs;
 
     public Collection $campuses;
+
+    public ?AcademicYear $academic_year;
 
     public ?string $first_name;
 
@@ -105,9 +115,11 @@ class AdmissionPersonalDataForm extends Component
     {
         $programService = new ProgramService();
         $campusService = new CampusService();
+        $academicService = new AcademicYearService();
 
         $this->programs = $programService->all(ProgramStatus::enabled());
         $this->campuses = $campusService->all(CampusStatus::enabled());
+        $this->academic_year = $academicService->active(AcademicYearStatus::enabled(), ModuleType::admission());
     }
 
     public function render(): View
@@ -117,12 +129,30 @@ class AdmissionPersonalDataForm extends Component
 
     public function submit(): void
     {
-        $this->validate(
-            (new AdmissionPersonalDataRequest())->rules($this->same_address)
+        $request = new AdmissionPersonalDataRequest();
+        $admissionService = new AdmissionService();
+
+        $validated = $this->validate(
+            $request->rules($this->same_address)
         );
 
-        AdmissionPersonalProfile::create([
+        $profile = $admissionService->storeProfile(
+            CreateAdmissionProfileDto::fromArray($validated),
+            $this->academic_year->id
+        );
 
-        ]);
+        if ($profile) {
+            $this->notification()->success(
+                $title = 'Profile saved',
+                $description = 'Your profile was successfully saved'
+            );
+
+            $this->redirect(route('admission.personal_data'));
+        }
+
+        $this->notification()->error(
+            $title = 'An error occurred',
+            $description = 'Your profile was not saved'
+        );
     }
 }

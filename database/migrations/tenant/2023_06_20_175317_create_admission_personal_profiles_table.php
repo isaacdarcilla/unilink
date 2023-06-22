@@ -31,12 +31,13 @@ return new class extends Migration {
             $table->string('municipality')->nullable();
             $table->string('province')->nullable();
             $table->string('region')->nullable();
+            $table->string('zip_code')->nullable();
             $table->string('temporary_street')->nullable();
             $table->string('temporary_barangay')->nullable();
             $table->string('temporary_municipality')->nullable();
             $table->string('temporary_province')->nullable();
             $table->string('temporary_region')->nullable();
-            $table->string('zip_code')->nullable();
+            $table->string('temporary_zip_code')->nullable();
             $table->string('mobile_number')->nullable();
             $table->string('landline_number')->nullable();
             $table->string('email_address')->nullable();

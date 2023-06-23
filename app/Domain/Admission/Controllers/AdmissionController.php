@@ -12,7 +12,7 @@ use Illuminate\View\View;
 class AdmissionController extends Controller
 {
     public function __construct(
-        private readonly AcademicYearService $academicYearService
+        private readonly AcademicYearService $academicYearService,
     ) {
     }
 

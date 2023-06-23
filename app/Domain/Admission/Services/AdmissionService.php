@@ -2,12 +2,34 @@
 
 namespace App\Domain\Admission\Services;
 
+use App\Admin\Enums\RoleEnum;
 use App\Domain\Admission\Dto\CreateAdmissionProfileDto;
 use App\Domain\Admission\Enums\AdmissionApplicationStatus;
 use Domain\Admission\Models\AdmissionPersonalProfile;
 
 class AdmissionService
 {
+    public function getAdmissions(
+        int $academicYearId,
+        string $column = 'created_at',
+        string $direction = 'ASC',
+        string|int $limit = 10
+    ) {
+        $role = role_is([
+            RoleEnum::student()->value,
+            RoleEnum::parents()->value,
+        ]);
+
+        return AdmissionPersonalProfile::when($role, function ($query) {
+            $query->where([
+                'user_id' => auth()->id(),
+            ]);
+        })->where([
+            'academic_year_id' => $academicYearId
+        ])->orderBy($column, $direction)
+            ->paginate($limit);
+    }
+
     public function storeProfile(
         CreateAdmissionProfileDto $dto,
         string|null $activeAcademicYear = null

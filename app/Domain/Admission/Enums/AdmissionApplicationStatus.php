@@ -17,6 +17,21 @@ use Spatie\Enum\Enum;
  */
 class AdmissionApplicationStatus extends Enum
 {
+    protected static function labels(): array
+    {
+        return [
+            'application_pending' => 'Application Pending',
+            'application_approved' => 'Application Approved',
+            'application_declined' => 'Application Declined',
+            'on_exam' => 'Examination',
+            'exam_submitted' => 'Examination Submitted',
+            'exam_checking' => 'Examination Checking',
+            'exam_passed' => 'Examination Passed',
+            'exam_failed' => 'Examination Failed',
+            'approved' => 'Completed',
+        ];
+    }
+
     protected static function values(): array
     {
         return [

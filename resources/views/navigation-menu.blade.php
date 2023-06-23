@@ -26,7 +26,7 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link class="font-bold" href="{{ route('admission.index') }}"
-                                :active="request()->routeIs(['admission.index', 'admission.personal_data'])">
+                                :active="request()->routeIs(['admission.index', 'admission.personal_data', 'admission.education'])">
                         <div class="mb-1 mr-1">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
                                  stroke="currentColor" stroke-width="2">
@@ -116,7 +116,7 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link href="{{ route('admission.index') }}"
-                                   :active="request()->routeIs(['admission.index', 'admission.personal_data'])">
+                                   :active="request()->routeIs(['admission.index', 'admission.personal_data', 'admission.education'])">
                 {{ __('Admission') }}
             </x-responsive-nav-link>
         </div>

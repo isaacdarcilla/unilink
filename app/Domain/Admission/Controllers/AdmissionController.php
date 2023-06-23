@@ -34,6 +34,9 @@ class AdmissionController extends Controller
 
     public function education(AdmissionPersonalProfile $admission_personal_profile, ?User $user): View
     {
-        return view('users.student.admission.admission_personal_data', compact('user', 'admission_personal_profile'));
+        return view(
+            'users.student.admission.admission_education_background',
+            compact('user', 'admission_personal_profile')
+        );
     }
 }

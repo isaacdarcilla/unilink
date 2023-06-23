@@ -8,7 +8,7 @@ use Domain\AcademicYear\Models\AcademicYear;
 
 class AcademicYearService
 {
-    public function active(AcademicYearStatus $status, ModuleType $module)
+    public function active(AcademicYearStatus $status, ModuleType $module): AcademicYear
     {
         return AcademicYear::where([
             'status' => $status->value,

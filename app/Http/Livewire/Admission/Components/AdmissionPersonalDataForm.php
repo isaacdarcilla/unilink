@@ -143,16 +143,16 @@ class AdmissionPersonalDataForm extends Component
 
         if ($profile) {
             $this->notification()->success(
-                $title = 'Profile saved',
-                $description = 'Your profile was successfully saved'
+                'Profile saved',
+                'Your profile was successfully saved'
             );
 
             $this->redirect(route('admission.personal_data'));
         }
 
         $this->notification()->error(
-            $title = 'An error occurred',
-            $description = 'Your profile was not saved'
+            'An error occurred',
+            'Your profile was not saved'
         );
     }
 }

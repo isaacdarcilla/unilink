@@ -16,7 +16,7 @@ class AcademicYearFactory extends Factory
         return [
             'academic_year_start' => $this->faker->year(),
             'academic_year_end' => $this->faker->year(),
-            'description' => $this->faker->sentence(),
+            'description' => sprintf('%s-%s', $this->faker->year(), $this->faker->year()),
             'status' => $this->faker->randomElement(AcademicYearStatus::toValues()),
             'module_type' => $this->faker->randomElement(ModuleType::toValues()),
         ];

@@ -8,14 +8,17 @@ use Domain\AcademicYear\Enums\AcademicYearStatus;
 use Domain\AcademicYear\Enums\ModuleType;
 use Illuminate\View\View;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class AdmissionHistory extends Component
 {
+    use WithPagination;
+
     private readonly AcademicYearService $academicYearService;
 
     private readonly AdmissionService $admissionService;
 
-    public function mount(): void
+    public function boot(): void
     {
         $this->admissionService = new AdmissionService();
         $this->academicYearService = new AcademicYearService();
@@ -28,7 +31,7 @@ class AdmissionHistory extends Component
             ModuleType::admission()
         );
 
-        $applications = $this->admissionService->getAdmissions($active->id);
+        $applications = $this->admissionService->getAdmissions(academicYearId: $active->id);
 
         return view('livewire.admission.components.admission-history', compact('active', 'applications'));
     }

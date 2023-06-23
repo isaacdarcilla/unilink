@@ -2,7 +2,7 @@
     use App\Domain\Admission\Enums\AdmissionApplicationStatus;
 @endphp
 <div>
-    <table class="w-full text-sm text-left text-gray-500 -mt-3">
+    <table class="w-full text-sm text-left text-gray-500">
         @if(count($applications) > 0)
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
             <tr>
@@ -66,9 +66,9 @@
                     {{ $applicant->applicationDate }}
                 </th>
                 <td class="px-6 py-4">
-                    <a href="#"
+                    <a href="{{ route("admission.$applicant->application_progress", $applicant->id) }}"
                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                        <x-button sm flat info label="Edit"/>
+                        <x-button sm flat info label="Continue"/>
                     </a>
                 </td>
             </tr>
@@ -81,4 +81,7 @@
         @endforelse
         </tbody>
     </table>
+    <div class="p-2 mx-4">
+        {{ $applications->links() }}
+    </div>
 </div>

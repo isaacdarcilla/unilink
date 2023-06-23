@@ -7,6 +7,7 @@ use App\Domain\AcademicYear\Services\AcademicYearService;
 use App\Http\Controllers\Controller;
 use Domain\AcademicYear\Enums\AcademicYearStatus;
 use Domain\AcademicYear\Enums\ModuleType;
+use Domain\Admission\Models\AdmissionPersonalProfile;
 use Illuminate\View\View;
 
 class AdmissionController extends Controller
@@ -29,5 +30,10 @@ class AdmissionController extends Controller
     public function personal_data(?User $user): View
     {
         return view('users.student.admission.admission_personal_data', compact('user'));
+    }
+
+    public function education(AdmissionPersonalProfile $admission_personal_profile, ?User $user): View
+    {
+        return view('users.student.admission.admission_personal_data', compact('user', 'admission_personal_profile'));
     }
 }

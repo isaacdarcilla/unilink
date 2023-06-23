@@ -14,9 +14,10 @@
                         </x-button>
                     </a>
                 </div>
-                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                    @livewire('admission.components.admission-history')
-                </div>
+
+            </div>
+            <div class=" overflow-x-auto shadow-md sm:rounded-lg mt-2 bg-white border-0">
+                @livewire('admission.components.admission-history')
             </div>
         </div>
     </div>

@@ -4,6 +4,7 @@ namespace App\Domain\Admission\Services;
 
 use App\Admin\Enums\RoleEnum;
 use App\Domain\Admission\Dto\CreateAdmissionProfileDto;
+use App\Domain\Admission\Enums\AdmissionApplicationProgress;
 use App\Domain\Admission\Enums\AdmissionApplicationStatus;
 use Domain\Admission\Models\AdmissionPersonalProfile;
 
@@ -32,13 +33,15 @@ class AdmissionService
 
     public function storeProfile(
         CreateAdmissionProfileDto $dto,
-        string|null $activeAcademicYear = null
+        string|null $activeAcademicYear = null,
+        bool|null $sameAddress = false
     ): AdmissionPersonalProfile|null {
         return AdmissionPersonalProfile::create([
             'user_id' => auth()->id(),
             'academic_year_id' => $activeAcademicYear,
             'campus_id' => $dto->campus,
             'application_status' => AdmissionApplicationStatus::application_pending()->value,
+            'application_progress' => AdmissionApplicationProgress::education()->value,
             'profile_photo' => null,
             'first_name' => $dto->first_name,
             'middle_name' => $dto->middle_name,
@@ -51,12 +54,12 @@ class AdmissionService
             'province' => $dto->province,
             'region' => $dto->region,
             'zip_code' => $dto->zip_code,
-            'temporary_street' => $dto->temporary_street,
-            'temporary_barangay' => $dto->temporary_barangay,
-            'temporary_municipality' => $dto->temporary_city,
-            'temporary_province' => $dto->temporary_province,
-            'temporary_region' => $dto->temporary_region,
-            'temporary_zip_code' => $dto->temporary_zip_code,
+            'temporary_street' => $sameAddress ? $dto->street : $dto->temporary_street,
+            'temporary_barangay' => $sameAddress ? $dto->barangay : $dto->temporary_barangay,
+            'temporary_municipality' => $sameAddress ? $dto->city : $dto->temporary_city,
+            'temporary_province' => $sameAddress ? $dto->province : $dto->temporary_province,
+            'temporary_region' => $sameAddress ? $dto->region : $dto->temporary_region,
+            'temporary_zip_code' => $sameAddress ? $dto->zip_code : $dto->temporary_zip_code,
             'mobile_number' => $dto->phone_number,
             'landline_number' => $dto->landline_number,
             'email_address' => $dto->email_address,

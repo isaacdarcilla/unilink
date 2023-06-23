@@ -20,5 +20,6 @@ Route::middleware([
     Route::controller(AdmissionController::class)->prefix('admission')->group(function () {
         Route::get('/', 'index')->name('admission.index');
         Route::get('/personal_data/{user?}', 'personal_data')->name('admission.personal_data');
+        Route::get('/education/{admission_personal_profile}/{user?}', 'education')->name('admission.education');
     });
 });

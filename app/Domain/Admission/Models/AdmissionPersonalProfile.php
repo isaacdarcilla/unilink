@@ -38,7 +38,7 @@ class AdmissionPersonalProfile extends Model
     protected $casts = [
         'date_of_birth' => 'datetime',
         'scholarship_grantee' => 'integer',
-        'integer' => 'integer',
+        'application_status' => 'integer',
         'special_skills' => 'array',
         'favorite_sports' => 'array',
         'gadget' => 'array',

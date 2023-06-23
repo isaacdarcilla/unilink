@@ -3,6 +3,7 @@
 namespace Database\Factories\Domain\Admission\Models;
 
 use App\Admin\Models\User;
+use App\Domain\Admission\Enums\AdmissionApplicationProgress;
 use Domain\AcademicYear\Enums\ModuleType;
 use Domain\AcademicYear\Models\AcademicYear;
 use Domain\Admission\Enums\CivilStatusEnum;
@@ -27,7 +28,8 @@ class AdmissionPersonalProfileFactory extends Factory
                 AcademicYear::where('module_type', ModuleType::admission()->value)->pluck('id')
             ),
             'campus_id' => $this->faker->randomElement(Campus::pluck('id')),
-            'application_status' => null,
+            'application_status' => 1,
+            'application_progress' => AdmissionApplicationProgress::personal_profile()->value,
             'first_name' => $this->faker->firstName(),
             'middle_name' => $this->faker->lastName(),
             'last_name' => $this->faker->lastName(),

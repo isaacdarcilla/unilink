@@ -138,7 +138,8 @@ class AdmissionPersonalDataForm extends Component
 
         $profile = $admissionService->storeProfile(
             CreateAdmissionProfileDto::fromArray($validated),
-            $this->academic_year->id
+            $this->academic_year->id,
+            $this->same_address
         );
 
         if ($profile) {
@@ -147,7 +148,12 @@ class AdmissionPersonalDataForm extends Component
                 'Your profile was successfully saved'
             );
 
-            $this->redirect(route('admission.personal_data'));
+            $this->redirect(
+                route(
+                    'admission.education',
+                    ['admission_personal_profile' => $profile->id]
+                )
+            );
         }
 
         $this->notification()->error(

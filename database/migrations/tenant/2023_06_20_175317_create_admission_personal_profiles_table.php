@@ -18,6 +18,9 @@ return new class extends Migration {
             $table->integer('application_status')->nullable()->comment(
                 'application pending, application approved, application declined, on exam, exam completed, exam passed, exam failed, approved'
             );
+            $table->string('application_progress')->nullable()->comment(
+                'personal, education, family, health, completed'
+            );
             $table->text('profile_photo')->nullable();
             $table->string('first_name');
             $table->string('middle_name')->nullable();

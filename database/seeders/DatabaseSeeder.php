@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
             CitySeeder::class,
             BarangaySeeder::class,
             ProgramSeeder::class,
+            LevelSeeder::class,
+            AdmissionEducationSeeder::class,
         ]);
     }
 }

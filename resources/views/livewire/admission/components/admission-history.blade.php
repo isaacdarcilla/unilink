@@ -4,7 +4,7 @@
 <div>
     <table class="w-full text-sm text-left text-gray-500">
         @if(count($applications) > 0)
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
+            <thead class="text-xs text-gray-700 uppercase bg-white">
             <tr>
                 <th scope="col" class="px-6 py-3">
                     ID
@@ -38,7 +38,7 @@
         @endif
         <tbody>
         @forelse($applications as $key => $applicant)
-            <tr class="bg-white border-b hover:bg-gray-50 dark:bg-gray-900 dark:border-gray-700">
+            <tr class="bg-white border-b hover:bg-white bg-gradient-to-bl from-slate-100 via-slate-100 to-gray-100">
                 <td class="px-6 py-4 underline">
                     #{{ $applicant->id }}
                 </td>

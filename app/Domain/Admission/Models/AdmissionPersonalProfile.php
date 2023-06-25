@@ -2,12 +2,14 @@
 
 namespace Domain\Admission\Models;
 
+use App\Domain\Admission\Models\AdmissionEducation;
 use Closure;
 use Domain\AcademicYear\Models\AcademicYear;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -27,6 +29,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property mixed $created_at
  * @method static create(array $array)
  * @method static when(bool $role, Closure $param)
+ * @method static pluck(string $string)
  */
 class AdmissionPersonalProfile extends Model
 {
@@ -47,6 +50,11 @@ class AdmissionPersonalProfile extends Model
     public function academic_year(): BelongsTo
     {
         return $this->belongsTo(AcademicYear::class);
+    }
+
+    public function admission_education(): HasOne
+    {
+        return $this->hasOne(AdmissionEducation::class);
     }
 
     protected function fullName(): Attribute

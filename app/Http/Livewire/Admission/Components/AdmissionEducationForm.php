@@ -3,7 +3,9 @@
 namespace App\Http\Livewire\Admission\Components;
 
 use App\Admin\Models\User;
+use App\Domain\Admission\Dto\CreateAdmissionEducationDto;
 use App\Domain\Admission\Requests\AdmissionEducationDataRequest;
+use App\Domain\Admission\Services\AdmissionService;
 use Domain\Admission\Models\AdmissionPersonalProfile;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
@@ -52,7 +54,16 @@ class AdmissionEducationForm extends Component
 
     public function submit(): void
     {
-        $this->validate();
+        $admissionService = new AdmissionService();
+
+        ['inputs' => $inputs] = $this->validate();
+
+        collect($inputs)->each(function ($item) use (&$admissionService) {
+            $admissionService->storeEducation(
+                CreateAdmissionEducationDto::fromArray($item),
+                $this->admissionPersonalProfile->id
+            );
+        });
     }
 
     public function addInput(): void

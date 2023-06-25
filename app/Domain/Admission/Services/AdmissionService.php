@@ -3,9 +3,11 @@
 namespace App\Domain\Admission\Services;
 
 use App\Admin\Enums\RoleEnum;
+use App\Domain\Admission\Dto\CreateAdmissionEducationDto;
 use App\Domain\Admission\Dto\CreateAdmissionProfileDto;
 use App\Domain\Admission\Enums\AdmissionApplicationProgress;
 use App\Domain\Admission\Enums\AdmissionApplicationStatus;
+use App\Domain\Admission\Models\AdmissionEducation;
 use Domain\Admission\Models\AdmissionPersonalProfile;
 
 class AdmissionService
@@ -82,6 +84,19 @@ class AdmissionService
             'program_third_choice' => $dto->program_third_choice,
             'gadget' => $dto->gadget,
             'internet_status' => $dto->internet_status,
+        ]);
+    }
+
+    public function storeEducation(CreateAdmissionEducationDto $dto, AdmissionPersonalProfile|int $profile)
+    {
+        return AdmissionEducation::create([
+            'admission_personal_profile_id' => $profile,
+            'level_id' => $dto->level_id,
+            'school' => $dto->school,
+            'degree' => $dto->degree,
+            'inclusive_dates_from' => $dto->inclusive_dates_from,
+            'inclusive_dates_to' => $dto->inclusive_dates_to,
+            'honors' => $dto->honors
         ]);
     }
 }

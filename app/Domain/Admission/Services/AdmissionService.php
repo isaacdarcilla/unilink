@@ -103,4 +103,14 @@ class AdmissionService
             ]
         );
     }
+
+    public function updateProgress(
+        AdmissionApplicationProgress $progress,
+        AdmissionPersonalProfile|int $admissionProfile
+    ): AdmissionPersonalProfile {
+        $admissionProfile->application_progress = $progress->value;
+        $admissionProfile->save();
+
+        return $admissionProfile;
+    }
 }

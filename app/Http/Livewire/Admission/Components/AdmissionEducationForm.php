@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admission\Components;
 
 use App\Admin\Models\User;
 use App\Domain\Admission\Dto\CreateAdmissionEducationDto;
+use App\Domain\Admission\Enums\AdmissionApplicationProgress;
 use App\Domain\Admission\Requests\AdmissionEducationDataRequest;
 use App\Domain\Admission\Services\AdmissionService;
 use Domain\Admission\Models\AdmissionPersonalProfile;
@@ -69,6 +70,12 @@ class AdmissionEducationForm extends Component
                     $this->admissionPersonalProfile->id
                 );
             });
+
+            $admissionService->updateProgress(
+                AdmissionApplicationProgress::family(),
+                $this->admissionPersonalProfile
+            );
+
             $this->notification()->success(
                 'Education saved',
                 'Your education background was successfully saved'
@@ -76,7 +83,7 @@ class AdmissionEducationForm extends Component
 
             $this->redirect(
                 route(
-                    'admission.education',
+                    'admission.family',
                     ['admission_personal_profile' => $this->admissionPersonalProfile->id]
                 )
             );

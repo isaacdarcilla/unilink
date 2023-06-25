@@ -28,6 +28,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property mixed $date_of_birth
  * @property mixed $created_at
  * @property mixed $user_id
+ * @property int|mixed|string $application_progress
  * @method static create(array $array)
  * @method static when(bool $role, Closure $param)
  * @method static pluck(string $string)

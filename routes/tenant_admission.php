@@ -21,5 +21,6 @@ Route::middleware([
         Route::get('/', 'index')->name('admission.index');
         Route::get('/personal_data/{user?}', 'personal_data')->name('admission.personal_data');
         Route::get('/education/{admission_personal_profile}/{user?}', 'education')->name('admission.education');
+        Route::get('/family/{admission_personal_profile}/{user?}', 'family')->name('admission.family');
     });
 });

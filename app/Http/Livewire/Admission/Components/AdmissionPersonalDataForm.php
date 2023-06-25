@@ -14,6 +14,7 @@ use Domain\AcademicYear\Models\AcademicYear;
 use Domain\Campus\Enums\CampusStatus;
 use Domain\Program\Enums\ProgramStatus;
 use Domain\Program\Services\ProgramService;
+use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
@@ -136,29 +137,31 @@ class AdmissionPersonalDataForm extends Component
             $request->rules($this->same_address)
         );
 
-        $profile = $admissionService->storeProfile(
-            CreateAdmissionProfileDto::fromArray($validated),
-            $this->academic_year->id,
-            $this->same_address
-        );
-
-        if ($profile) {
-            $this->notification()->success(
-                'Profile saved',
-                'Your profile was successfully saved'
+        try {
+            $profile = $admissionService->storeProfile(
+                CreateAdmissionProfileDto::fromArray($validated),
+                $this->academic_year->id,
+                $this->same_address
             );
 
-            $this->redirect(
-                route(
-                    'admission.education',
-                    ['admission_personal_profile' => $profile->id]
-                )
+            if ($profile) {
+                $this->notification()->success(
+                    'Profile saved',
+                    'Your profile was successfully saved'
+                );
+
+                $this->redirect(
+                    route(
+                        'admission.education',
+                        ['admission_personal_profile' => $profile->id]
+                    )
+                );
+            }
+        } catch (Exception $exception) {
+            $this->notification()->error(
+                'An error occurred',
+                'Your profile was not saved: '.str($exception->getMessage())->limit(0)
             );
         }
-
-        $this->notification()->error(
-            'An error occurred',
-            'Your profile was not saved'
-        );
     }
 }

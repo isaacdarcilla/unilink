@@ -89,14 +89,18 @@ class AdmissionService
 
     public function storeEducation(CreateAdmissionEducationDto $dto, AdmissionPersonalProfile|int $profile)
     {
-        return AdmissionEducation::create([
-            'admission_personal_profile_id' => $profile,
-            'level_id' => $dto->level_id,
-            'school' => $dto->school,
-            'degree' => $dto->degree,
-            'inclusive_dates_from' => $dto->inclusive_dates_from,
-            'inclusive_dates_to' => $dto->inclusive_dates_to,
-            'honors' => $dto->honors
-        ]);
+        return AdmissionEducation::updateOrCreate(
+            [
+                'admission_personal_profile_id' => $profile,
+                'level_id' => $dto->level_id,
+            ],
+            [
+                'school' => $dto->school,
+                'degree' => $dto->degree,
+                'inclusive_dates_from' => $dto->inclusive_dates_from,
+                'inclusive_dates_to' => $dto->inclusive_dates_to,
+                'honors' => $dto->honors
+            ]
+        );
     }
 }

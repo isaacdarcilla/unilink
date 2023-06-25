@@ -7,12 +7,16 @@ use App\Domain\Admission\Dto\CreateAdmissionEducationDto;
 use App\Domain\Admission\Requests\AdmissionEducationDataRequest;
 use App\Domain\Admission\Services\AdmissionService;
 use Domain\Admission\Models\AdmissionPersonalProfile;
+use Exception;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Livewire\Component;
+use WireUi\Traits\Actions;
 
 class AdmissionEducationForm extends Component
 {
+    use Actions;
+
     public ?User $user;
 
     protected array $rules;
@@ -58,12 +62,30 @@ class AdmissionEducationForm extends Component
 
         ['inputs' => $inputs] = $this->validate();
 
-        collect($inputs)->each(function ($item) use (&$admissionService) {
-            $admissionService->storeEducation(
-                CreateAdmissionEducationDto::fromArray($item),
-                $this->admissionPersonalProfile->id
+        try {
+            collect($inputs)->each(function ($item) use (&$admissionService) {
+                $admissionService->storeEducation(
+                    CreateAdmissionEducationDto::fromArray($item),
+                    $this->admissionPersonalProfile->id
+                );
+            });
+            $this->notification()->success(
+                'Education saved',
+                'Your education background was successfully saved'
             );
-        });
+
+            $this->redirect(
+                route(
+                    'admission.education',
+                    ['admission_personal_profile' => $this->admissionPersonalProfile->id]
+                )
+            );
+        } catch (Exception $exception) {
+            $this->notification()->error(
+                'An error occurred',
+                str($exception->getMessage())->limit()
+            );
+        }
     }
 
     public function addInput(): void

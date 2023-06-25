@@ -5,7 +5,7 @@
             <x-label class="italic font-bold">
                 Fields with * are required.
             </x-label>
-            <x-button type="submit" sm icon="plus" info wire:click="addInput">
+            <x-button type="submit" sm icon="plus" positive wire:click="addInput">
                 Add <span class="sm:inline-flex hidden">Education</span>
             </x-button>
         </div>
@@ -51,7 +51,14 @@
                 <a href="{{ route('admission.index') }}">
                     <x-button label="Cancel" flat negative/>
                 </a>
-                <x-button type="submit" info label="Save Education"/>
+                <div>
+                    <x-button type="submit" info outline>
+                        Save <span class="hidden sm:inline-flex">Education</span>
+                    </x-button>
+                    <x-button type="submit" info>
+                        Next <span class="hidden sm:inline-flex">Step: Family</span>
+                    </x-button>
+                </div>
             </div>
         </form>
     </x-card>

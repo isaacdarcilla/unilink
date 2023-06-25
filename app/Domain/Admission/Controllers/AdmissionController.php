@@ -34,6 +34,8 @@ class AdmissionController extends Controller
 
     public function education(AdmissionPersonalProfile $admission_personal_profile, ?User $user): View
     {
+        abort_if($admission_personal_profile->user_id !== auth()->id(), 403);
+
         return view(
             'users.student.admission.admission_education_background',
             compact('user', 'admission_personal_profile')

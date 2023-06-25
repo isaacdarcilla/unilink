@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property mixed $zip_code
  * @property mixed $date_of_birth
  * @property mixed $created_at
+ * @property mixed $user_id
  * @method static create(array $array)
  * @method static when(bool $role, Closure $param)
  * @method static pluck(string $string)

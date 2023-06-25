@@ -2,7 +2,7 @@
     use App\Domain\Admission\Enums\AdmissionApplicationStatus;
 @endphp
 <div>
-    <table class="w-full text-sm text-left text-gray-500">
+    <table class="w-full text-sm text-left text-gray-500 hide-scrollbar">
         @if(count($applications) > 0)
             <thead class="text-xs text-gray-700 uppercase bg-white">
             <tr>

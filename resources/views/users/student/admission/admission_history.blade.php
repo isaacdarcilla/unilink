@@ -16,7 +16,7 @@
                 </div>
 
             </div>
-            <div class=" overflow-x-auto shadow-md sm:rounded-lg mt-2 bg-gradient-to-bl from-slate-100 via-slate-100 to-gray-100 border-0">
+            <div class="overflow-x-auto hide-scrollbar shadow-md rounded-lg mt-2 bg-gradient-to-bl from-slate-100 via-slate-100 to-gray-100 border-0">
                 @livewire('admission.components.admission-history')
             </div>
         </div>

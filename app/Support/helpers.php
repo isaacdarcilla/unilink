@@ -5,6 +5,8 @@ use App\Admin\Models\Barangay;
 use App\Admin\Models\City;
 use App\Admin\Models\Province;
 use App\Admin\Models\Region;
+use App\Domain\Level\Enums\LevelStatus;
+use App\Domain\Level\Models\Level;
 use Illuminate\Database\Eloquent\Collection;
 
 if (!function_exists('role_is')) {
@@ -144,5 +146,21 @@ if (!function_exists('barangay')) {
     function barangay(string $barangay_code): Barangay|null
     {
         return Barangay::where('barangay_code', $barangay_code)?->first();
+    }
+}
+
+if (!function_exists('get_levels')) {
+    /**
+     * Get the levels
+     * @param  string|null  $level_id
+     * @return Level|Collection
+     */
+    function get_levels(?string $level_id = null): Level|Collection
+    {
+        if (is_null($level_id)) {
+            return Level::whereStatus(LevelStatus::enabled()->value)->get();
+        }
+
+        return Level::whereId($level_id)->first();
     }
 }

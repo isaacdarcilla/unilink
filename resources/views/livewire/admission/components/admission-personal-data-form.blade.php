@@ -2,7 +2,7 @@
     use Domain\Admission\Enums\CivilStatusEnum;use Domain\Admission\Enums\GadgetEnum;use Domain\Admission\Enums\GenderPreferenceEnum;use Domain\Admission\Enums\ScholarshipGranteeEnum;use Domain\Admission\Enums\SexEnum; use Domain\Admission\Enums\InternetStatus;
 @endphp
 <div>
-    <x-stepper/>
+    <x-stepper active="personal"/>
     <x-card class="-space-y-2 bg-gradient-to-bl from-slate-100 via-slate-100 to-gray-100">
         <x-label class="italic font-bold p-3">
             Fields with * are required.

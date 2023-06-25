@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @method static pluck(string $string)
+ * @method static whereId(string|null $level_id)
+ * @method static whereStatus(int|string $value)
  */
 class Level extends Model
 {

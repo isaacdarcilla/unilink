@@ -16,12 +16,12 @@
             @foreach($inputs as $key => $input)
                 <div class="grid grid-cols-1 sm:grid-cols-6 gap-4 p-3">
                     <x-select label="{{ __('Type *') }}"
-                              id="input_{{$key}}_level"
+                              id="input_{{$key}}_type"
                               wire:model.defer="inputs.{{$key}}.type"
                               placeholder="select type..."
                     >
-                        @foreach(FamilyType::toLabels() as $type)
-                            <x-select.option value="{{$type}}">{{$type}}</x-select.option>
+                        @foreach(FamilyType::toLabels() as $family)
+                            <x-select.option :label="$family" :value="$family"/>
                         @endforeach
                     </x-select>
                     <x-input label="{{ __('First Name *') }}"
@@ -42,7 +42,7 @@
                              placeholder="{{ __('complete address') }}"/>
                     <x-input label="{{ __('Email') }}"
                              id="input_{{$key}}_email_address"
-                             wire:model.defer="inputs.{{$key}}._email_address"
+                             wire:model.defer="inputs.{{$key}}.email_address"
                              placeholder="{{ __('email address') }}"/>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-6 gap-4 p-3">
@@ -51,12 +51,12 @@
                              wire:model.defer="inputs.{{$key}}.mobile_number"
                              placeholder="{{ __('mobile number') }}"/>
                     <x-select label="{{ __('Educational Attainment *') }}"
-                              id="input_{{$key}}_level"
+                              id="input_{{$key}}_highest_educational_attainment"
                               wire:model.defer="inputs.{{$key}}.highest_educational_attainment"
                               placeholder="select educational..."
                     >
-                        @foreach(HighestEducationEnum::toLabels() as $type)
-                            <x-select.option value="{{$type}}">{{$type}}</x-select.option>
+                        @foreach(HighestEducationEnum::toLabels() as $education)
+                            <x-select.option :label="$education" :value="$education"/>
                         @endforeach
                     </x-select>
                     <x-input label="{{ __('Occupation *') }}"
@@ -69,7 +69,7 @@
                              placeholder="{{ __('monthly income') }}"/>
                     <x-input label="{{ __('Company') }}"
                              id="input_{{$key}}_company"
-                             wire:model.defer="inputs.{{$key}}.company"
+                             wire:model.defer="inputs.{{$key}}."
                              placeholder="{{ __('company') }}"/>
                     <x-input label="{{ __('Company Address') }}"
                              id="input_{{$key}}_company_address"

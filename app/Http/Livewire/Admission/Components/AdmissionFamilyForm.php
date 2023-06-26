@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admission\Components;
 
 use App\Admin\Models\User;
+use App\Domain\Admission\Requests\AdmissionFamilyDataRequest;
 use Domain\Admission\Models\AdmissionPersonalProfile;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
@@ -14,6 +15,10 @@ class AdmissionFamilyForm extends Component
     use Actions;
 
     public ?User $user;
+
+    protected array $rules;
+
+    protected array $messages;
 
     public ?string $type;
 
@@ -45,6 +50,11 @@ class AdmissionFamilyForm extends Component
 
     public function boot(): void
     {
+        $requests = new AdmissionFamilyDataRequest();
+
+        $this->rules = $requests->rules();
+        $this->messages = $requests->messages();
+
         $this->fill([
             'inputs' => collect([['type' => '']]),
         ]);
@@ -53,6 +63,11 @@ class AdmissionFamilyForm extends Component
     public function render(): View
     {
         return view('livewire.admission.components.admission-family-form');
+    }
+
+    public function submit(): void
+    {
+        ['inputs' => $inputs] = $this->validate();
     }
 
     public function addInput(): void

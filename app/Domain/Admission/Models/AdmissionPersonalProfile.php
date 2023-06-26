@@ -3,6 +3,7 @@
 namespace Domain\Admission\Models;
 
 use App\Domain\Admission\Models\AdmissionEducation;
+use App\Domain\Admission\Models\AdmissionFamilyBackground;
 use Closure;
 use Domain\AcademicYear\Models\AcademicYear;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -57,6 +58,11 @@ class AdmissionPersonalProfile extends Model
     public function admission_education(): HasOne
     {
         return $this->hasOne(AdmissionEducation::class);
+    }
+
+    public function admission_family_background(): HasOne
+    {
+        return $this->hasOne(AdmissionFamilyBackground::class);
     }
 
     protected function fullName(): Attribute

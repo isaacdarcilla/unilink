@@ -7,6 +7,7 @@ use Spatie\Enum\Enum;
 /**
  * @method static self father()
  * @method static self mother()
+ * @method static self guardian()
  */
 class FamilyType extends Enum
 {
@@ -15,14 +16,16 @@ class FamilyType extends Enum
         return [
             'father' => 1,
             'mother' => 2,
+            'guardian' => 3,
         ];
     }
 
     protected static function labels(): array
     {
         return [
-            'father' => 'father',
-            'mother' => 'mother',
+            'father' => 'Father',
+            'mother' => 'Mother',
+            'guardian' => 'Guardian',
         ];
     }
 }

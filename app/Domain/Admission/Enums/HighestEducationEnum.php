@@ -48,7 +48,7 @@ class HighestEducationEnum extends Enum
             'bachelor_degree' => 'Bachelor Degree',
             'master_degree' => 'Master Degree',
             'professional_degree' => 'Professional Degree',
-            'doctor_degree' => 'Doctoral Degree',
+            'doctoral_degree' => 'Doctoral Degree',
             'other' => 'Other',
         ];
     }

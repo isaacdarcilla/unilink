@@ -19,7 +19,7 @@
                               :options="get_levels()"
                               option-label="name"
                               option-value="id"/>
-                    <x-input label="{{ __('School Attended') }}"
+                    <x-input label="{{ __('School Attended *') }}"
                              id="input_{{$key}}_school_attended"
                              wire:model.defer="inputs.{{$key}}.school_attended"
                              placeholder="{{ __('school attended') }}"/>

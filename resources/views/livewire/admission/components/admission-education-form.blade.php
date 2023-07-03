@@ -16,7 +16,7 @@
                               id="input_{{$key}}_level"
                               wire:model.defer="inputs.{{$key}}.level"
                               placeholder="select level..."
-                              :options="get_levels()"
+                              :options="$levels"
                               option-label="name"
                               option-value="id"/>
                     <x-input label="{{ __('School Attended *') }}"
@@ -52,7 +52,7 @@
                     <x-button label="Cancel" flat negative/>
                 </a>
                 <div>
-                    <x-button type="submit" info outline>
+                    <x-button type="submit" info>
                         Save <span class="hidden sm:inline-flex">Education</span>
                     </x-button>
                     <x-button type="submit" info>

@@ -20,6 +20,8 @@ class AdmissionEducationForm extends Component
 
     public ?User $user;
 
+    public Collection $levels;
+
     protected array $rules;
 
     protected array $messages;
@@ -47,6 +49,11 @@ class AdmissionEducationForm extends Component
         $this->rules = $requests->rules();
         $this->messages = $requests->messages();
 
+        $this->levels = get_levels();
+    }
+
+    public function mount(): void
+    {
         $this->fill([
             'inputs' => collect([['level' => '']]),
         ]);

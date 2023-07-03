@@ -88,7 +88,7 @@
                     <x-button label="Cancel" flat negative/>
                 </a>
                 <div>
-                    <x-button type="submit" info outline>
+                    <x-button type="submit" info>
                         Save <span class="hidden sm:inline-flex">Family Background</span>
                     </x-button>
                     <x-button type="submit" info>

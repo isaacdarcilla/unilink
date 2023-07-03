@@ -15,15 +15,15 @@
         <form wire:submit.prevent="submit">
             @foreach($inputs as $key => $input)
                 <div class="grid grid-cols-1 sm:grid-cols-6 gap-4 p-3">
-                    <x-select label="{{ __('Type *') }}"
-                              id="input_{{$key}}_type"
-                              wire:model.defer="inputs.{{$key}}.type"
-                              placeholder="select type..."
+                    <x-native-select label="{{ __('Type *') }}"
+                                     id="input_{{$key}}_type"
+                                     wire:model.defer="inputs.{{$key}}.type"
                     >
+                        <option value="" disabled selected>select type...</option>
                         @foreach(FamilyType::toLabels() as $family)
-                            <x-select.option :label="$family" :value="$family"/>
+                            <option value="{{ $family }}">{{ $family }}</option>
                         @endforeach
-                    </x-select>
+                    </x-native-select>
                     <x-input label="{{ __('First Name *') }}"
                              id="input_{{$key}}_first_name"
                              wire:model.defer="inputs.{{$key}}.first_name"
@@ -50,15 +50,15 @@
                              id="input_{{$key}}_mobile_number"
                              wire:model.defer="inputs.{{$key}}.mobile_number"
                              placeholder="{{ __('mobile number') }}"/>
-                    <x-select label="{{ __('Educational Attainment *') }}"
-                              id="input_{{$key}}_highest_educational_attainment"
-                              wire:model.defer="inputs.{{$key}}.highest_educational_attainment"
-                              placeholder="select educational..."
+                    <x-native-select label="{{ __('Educational Attainment *') }}"
+                                     id="input_{{$key}}_highest_educational_attainment"
+                                     wire:model.defer="inputs.{{$key}}.highest_educational_attainment"
                     >
+                        <option disabled selected>select educational...</option>
                         @foreach(HighestEducationEnum::toLabels() as $education)
-                            <x-select.option :label="$education" :value="$education"/>
+                            <option value="{{ $education }}">{{ $education }}</option>
                         @endforeach
-                    </x-select>
+                    </x-native-select>
                     <x-input label="{{ __('Occupation *') }}"
                              id="input_{{$key}}_occupation"
                              wire:model.defer="inputs.{{$key}}.occupation"
@@ -89,10 +89,7 @@
                 </a>
                 <div>
                     <x-button type="submit" info>
-                        Save <span class="hidden sm:inline-flex">Family Background</span>
-                    </x-button>
-                    <x-button type="submit" info>
-                        Next <span class="hidden sm:inline-flex">Step: Health</span>
+                        Save Family Background<span class="hidden sm:inline-flex">& Go To Next Step</span>
                     </x-button>
                 </div>
             </div>

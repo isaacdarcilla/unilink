@@ -248,7 +248,9 @@
                 <a href="{{ route('admission.index') }}">
                     <x-button label="Cancel" flat negative/>
                 </a>
-                <x-button type="submit" info label="Save Information"/>
+                <x-button type="submit" info>
+                    Save Information <span class="hidden sm:inline-flex">& Go To Next Step</span>
+                </x-button>
             </div>
         </form>
     </x-card>

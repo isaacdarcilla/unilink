@@ -12,13 +12,15 @@
         <form wire:submit.prevent="submit">
             @foreach($inputs as $key => $input)
                 <div class="grid grid-cols-1 sm:grid-cols-6 gap-4 p-3">
-                    <x-select label="{{ __('Level *') }}"
-                              id="input_{{$key}}_level"
-                              wire:model.defer="inputs.{{$key}}.level"
-                              placeholder="select level..."
-                              :options="$levels"
-                              option-label="name"
-                              option-value="id"/>
+                    <x-native-select label="{{ __('Level *') }}"
+                                     id="input_{{$key}}_level"
+                                     wire:model.defer="inputs.{{$key}}.level"
+                                     placeholder="select level...">
+                        <option value="" disabled selected>select level...</option>
+                        @foreach($levels as $level)
+                            <option value="{{ $level->id }}">{{ $level->name }}</option>
+                        @endforeach
+                    </x-native-select>
                     <x-input label="{{ __('School Attended *') }}"
                              id="input_{{$key}}_school_attended"
                              wire:model.defer="inputs.{{$key}}.school_attended"
@@ -53,10 +55,7 @@
                 </a>
                 <div>
                     <x-button type="submit" info>
-                        Save <span class="hidden sm:inline-flex">Education</span>
-                    </x-button>
-                    <x-button type="submit" info>
-                        Next <span class="hidden sm:inline-flex">Step: Family</span>
+                        Save Education <span class="hidden sm:inline-flex">& Go To Next Step</span>
                     </x-button>
                 </div>
             </div>

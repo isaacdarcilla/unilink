@@ -54,7 +54,10 @@ class AdmissionFamilyForm extends Component
 
         $this->rules = $requests->rules();
         $this->messages = $requests->messages();
+    }
 
+    public function mount(): void
+    {
         $this->fill([
             'inputs' => collect([['type' => '']]),
         ]);

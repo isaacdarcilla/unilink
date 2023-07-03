@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * @method static updateOrCreate(array $array, array $array1)
+ */
 class AdmissionFamilyBackground extends Model
 {
     use HasFactory;

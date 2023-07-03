@@ -9,7 +9,7 @@ use Spatie\Enum\Enum;
  * @method static self elementary()
  * @method static self some_high_school()
  * @method static self high_school()
- * @method static self vocational_course()
+ * @method static self vocational()
  * @method static self some_college()
  * @method static self bachelor_degree()
  * @method static self master_degree()
@@ -26,7 +26,7 @@ class HighestEducationEnum extends Enum
             'elementary' => 2,
             'some_high_school' => 3,
             'high_school' => 4,
-            'vocational_course' => 5,
+            'vocational' => 5,
             'some_college' => 6,
             'bachelor_degree' => 7,
             'master_degree' => 8,
@@ -43,7 +43,7 @@ class HighestEducationEnum extends Enum
             'elementary' => 'Elementary',
             'some_high_school' => 'Some High School',
             'high_school' => 'High School',
-            'vocational_course' => 'Vocational Course',
+            'vocational' => 'Vocational',
             'some_college' => 'Some College',
             'bachelor_degree' => 'Bachelor Degree',
             'master_degree' => 'Master Degree',

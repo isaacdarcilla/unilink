@@ -3,8 +3,12 @@
 namespace App\Http\Livewire\Admission\Components;
 
 use App\Admin\Models\User;
+use App\Domain\Admission\Dto\CreateAdmissionFamilyDto;
+use App\Domain\Admission\Enums\AdmissionApplicationProgress;
 use App\Domain\Admission\Requests\AdmissionFamilyDataRequest;
+use App\Domain\Admission\Services\AdmissionService;
 use Domain\Admission\Models\AdmissionPersonalProfile;
+use Exception;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Livewire\Component;
@@ -70,7 +74,40 @@ class AdmissionFamilyForm extends Component
 
     public function submit(): void
     {
+        $admissionService = new AdmissionService();
+
         ['inputs' => $inputs] = $this->validate();
+
+        try {
+            collect($inputs)->each(function ($item) use (&$admissionService) {
+                $admissionService->storeFamily(
+                    CreateAdmissionFamilyDto::fromArray($item),
+                    $this->admissionPersonalProfile->id
+                );
+            });
+
+            $admissionService->updateProgress(
+                AdmissionApplicationProgress::health(),
+                $this->admissionPersonalProfile
+            );
+
+            $this->notification()->success(
+                'Family background saved',
+                'Your family background was successfully saved'
+            );
+
+            $this->redirect(
+                route(
+                    'admission.health',
+                    ['admission_personal_profile' => $this->admissionPersonalProfile->id]
+                )
+            );
+        } catch (Exception $exception) {
+            $this->notification()->error(
+                'An error occurred',
+                str($exception->getMessage())->limit()
+            );
+        }
     }
 
     public function addInput(): void

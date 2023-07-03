@@ -4,10 +4,14 @@ namespace App\Domain\Admission\Services;
 
 use App\Admin\Enums\RoleEnum;
 use App\Domain\Admission\Dto\CreateAdmissionEducationDto;
+use App\Domain\Admission\Dto\CreateAdmissionFamilyDto;
 use App\Domain\Admission\Dto\CreateAdmissionProfileDto;
 use App\Domain\Admission\Enums\AdmissionApplicationProgress;
 use App\Domain\Admission\Enums\AdmissionApplicationStatus;
+use App\Domain\Admission\Enums\FamilyType;
+use App\Domain\Admission\Enums\HighestEducationEnum;
 use App\Domain\Admission\Models\AdmissionEducation;
+use App\Domain\Admission\Models\AdmissionFamilyBackground;
 use Domain\Admission\Models\AdmissionPersonalProfile;
 
 class AdmissionService
@@ -100,6 +104,30 @@ class AdmissionService
                 'inclusive_dates_from' => $dto->inclusive_dates_from,
                 'inclusive_dates_to' => $dto->inclusive_dates_to,
                 'honors' => $dto->honors
+            ]
+        );
+    }
+
+    public function storeFamily(CreateAdmissionFamilyDto $dto, AdmissionPersonalProfile|int $profile)
+    {
+        return AdmissionFamilyBackground::updateOrCreate(
+            [
+                'admission_personal_profile_id' => $profile,
+                'type' => FamilyType::from($dto->type)->value,
+            ],
+            [
+                'first_name' => $dto->first_name,
+                'last_name' => $dto->last_name,
+                'middle_name' => $dto->middle_name,
+                'address' => $dto->address,
+                'mobile_number' => $dto->mobile_number,
+                'highest_educational_attainment' => HighestEducationEnum::from(
+                    $dto->highest_educational_attainment
+                )->value,
+                'occupation' => $dto->occupation,
+                'monthly_income' => $dto->monthly_income,
+                'company' => $dto->company,
+                'company_address' => $dto->company_address,
             ]
         );
     }

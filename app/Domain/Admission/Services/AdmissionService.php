@@ -6,12 +6,14 @@ use App\Admin\Enums\RoleEnum;
 use App\Domain\Admission\Dto\CreateAdmissionEducationDto;
 use App\Domain\Admission\Dto\CreateAdmissionFamilyDto;
 use App\Domain\Admission\Dto\CreateAdmissionProfileDto;
+use App\Domain\Admission\Dto\CreateHealthDto;
 use App\Domain\Admission\Enums\AdmissionApplicationProgress;
 use App\Domain\Admission\Enums\AdmissionApplicationStatus;
 use App\Domain\Admission\Enums\FamilyType;
 use App\Domain\Admission\Enums\HighestEducationEnum;
 use App\Domain\Admission\Models\AdmissionEducation;
 use App\Domain\Admission\Models\AdmissionFamilyBackground;
+use App\Domain\Admission\Models\AdmissionPhysicalHealth;
 use Domain\Admission\Models\AdmissionPersonalProfile;
 
 class AdmissionService
@@ -130,6 +132,23 @@ class AdmissionService
                 'company_address' => $dto->company_address,
             ]
         );
+    }
+
+    public function storeHealth(
+        CreateHealthDto $dto,
+        AdmissionPersonalProfile|int $profile
+    ): AdmissionPhysicalHealth|null {
+        return AdmissionPhysicalHealth::create([
+            'admission_personal_profile_id' => $profile,
+            'height' => $dto->height,
+            'weight' => $dto->weight,
+            'facial_marks' => $dto->facial_marks,
+            'physical_condition' => $dto->physical_condition,
+            'emergency_contact' => $dto->emergency_contact,
+            'relationship' => $dto->relationship,
+            'emergency_contact_address' => $dto->emergency_contact_address,
+            'emergency_contact_number' => $dto->emergency_contact_number,
+        ]);
     }
 
     public function updateProgress(

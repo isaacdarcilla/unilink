@@ -61,4 +61,14 @@ class AdmissionController extends Controller
             compact('user', 'admission_personal_profile')
         );
     }
+
+    public function completed(AdmissionPersonalProfile $admission_personal_profile, ?User $user): View
+    {
+        abort_if($admission_personal_profile->user_id !== auth()->id(), 403);
+
+        return view(
+            'users.student.admission.admission_health',
+            compact('user', 'admission_personal_profile')
+        );
+    }
 }

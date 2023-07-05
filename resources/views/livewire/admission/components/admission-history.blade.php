@@ -70,6 +70,9 @@
                 </th>
                 <td class="px-6 py-4">
                     <x-dropdown>
+                        <x-slot name="trigger">
+                            <x-button icon="menu" outline blue/>
+                        </x-slot>
                         <x-dropdown.item :href="$url">
                             Continue
                         </x-dropdown.item>

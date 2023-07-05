@@ -36,5 +36,15 @@
             4
         </span>
         Physical <span class="hidden sm:inline-flex sm:ml-2"> & Health</span>
+        <svg aria-hidden="true" class="w-4 h-4 ml-2 sm:ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+             xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path>
+        </svg>
+    </li>
+    <li class="flex items-center {{ $active === 'completed' ? 'text-blue-600' : '' }}">
+        <span class="flex items-center justify-center w-5 h-5 mr-2 text-xs border {{ $active === 'completed' ? 'border-blue-600' : 'border-gray-500' }} rounded-full shrink-0">
+            5
+        </span>
+        Completed
     </li>
 </ol>

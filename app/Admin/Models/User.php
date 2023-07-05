@@ -20,6 +20,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property mixed $last_name
  * @property mixed $suffix_name
  * @property mixed $id
+ * @property mixed $email
  * @method static create(array $array)
  * @method static hasRole(string $string)
  * @method static pluck(string $string)

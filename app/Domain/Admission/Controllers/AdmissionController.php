@@ -67,7 +67,7 @@ class AdmissionController extends Controller
         abort_if($admission_personal_profile->user_id !== auth()->id(), 403);
 
         return view(
-            'users.student.admission.admission_health',
+            'users.student.admission.admission_completed',
             compact('user', 'admission_personal_profile')
         );
     }

@@ -30,7 +30,7 @@
 
             <x-input id="phone_number" placeholder="{{ __('phone number')}}" class="block mt-1 w-full"
                      type="text"
-                     name="phone_number" :value="old('phone_number', '+63')"/>
+                     name="phone_number" :value="old('phone_number', '09')"/>
 
             <x-input id="email" placeholder="{{ __('you@email.com')}}" class="block mt-1 w-full" type="text"
                      name="email" :value="old('email')"/>

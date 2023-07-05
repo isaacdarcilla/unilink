@@ -18,12 +18,11 @@
                         <p class="mx-5 text-center py-8 text-sm">Admission application form completed successfully! Your
                             application is <b>FOR REVIEW</b>.<br/>Once approved, you will be notified through your email
                             at <b class="underline">{{ auth()->user()->email }}</b><br/>or an admission personnel will
-                            reach out
-                            through your mobile number. Good luck!</p>
+                            reach out through your mobile number. Good luck!</p>
 
                         <div class="text-center mx-auto mb-5">
                             <a href="{{ route('admission.index') }}">
-                                <x-button class="pb-5" info sm label="Go to dashboard"/>
+                                <x-button class="pb-5" info sm label="Go to Dashboard"/>
                             </a>
                         </div>
                         <div class="py-4"></div>

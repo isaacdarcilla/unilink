@@ -121,11 +121,27 @@ class AdmissionPersonalDataForm extends Component
         $this->programs = $programService->all(ProgramStatus::enabled());
         $this->campuses = $campusService->all(CampusStatus::enabled());
         $this->academic_year = $academicService->active(AcademicYearStatus::enabled(), ModuleType::admission());
+
+        $user = auth()->user();
+
+        $this->fill([
+            'first_name' => $user->first_name,
+            'middle_name' => $user?->middle_name,
+            'last_name' => $user->last_name,
+            'phone_number' => $user->phone_number,
+            'email_address' => $user->email,
+        ]);
     }
 
     public function render(): View
     {
-        return view('livewire.admission.components.admission-personal-data-form');
+        $admissionService = new AdmissionService();
+
+        $applications = $admissionService->getAdmissions(
+            academicYearId: $this->academic_year->id
+        );
+
+        return view('livewire.admission.components.admission-personal-data-form', compact('applications'));
     }
 
     public function submit(): void

@@ -53,7 +53,7 @@
                     <td class="px-6 py-4">
                         <x-dropdown align="left">
                             <x-slot name="trigger">
-                                <x-button sm icon="dots-vertical" outline blue/>
+                                <x-button sm icon="menu-alt-2" outline info/>
                             </x-slot>
                             <x-dropdown.item :href="$url">
                                 {{ $applicant->application_progress === AdmissionApplicationProgress::completed()->value ? 'View Application' : 'Continue Application' }}
@@ -88,15 +88,16 @@
                     </th>
                 </tr>
             @empty
-                <tr class="bg-white border-b hover:bg-gray-50 dark:bg-gray-900 dark:border-gray-700">
-                    <td colspan="8" class="mx-auto text-center p-4">
+                <tr class="bg-white border-b hover:bg-gray-50 dark:bg-gray-900 dark:border-gray-700 my-10">
+                    <td colspan="8" class="mx-auto text-center p-4 py-8">
                         No application yet. Click on the <b>"New Application"</b> <br/>button to fill up form.
                     </td>
                 </tr>
             @endforelse
             </tbody>
         </table>
-        <div class="p-2 mx-4">
-            {{ $applications->links() }}
-        </div>
+    </div>
+    <div class="py-3">
+        {{ $applications->links() }}
+    </div>
 </div>

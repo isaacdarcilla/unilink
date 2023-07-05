@@ -1,5 +1,5 @@
 @php
-    use App\Domain\Admission\Enums\AdmissionApplicationStatus;
+    use App\Domain\Admission\Enums\AdmissionApplicationStatus;use App\Domain\Admission\Enums\AdmissionApplicationProgress;
 @endphp
 <div>
     <table class="w-full text-sm text-left text-gray-500 hide-scrollbar">
@@ -74,7 +74,7 @@
                             <x-button icon="menu" outline blue/>
                         </x-slot>
                         <x-dropdown.item :href="$url">
-                            Continue
+                            {{ $applicant->application_progress === AdmissionApplicationProgress::completed()->value ? 'View Application' : 'Continue Application' }}
                         </x-dropdown.item>
                     </x-dropdown>
                 </td>

@@ -38,6 +38,9 @@
         @endif
         <tbody>
         @forelse($applications as $key => $applicant)
+            @php
+                $url = route("admission.$applicant->application_progress", $applicant->id)
+            @endphp
             <tr class="bg-white border-b hover:bg-white bg-gradient-to-bl from-slate-100 via-slate-100 to-gray-100">
                 <td class="px-6 py-4 underline">
                     #{{ $applicant->id }}
@@ -66,10 +69,11 @@
                     {{ $applicant->applicationDate }}
                 </th>
                 <td class="px-6 py-4">
-                    <a href="{{ route("admission.$applicant->application_progress", $applicant->id) }}"
-                       class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                        <x-button sm flat info label="Continue"/>
-                    </a>
+                    <x-dropdown>
+                        <x-dropdown.item :href="$url">
+                            Continue
+                        </x-dropdown.item>
+                    </x-dropdown>
                 </td>
             </tr>
         @empty

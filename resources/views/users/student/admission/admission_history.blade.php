@@ -8,23 +8,14 @@
                             for <b>A.Y. {{ $active->description }}</b>
                         @endif
                     </x-label>
-                    <a href="{{ route('admission.personal_data') }}" class="py-3">
+                    <a href="{{ route('admission.personal_data') }}" class="py-3 pr-1">
                         <x-button info sm icon="plus">
                             New <span class="hidden sm:inline-flex">Application</span>
                         </x-button>
                     </a>
                 </div>
             </div>
-            <div class="max-w-sm mt-2">
-                <x-native-select class="w-[500px]" label="Filter by Academic Year"
-                                 wire:model="physical_condition">
-                    <option label="Yes" value="yes"></option>
-                    <option label="No" value="no"></option>
-                </x-native-select>
-            </div>
-            <div class="overflow-x-auto hide-scrollbar shadow-md rounded-lg mt-2 bg-gradient-to-bl from-slate-100 via-slate-100 to-gray-100 border-0">
-                @livewire('admission.components.admission-history')
-            </div>
+            @livewire('admission.components.admission-history')
         </div>
     </div>
 </x-app-layout>

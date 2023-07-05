@@ -6,6 +6,7 @@ use App\Domain\AcademicYear\Services\AcademicYearService;
 use App\Domain\Admission\Services\AdmissionService;
 use Domain\AcademicYear\Enums\AcademicYearStatus;
 use Domain\AcademicYear\Enums\ModuleType;
+use Domain\AcademicYear\Models\AcademicYear;
 use Illuminate\View\View;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -14,6 +15,9 @@ class AdmissionHistory extends Component
 {
     use WithPagination;
 
+    public ?string $filter;
+
+    public AcademicYear $active;
     private readonly AcademicYearService $academicYearService;
 
     private readonly AdmissionService $admissionService;
@@ -22,17 +26,23 @@ class AdmissionHistory extends Component
     {
         $this->admissionService = new AdmissionService();
         $this->academicYearService = new AcademicYearService();
-    }
 
-    public function render(): View
-    {
-        $active = $this->academicYearService->active(
+        $this->active = $this->academicYearService->active(
             AcademicYearStatus::enabled(),
             ModuleType::admission()
         );
 
-        $applications = $this->admissionService->getAdmissions(academicYearId: $active->id);
+        $this->filter = $this->active->id;
+    }
 
-        return view('livewire.admission.components.admission-history', compact('active', 'applications'));
+    public function render(): View
+    {
+        $academicYears = $this->academicYearService->all(
+            ModuleType::admission()
+        );
+
+        $applications = $this->admissionService->getAdmissions(academicYearId: $this->filter);
+
+        return view('livewire.admission.components.admission-history', compact('applications', 'academicYears'));
     }
 }

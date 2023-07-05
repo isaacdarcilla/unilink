@@ -2,7 +2,7 @@
     use App\Domain\Admission\Enums\AdmissionApplicationStatus;use App\Domain\Admission\Enums\AdmissionApplicationProgress;
 @endphp
 <div>
-    <div class="max-w-[18rem] mt-2">
+    <div class="max-w-md mt-2">
         <x-native-select class="w-[500px]" label="Filter by Academic Year"
                          wire:model="filter">
             @foreach($academicYears as $ay)
@@ -15,6 +15,8 @@
             @if(count($applications) > 0)
                 <thead class="text-xs text-gray-700 uppercase bg-white">
                 <tr>
+                    <th scope="col" class="px-6 py-3">
+                    </th>
                     <th scope="col" class="px-6 py-3">
                         ID
                     </th>
@@ -39,9 +41,6 @@
                     <th scope="col" class="px-6 py-3">
                         Application Date
                     </th>
-                    <th scope="col" class="px-6 py-3">
-                        Action
-                    </th>
                 </tr>
                 </thead>
             @endif
@@ -51,6 +50,16 @@
                     $url = route("admission.$applicant->application_progress", $applicant->id)
                 @endphp
                 <tr class="bg-white border-b hover:bg-white bg-gradient-to-bl from-slate-100 via-slate-100 to-gray-100">
+                    <td class="px-6 py-4">
+                        <x-dropdown align="left">
+                            <x-slot name="trigger">
+                                <x-button sm icon="dots-vertical" outline blue/>
+                            </x-slot>
+                            <x-dropdown.item :href="$url">
+                                {{ $applicant->application_progress === AdmissionApplicationProgress::completed()->value ? 'View Application' : 'Continue Application' }}
+                            </x-dropdown.item>
+                        </x-dropdown>
+                    </td>
                     <td class="px-6 py-4 underline">
                         #{{ $applicant->id }}
                     </td>
@@ -77,16 +86,6 @@
                     <th scope="col" class="px-6 py-3">
                         {{ $applicant->applicationDate }}
                     </th>
-                    <td class="px-6 py-4">
-                        <x-dropdown>
-                            <x-slot name="trigger">
-                                <x-button icon="menu" outline blue/>
-                            </x-slot>
-                            <x-dropdown.item :href="$url">
-                                {{ $applicant->application_progress === AdmissionApplicationProgress::completed()->value ? 'View Application' : 'Continue Application' }}
-                            </x-dropdown.item>
-                        </x-dropdown>
-                    </td>
                 </tr>
             @empty
                 <tr class="bg-white border-b hover:bg-gray-50 dark:bg-gray-900 dark:border-gray-700">

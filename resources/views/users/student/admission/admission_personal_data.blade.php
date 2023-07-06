@@ -9,7 +9,7 @@
                     </x-label>
                 </div>
                 <div class="relative shadow-md sm:rounded-lg rounded-none">
-                    @livewire('admission.components.admission-personal-data-form', ['user' => $user])
+                    @livewire('admission.components.admission-personal-data-form', ['user' => $user, 'admissionPersonalProfile' => $admission_personal_profile])
                 </div>
             </div>
         </div>

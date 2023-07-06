@@ -11,6 +11,7 @@ use App\Domain\Campus\Services\CampusService;
 use Domain\AcademicYear\Enums\AcademicYearStatus;
 use Domain\AcademicYear\Enums\ModuleType;
 use Domain\AcademicYear\Models\AcademicYear;
+use Domain\Admission\Models\AdmissionPersonalProfile;
 use Domain\Campus\Enums\CampusStatus;
 use Domain\Program\Enums\ProgramStatus;
 use Domain\Program\Services\ProgramService;
@@ -112,6 +113,10 @@ class AdmissionPersonalDataForm extends Component
 
     public ?string $campus;
 
+    public bool $view;
+
+    public AdmissionPersonalProfile $admissionPersonalProfile;
+
     public function mount(): void
     {
         $programService = new ProgramService();
@@ -124,13 +129,12 @@ class AdmissionPersonalDataForm extends Component
 
         $user = auth()->user();
 
-        $this->fill([
-            'first_name' => $user->first_name,
-            'middle_name' => $user?->middle_name,
-            'last_name' => $user->last_name,
-            'phone_number' => $user->phone_number,
-            'email_address' => $user->email,
-        ]);
+        // If query has 'view', view is 'true'
+        $this->view = request()->has('view');
+
+        $this->fill(
+            CreateAdmissionProfileDto::fillArray($this->admissionPersonalProfile)
+        );
     }
 
     public function render(): View

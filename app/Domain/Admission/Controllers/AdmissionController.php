@@ -4,12 +4,10 @@ namespace App\Domain\Admission\Controllers;
 
 use App\Admin\Models\User;
 use App\Domain\AcademicYear\Services\AcademicYearService;
-use App\Domain\Admission\Enums\AdmissionApplicationProgress;
 use App\Http\Controllers\Controller;
 use Domain\AcademicYear\Enums\AcademicYearStatus;
 use Domain\AcademicYear\Enums\ModuleType;
 use Domain\Admission\Models\AdmissionPersonalProfile;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class AdmissionController extends Controller
@@ -29,12 +27,16 @@ class AdmissionController extends Controller
         return view('users.student.admission.admission_history', compact('active'));
     }
 
-    public function personal_data(?User $user): View
+    public function personal_data(?AdmissionPersonalProfile $admission_personal_profile, ?User $user): View
     {
-        return view('users.student.admission.admission_personal_data', compact('user'));
+        if (!is_null($admission_personal_profile->id)) {
+            abort_if($admission_personal_profile->user_id !== auth()->id(), 403);
+        }
+
+        return view('users.student.admission.admission_personal_data', compact('admission_personal_profile', 'user'));
     }
 
-    public function education(AdmissionPersonalProfile $admission_personal_profile, ?User $user): View
+    public function education(?AdmissionPersonalProfile $admission_personal_profile, ?User $user): View
     {
         abort_if($admission_personal_profile->user_id !== auth()->id(), 403);
 
@@ -44,7 +46,7 @@ class AdmissionController extends Controller
         );
     }
 
-    public function family(AdmissionPersonalProfile $admission_personal_profile, ?User $user): View
+    public function family(?AdmissionPersonalProfile $admission_personal_profile, ?User $user): View
     {
         abort_if($admission_personal_profile->user_id !== auth()->id(), 403);
 
@@ -54,7 +56,7 @@ class AdmissionController extends Controller
         );
     }
 
-    public function health(AdmissionPersonalProfile $admission_personal_profile, ?User $user): View
+    public function health(?AdmissionPersonalProfile $admission_personal_profile, ?User $user): View
     {
         abort_if($admission_personal_profile->user_id !== auth()->id(), 403);
 
@@ -64,7 +66,7 @@ class AdmissionController extends Controller
         );
     }
 
-    public function completed(AdmissionPersonalProfile $admission_personal_profile, ?User $user): View
+    public function completed(?AdmissionPersonalProfile $admission_personal_profile, ?User $user): View
     {
         abort_if($admission_personal_profile->user_id !== auth()->id(), 403);
 

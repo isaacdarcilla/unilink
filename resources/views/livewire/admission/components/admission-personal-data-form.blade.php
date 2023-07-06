@@ -1,13 +1,13 @@
 @php
-    use Domain\Admission\Enums\CivilStatusEnum;use Domain\Admission\Enums\GadgetEnum;use Domain\Admission\Enums\GenderPreferenceEnum;use Domain\Admission\Enums\ScholarshipGranteeEnum;use Domain\Admission\Enums\SexEnum; use Domain\Admission\Enums\InternetStatus;
+    use Domain\Admission\Enums\CivilStatusEnum;use Domain\Admission\Enums\GadgetEnum;use Domain\Admission\Enums\GenderPreferenceEnum;use Domain\Admission\Enums\InternetStatus;use Domain\Admission\Enums\ScholarshipGranteeEnum;use Domain\Admission\Enums\SexEnum;
 @endphp
 <div>
     <x-stepper active="personal"/>
     <x-card class="-space-y-2 bg-gradient-to-bl from-slate-100 via-slate-100 to-gray-100">
         <x-label class="italic font-bold p-3">
-            {{ $applications->count() > 1 ? '' : 'Fields with * are required.'}}
+            {{ $applications->count() > 1 && !$view? '' : 'Fields with * are required.'}}
         </x-label>
-        @if($applications->count() > 1)
+        @if($applications->count() > 1 && !$view)
             <div class="text-center mx-auto">
                 <img class="text-center mx-auto pt-4" src="{{ asset('assets/goal.png') }}" alt=""
                      width="70">

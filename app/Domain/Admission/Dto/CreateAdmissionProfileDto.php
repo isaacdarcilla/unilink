@@ -5,6 +5,7 @@ namespace App\Domain\Admission\Dto;
 use App\Domain\Admission\Requests\AdmissionPersonalDataRequest;
 use Domain\Admission\Enums\InternetStatus;
 use Domain\Admission\Enums\ScholarshipGranteeEnum;
+use Domain\Admission\Models\AdmissionPersonalProfile;
 
 class CreateAdmissionProfileDto
 {
@@ -139,5 +140,16 @@ class CreateAdmissionProfileDto
             internet_status: InternetStatus::from($request['internet_status'])->value,
             campus: $request['campus'],
         );
+    }
+
+    public static function fillArray(AdmissionPersonalProfile $admissionPersonalProfile): array
+    {
+        return [
+            'first_name' => $admissionPersonalProfile->first_name,
+            'middle_name' => $admissionPersonalProfile?->middle_name,
+            'last_name' => $admissionPersonalProfile->last_name,
+            'sex' => str($admissionPersonalProfile->sex_at_birth)->title(),
+            'gender_preference' => str($admissionPersonalProfile->gender_preference)->title(),
+        ];
     }
 }

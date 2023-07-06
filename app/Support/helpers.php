@@ -104,10 +104,10 @@ if (!function_exists('address_enabled')) {
 if (!function_exists('region')) {
     /**
      * Get the address
-     * @param  string  $region_code
+     * @param  string|null  $region_code
      * @return Region|null
      */
-    function region(string $region_code): Region|null
+    function region(?string $region_code): Region|null
     {
         return Region::where('region_code', $region_code)?->first();
     }
@@ -116,10 +116,10 @@ if (!function_exists('region')) {
 if (!function_exists('province')) {
     /**
      * Get the address
-     * @param  string  $province_code
+     * @param  string|null  $province_code
      * @return Province|null
      */
-    function province(string $province_code): Province|null
+    function province(?string $province_code): Province|null
     {
         return Province::where('province_code', $province_code)?->first();
     }
@@ -128,10 +128,10 @@ if (!function_exists('province')) {
 if (!function_exists('city')) {
     /**
      * Get the address
-     * @param  string  $city_code
+     * @param  string|null  $city_code
      * @return City|null
      */
-    function city(string $city_code): City|null
+    function city(?string $city_code): City|null
     {
         return City::where('city_municipality_code', $city_code)?->first();
     }
@@ -140,10 +140,10 @@ if (!function_exists('city')) {
 if (!function_exists('barangay')) {
     /**
      * Get the address
-     * @param  string  $barangay_code
+     * @param  string|null  $barangay_code
      * @return Barangay|null
      */
-    function barangay(string $barangay_code): Barangay|null
+    function barangay(?string $barangay_code): Barangay|null
     {
         return Barangay::where('barangay_code', $barangay_code)?->first();
     }

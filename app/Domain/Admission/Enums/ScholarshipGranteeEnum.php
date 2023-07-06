@@ -21,8 +21,8 @@ class ScholarshipGranteeEnum extends Enum
     protected static function values(): array
     {
         return [
-            'yes' => 1,
-            'no' => 0,
+            'yes' => 'Yes',
+            'no' => 'No',
         ];
     }
 }

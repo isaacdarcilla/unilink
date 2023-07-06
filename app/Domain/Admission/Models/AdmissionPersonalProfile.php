@@ -6,6 +6,7 @@ use App\Domain\Admission\Models\AdmissionEducation;
 use App\Domain\Admission\Models\AdmissionFamilyBackground;
 use Closure;
 use Domain\AcademicYear\Models\AcademicYear;
+use Domain\Campus\Models\Campus;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -32,9 +33,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int|mixed|string $application_progress
  * @property mixed $sex_at_birth
  * @property mixed $gender_preference
+ * @property mixed $campus
+ * @property mixed $internet_status
+ * @property mixed $campus_id
  * @method static create(array $array)
  * @method static when(bool $role, Closure $param)
  * @method static pluck(string $string)
+ * @method static updateOrCreate(array $array, array $array1)
  */
 class AdmissionPersonalProfile extends Model
 {
@@ -45,7 +50,6 @@ class AdmissionPersonalProfile extends Model
 
     protected $casts = [
         'date_of_birth' => 'datetime',
-        'scholarship_grantee' => 'integer',
         'application_status' => 'integer',
         'special_skills' => 'array',
         'favorite_sports' => 'array',
@@ -65,6 +69,11 @@ class AdmissionPersonalProfile extends Model
     public function admission_family_background(): HasOne
     {
         return $this->hasOne(AdmissionFamilyBackground::class);
+    }
+
+    public function campus(): BelongsTo
+    {
+        return $this->belongsTo(Campus::class);
     }
 
     protected function fullName(): Attribute

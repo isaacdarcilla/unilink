@@ -42,11 +42,13 @@ class AdmissionService
     public function storeProfile(
         CreateAdmissionProfileDto $dto,
         string|null $activeAcademicYear = null,
-        bool|null $sameAddress = false
+        bool|null $sameAddress = false,
+        bool $enabledEdit = false
     ): AdmissionPersonalProfile|null {
-        return AdmissionPersonalProfile::create([
+        return AdmissionPersonalProfile::updateOrCreate([
             'user_id' => auth()->id(),
             'academic_year_id' => $activeAcademicYear,
+        ], [
             'campus_id' => $dto->campus,
             'application_status' => AdmissionApplicationStatus::application_pending()->value,
             'application_progress' => AdmissionApplicationProgress::education()->value,

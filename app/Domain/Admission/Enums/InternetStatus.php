@@ -14,9 +14,9 @@ class InternetStatus extends Enum
     protected static function values(): array
     {
         return [
-            'stable' => 1,
-            'unstable' => 2,
-            'none' => 3,
+            'stable' => 'Stable',
+            'unstable' => 'Unstable',
+            'none' => 'None',
         ];
     }
 

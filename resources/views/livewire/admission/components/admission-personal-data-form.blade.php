@@ -39,7 +39,7 @@
                             label="{{ __('Sex *') }}"
                             placeholder="select sex..."
                             :options="SexEnum::toLabels()"
-                            wire:model="sex"
+                            wire:model="sex_at_birth"
                     />
                     <x-select
                             label="{{ __('Gender Preference *') }}"
@@ -67,17 +67,17 @@
                             wire:model="province"
                     />
                     <x-select
-                            label="{{ __('City/Town *') }}"
-                            placeholder="select city or town..."
+                            label="{{ __('Municipality/Town *') }}"
+                            placeholder="select municipality or town..."
                             :options="get_cities($province)"
                             option-label="city_municipality_description"
                             option-value="city_municipality_code"
-                            wire:model="city"
+                            wire:model="municipality"
                     />
                     <x-select
                             label="{{ __('Barangay *') }}"
                             placeholder="select barangay..."
-                            :options="get_barangays($city)"
+                            :options="get_barangays($municipality)"
                             option-label="barangay_description"
                             option-value="barangay_code"
                             wire:model="barangay"
@@ -86,7 +86,7 @@
                     <x-input label="{{ __('Zip Code *') }}" wire:model="zip_code" placeholder="{{ __('zip code') }}"/>
                 </div>
                 <x-label class="mx-3 pb-3 pt-3">{{ __('Temporary Address') }}</x-label>
-                @if(address_enabled($region, $province, $city, $barangay, $street, $zip_code))
+                @if(address_enabled($region, $province, $municipality, $barangay, $street, $zip_code))
                     <x-checkbox id="right-label" class="pt-3 ml-3" label="Same with Permanent Address"
                                 wire:model="same_address"/>
                 @endif
@@ -111,17 +111,17 @@
                             wire:model="temporary_province"
                     />
                     <x-select
-                            label="{{ __('City/Town *') }}"
-                            placeholder="select city or town..."
+                            label="{{ __('Municipality/Town *') }}"
+                            placeholder="select municipality or town..."
                             :options="get_cities($temporary_province)"
                             option-label="city_municipality_description"
                             option-value="city_municipality_code"
-                            wire:model="temporary_city"
+                            wire:model="temporary_municipality"
                     />
                     <x-select
                             label="{{ __('Barangay *') }}"
                             placeholder="select barangay..."
-                            :options="get_barangays($temporary_city)"
+                            :options="get_barangays($temporary_municipality)"
                             option-label="barangay_description"
                             option-value="barangay_code"
                             wire:model="temporary_barangay"
@@ -134,10 +134,10 @@
 
                 <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 p-3">
                     <x-inputs.maskable
-                            label="Phone Number *"
+                            label="Mobile Number *"
                             mask="#### ### ####"
                             placeholder="phone number"
-                            wire:model="phone_number"
+                            wire:model="mobile_number"
                     />
                     <x-inputs.maskable
                             label="Landline Number"
@@ -182,7 +182,7 @@
                              placeholder="{{ __('rank in the family') }}"/>
                     <x-input label="{{ __('Number of Siblings *') }}" wire:model="number_of_siblings"
                              placeholder="{{ __('number of siblings') }}"/>
-                    <x-input label="{{ __('Ages of Siblings in the Family *') }}" wire:model="ages_of_siblings"
+                    <x-input label="{{ __('Ages of Siblings in the Family *') }}" wire:model="mean_ages_of_siblings"
                              placeholder="{{ __('ages of siblings') }}"/>
                 </div>
 

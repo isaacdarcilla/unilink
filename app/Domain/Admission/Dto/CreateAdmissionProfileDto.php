@@ -5,7 +5,6 @@ namespace App\Domain\Admission\Dto;
 use App\Domain\Admission\Requests\AdmissionPersonalDataRequest;
 use Domain\Admission\Enums\InternetStatus;
 use Domain\Admission\Enums\ScholarshipGranteeEnum;
-use Domain\Admission\Models\AdmissionPersonalProfile;
 
 class CreateAdmissionProfileDto
 {
@@ -58,21 +57,21 @@ class CreateAdmissionProfileDto
             first_name: $request->validated('first_name'),
             middle_name: $request->validated('middle_name'),
             last_name: $request->validated('last_name'),
-            sex: $request->validated('sex'),
+            sex: $request->validated('sex_at_birth'),
             gender_preference: $request->validated('gender_preference'),
             region: $request->validated('region'),
             province: $request->validated('province'),
-            city: $request->validated('city'),
+            city: $request->validated('municipality'),
             barangay: $request->validated('barangay'),
             street: $request->validated('street'),
             zip_code: $request->validated('zip_code'),
             temporary_region: $request->validated('temporary_region'),
             temporary_province: $request->validated('temporary_province'),
-            temporary_city: $request->validated('temporary_city'),
+            temporary_city: $request->validated('temporary_municipality'),
             temporary_barangay: $request->validated('temporary_barangay'),
             temporary_street: $request->validated('temporary_street'),
             temporary_zip_code: $request->validated('temporary_zip_code'),
-            phone_number: $request->validated('phone_number'),
+            phone_number: $request->validated('mobile_number'),
             landline_number: $request->validated('landline_number'),
             email_address: $request->validated('email_address'),
             facebook_account: $request->validated('facebook_account'),
@@ -82,7 +81,7 @@ class CreateAdmissionProfileDto
             civil_status: $request->validated('civil_status'),
             religion: $request->validated('religion'),
             number_of_siblings: $request->validated('number_of_siblings'),
-            ages_of_siblings: $request->validated('ages_of_siblings'),
+            ages_of_siblings: $request->validated('mean_ages_of_siblings'),
             rank_in_family: $request->validated('rank_in_family'),
             special_skills: $request->validated('special_skills'),
             favorite_sports: $request->validated('favorite_sports'),
@@ -103,21 +102,21 @@ class CreateAdmissionProfileDto
             first_name: $request['first_name'],
             middle_name: $request['middle_name'],
             last_name: $request['last_name'],
-            sex: $request['sex'],
+            sex: $request['sex_at_birth'],
             gender_preference: $request['gender_preference'],
             region: $request['region'],
             province: $request['province'],
-            city: $request['city'],
+            city: $request['municipality'],
             barangay: $request['barangay'],
             street: $request['street'],
             zip_code: $request['zip_code'],
             temporary_region: $request['temporary_region'],
             temporary_province: $request['temporary_province'],
-            temporary_city: $request['temporary_city'],
+            temporary_city: $request['temporary_municipality'],
             temporary_barangay: $request['temporary_barangay'],
             temporary_street: $request['temporary_street'],
             temporary_zip_code: $request['temporary_zip_code'],
-            phone_number: $request['phone_number'],
+            phone_number: $request['mobile_number'],
             landline_number: $request['landline_number'],
             email_address: $request['email_address'],
             facebook_account: $request['facebook_account'],
@@ -127,7 +126,7 @@ class CreateAdmissionProfileDto
             civil_status: $request['civil_status'],
             religion: $request['religion'],
             number_of_siblings: $request['number_of_siblings'],
-            ages_of_siblings: $request['ages_of_siblings'],
+            ages_of_siblings: $request['mean_ages_of_siblings'],
             rank_in_family: $request['rank_in_family'],
             special_skills: $request['special_skills'],
             favorite_sports: $request['favorite_sports'],
@@ -140,16 +139,5 @@ class CreateAdmissionProfileDto
             internet_status: InternetStatus::from($request['internet_status'])->value,
             campus: $request['campus'],
         );
-    }
-
-    public static function fillArray(AdmissionPersonalProfile $admissionPersonalProfile): array
-    {
-        return [
-            'first_name' => $admissionPersonalProfile->first_name,
-            'middle_name' => $admissionPersonalProfile?->middle_name,
-            'last_name' => $admissionPersonalProfile->last_name,
-            'sex' => str($admissionPersonalProfile->sex_at_birth)->title(),
-            'gender_preference' => str($admissionPersonalProfile->gender_preference)->title(),
-        ];
     }
 }

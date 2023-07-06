@@ -11,6 +11,7 @@ use App\Domain\Campus\Services\CampusService;
 use Domain\AcademicYear\Enums\AcademicYearStatus;
 use Domain\AcademicYear\Enums\ModuleType;
 use Domain\AcademicYear\Models\AcademicYear;
+use Domain\Admission\Enums\InternetStatus;
 use Domain\Admission\Models\AdmissionPersonalProfile;
 use Domain\Campus\Enums\CampusStatus;
 use Domain\Program\Enums\ProgramStatus;
@@ -18,6 +19,7 @@ use Domain\Program\Services\ProgramService;
 use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 use WireUi\Traits\Actions;
 
@@ -39,7 +41,7 @@ class AdmissionPersonalDataForm extends Component
 
     public ?string $last_name;
 
-    public ?string $sex;
+    public ?string $sex_at_birth;
 
     public ?string $gender_preference;
 
@@ -51,9 +53,9 @@ class AdmissionPersonalDataForm extends Component
 
     public ?string $temporary_province;
 
-    public ?string $city;
+    public ?string $municipality;
 
-    public ?string $temporary_city;
+    public ?string $temporary_municipality;
 
     public ?string $barangay;
 
@@ -77,7 +79,7 @@ class AdmissionPersonalDataForm extends Component
 
     public bool $same_address = false;
 
-    public ?string $phone_number;
+    public ?string $mobile_number;
 
     public ?string $landline_number;
 
@@ -95,7 +97,7 @@ class AdmissionPersonalDataForm extends Component
 
     public ?string $number_of_siblings;
 
-    public ?string $ages_of_siblings;
+    public ?string $mean_ages_of_siblings;
 
     public array $special_skills = [];
 
@@ -111,7 +113,7 @@ class AdmissionPersonalDataForm extends Component
 
     public ?string $internet_status;
 
-    public ?string $campus;
+    public string|int|null $campus;
 
     public bool $view;
 
@@ -125,15 +127,24 @@ class AdmissionPersonalDataForm extends Component
 
         $this->programs = $programService->all(ProgramStatus::enabled());
         $this->campuses = $campusService->all(CampusStatus::enabled());
-        $this->academic_year = $academicService->active(AcademicYearStatus::enabled(), ModuleType::admission());
+        $this->academic_year = $academicService->active(
+            AcademicYearStatus::enabled(),
+            ModuleType::admission()
+        );
 
-        $user = auth()->user();
-
-        // If query has 'view', view is 'true'
         $this->view = request()->has('view');
 
+        $fill = [
+            'campus' => (int)$this->admissionPersonalProfile->campus_id,
+            'internet_status' => InternetStatus::from($this->admissionPersonalProfile->internet_status)->label,
+        ];
+
         $this->fill(
-            CreateAdmissionProfileDto::fillArray($this->admissionPersonalProfile)
+            array_merge(
+                $fill,
+                $this->admissionPersonalProfile
+                    ->attributesToArray()
+            )
         );
     }
 
@@ -161,7 +172,8 @@ class AdmissionPersonalDataForm extends Component
             $profile = $admissionService->storeProfile(
                 CreateAdmissionProfileDto::fromArray($validated),
                 $this->academic_year->id,
-                $this->same_address
+                $this->same_address,
+                $this->view
             );
 
             if ($profile) {
@@ -178,6 +190,7 @@ class AdmissionPersonalDataForm extends Component
                 );
             }
         } catch (Exception $exception) {
+            Log::debug($exception);
             $this->notification()->error(
                 'An error occurred',
                 'Your profile was not saved: '.str($exception->getMessage())->limit(0)

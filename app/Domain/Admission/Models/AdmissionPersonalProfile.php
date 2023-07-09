@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -36,6 +37,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property mixed $campus
  * @property mixed $internet_status
  * @property mixed $campus_id
+ * @property mixed|null $admission_educations
  * @method static create(array $array)
  * @method static when(bool $role, Closure $param)
  * @method static pluck(string $string)
@@ -61,14 +63,14 @@ class AdmissionPersonalProfile extends Model
         return $this->belongsTo(AcademicYear::class);
     }
 
-    public function admission_education(): HasOne
+    public function admission_educations(): HasMany
     {
-        return $this->hasOne(AdmissionEducation::class);
+        return $this->hasMany(AdmissionEducation::class);
     }
 
-    public function admission_family_background(): HasOne
+    public function admission_family_backgrounds(): HasMany
     {
-        return $this->hasOne(AdmissionFamilyBackground::class);
+        return $this->hasMany(AdmissionFamilyBackground::class);
     }
 
     public function campus(): BelongsTo

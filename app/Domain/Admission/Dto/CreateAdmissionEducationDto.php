@@ -20,11 +20,11 @@ class CreateAdmissionEducationDto
     {
         return new self(
             level_id: $request['level'],
-            school: $request['school_attended'],
-            degree: $request['degree_received'],
-            inclusive_dates_from: Carbon::parse($request['inclusive_date_from'])->format('Y-m-d H:i:s'),
-            inclusive_dates_to: Carbon::parse($request['inclusive_date_to'])->format('Y-m-d H:i:s'),
-            honors: $request['honors_received'] ?? null
+            school: $request['school'],
+            degree: $request['degree'],
+            inclusive_dates_from: Carbon::parse($request['inclusive_dates_from'])->format('Y-m-d H:i:s'),
+            inclusive_dates_to: Carbon::parse($request['inclusive_dates_to'])->format('Y-m-d H:i:s'),
+            honors: $request['honors'] ?? null
         );
     }
 }

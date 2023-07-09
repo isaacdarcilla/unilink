@@ -15,11 +15,11 @@ class AdmissionEducationDataRequest extends FormRequest
     {
         return [
             'inputs.*.level' => ['required'],
-            'inputs.*.school_attended' => ['required', 'min:6', 'max:255'],
-            'inputs.*.degree_received' => ['required', 'min:3', 'max:255'],
-            'inputs.*.inclusive_date_from' => ['required', 'date_format:m/d/Y'],
-            'inputs.*.inclusive_date_to' => ['required', 'date_format:m/d/Y'],
-            'inputs.*.honors_received' => ['nullable', 'max:255']
+            'inputs.*.school' => ['required', 'min:6', 'max:255'],
+            'inputs.*.degree' => ['required', 'min:3', 'max:255'],
+            'inputs.*.inclusive_dates_from' => ['required', 'date_format:m/d/Y'],
+            'inputs.*.inclusive_dates_to' => ['required', 'date_format:m/d/Y'],
+            'inputs.*.honors' => ['nullable', 'max:255']
         ];
     }
 
@@ -27,17 +27,17 @@ class AdmissionEducationDataRequest extends FormRequest
     {
         return [
             'inputs.*.level.required' => 'This level field is required.',
-            'inputs.*.school_attended.required' => 'This school attended field is required.',
-            'inputs.*.school_attended.min' => 'This school attended field must be at least 6 characters.',
-            'inputs.*.school_attended.max' => 'This school attended field must be 255 characters lower.',
-            'inputs.*.degree_received.required' => 'This degree received field is required.',
-            'inputs.*.degree_received.min' => 'This degree received field must be at least 6 characters.',
-            'inputs.*.degree_received.max' => 'This degree received field must be 255 characters lower.',
-            'inputs.*.inclusive_date_from.required' => 'This inclusive date field is required.',
-            'inputs.*.inclusive_date_from.date_format' => 'This inclusive date field must match the format MM/DD/YYYY.',
-            'inputs.*.inclusive_date_to.required' => 'This inclusive date field is required.',
-            'inputs.*.inclusive_date_to.date_format' => 'This inclusive date field must match the format MM/DD/YYYY.',
-            'inputs.*.honors_received.max' => 'This honors received field must be 255 characters lower.',
+            'inputs.*.school.required' => 'This school attended field is required.',
+            'inputs.*.school.min' => 'This school attended field must be at least 6 characters.',
+            'inputs.*.school.max' => 'This school attended field must be 255 characters lower.',
+            'inputs.*.degree.required' => 'This degree received field is required.',
+            'inputs.*.degree.min' => 'This degree received field must be at least 6 characters.',
+            'inputs.*.degree.max' => 'This degree received field must be 255 characters lower.',
+            'inputs.*.inclusive_dates_from.required' => 'This inclusive date field is required.',
+            'inputs.*.inclusive_dates_from.date_format' => 'This inclusive date field must match the format MM/DD/YYYY.',
+            'inputs.*.inclusive_dates_to.required' => 'This inclusive date field is required.',
+            'inputs.*.inclusive_dates_to.date_format' => 'This inclusive date field must match the format MM/DD/YYYY.',
+            'inputs.*.honors.max' => 'This honors received field must be 255 characters lower.',
         ];
     }
 }

@@ -112,6 +112,14 @@ class AdmissionService
         );
     }
 
+    public function deleteEducation(int $education): ?AdmissionEducation
+    {
+        $education = AdmissionEducation::find($education);
+        $education->delete();
+
+        return $education;
+    }
+
     public function storeFamily(CreateAdmissionFamilyDto $dto, AdmissionPersonalProfile|int $profile)
     {
         return AdmissionFamilyBackground::updateOrCreate(

@@ -22,27 +22,27 @@
                         @endforeach
                     </x-native-select>
                     <x-input label="{{ __('School Attended *') }}"
-                             id="input_{{$key}}_school_attended"
-                             wire:model.defer="inputs.{{$key}}.school_attended"
+                             id="input_{{$key}}_school"
+                             wire:model.defer="inputs.{{$key}}.school"
                              placeholder="{{ __('school attended') }}"/>
                     <x-input label="{{ __('Degree Received *') }}"
-                             id="input_{{$key}}_degree_received"
-                             wire:model.defer="inputs.{{$key}}.degree_received"
+                             id="input_{{$key}}_degree"
+                             wire:model.defer="inputs.{{$key}}.degree"
                              placeholder="{{ __('degree received') }}"/>
                     <x-input label="{{ __('Inclusive Date From *') }}"
-                             id="input_{{$key}}_inclusive_date_from"
-                             wire:model.defer="inputs.{{$key}}.inclusive_date_from"
+                             id="input_{{$key}}_inclusive_dates_from"
+                             wire:model.defer="inputs.{{$key}}.inclusive_dates_from"
                              placeholder="{{ __('e.g. 09/20/1997') }}"/>
                     <x-input label="{{ __('Inclusive Date To *') }}"
-                             id="input_{{$key}}_inclusive_date_to"
-                             wire:model.defer="inputs.{{$key}}.inclusive_date_to"
+                             id="input_{{$key}}_inclusive_dates_to"
+                             wire:model.defer="inputs.{{$key}}.inclusive_dates_to"
                              placeholder="{{ __('e.g. 09/21/1997') }}"/>
                     <x-input label="{{ __('Honors Received') }}"
-                             id="input_{{$key}}_honors_received"
-                             wire:model.defer="inputs.{{$key}}.honors_received"
+                             id="input_{{$key}}_honors"
+                             wire:model.defer="inputs.{{$key}}.honors"
                              placeholder="{{ __('honors received') }}"/>
-                    @if($key > 0)
-                        <span role="button" wire:click="removeInput({{$key}})"
+                    @if($key > 0 || $educationFilled)
+                        <span role="button" wire:click="removeInput({{$key}}, {{ $input['id'] ?? null }})"
                               class="text-red-600 text-sm mx-2">
                             <b>Remove Level</b>
                         </span>

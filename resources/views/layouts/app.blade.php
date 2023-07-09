@@ -17,6 +17,7 @@
 <body class="font-sans antialiased">
 <x-notifications/>
 <x-banner/>
+<x-dialog/>
 
 <div class="min-h-screen bg-zinc-100">
     @livewire('navigation-menu')

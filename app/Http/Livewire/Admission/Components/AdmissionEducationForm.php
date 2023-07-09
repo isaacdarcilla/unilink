@@ -30,17 +30,19 @@ class AdmissionEducationForm extends Component
 
     public Collection $inputs;
 
-    public ?string $school_attended;
+    public ?string $school;
 
     public ?string $level;
 
-    public ?string $degree_received;
+    public ?string $degree;
 
-    public ?string $inclusive_date_from;
+    public ?string $inclusive_dates_from;
 
-    public ?string $inclusive_date_to;
+    public ?string $inclusive_dates_to;
 
-    public ?string $honors_received;
+    public ?string $honors;
+
+    public bool $educationFilled = false;
 
     public function boot(): void
     {
@@ -48,14 +50,40 @@ class AdmissionEducationForm extends Component
 
         $this->rules = $requests->rules();
         $this->messages = $requests->messages();
-
         $this->levels = get_levels();
     }
 
     public function mount(): void
     {
+        $educations = collect($this->admissionPersonalProfile?->admission_educations);
+
+        if ($educations->isNotEmpty()) {
+            $this->educationFilled = true;
+            $this->fillEducationInput($educations);
+        }
+
+        if ($educations->isEmpty()) {
+            $this->educationFilled = false;
+            $this->fill([
+                'inputs' => collect([['level' => '']]),
+            ]);
+        }
+    }
+
+    public function fillEducationInput(Collection $educations): void
+    {
+        $data = [];
+
+        $educations?->each(function ($column) use (&$data) {
+            $item = [];
+            foreach ($column->toArray() as $property => $value) {
+                $item[$property == 'level_id' ? 'level' : $property] = $value;
+            }
+            $data[] = $item;
+        });
+
         $this->fill([
-            'inputs' => collect([['level' => '']]),
+            'inputs' => collect($data),
         ]);
     }
 
@@ -107,8 +135,33 @@ class AdmissionEducationForm extends Component
         $this->inputs->push(['level' => '']);
     }
 
-    public function removeInput($key): void
+    public function removeInput($key, $educationId = null): void
     {
-        $this->inputs->pull($key);
+        if ($educationId) {
+            $this->dialog()->confirm([
+                'title' => 'Are you sure?',
+                'description' => 'Delete this education?',
+                'acceptLabel' => 'Yes, delete it',
+                'method' => 'deleteEducation',
+                'params' => $educationId,
+            ]);
+        }
+
+        if (!$educationId) {
+            $this->inputs->pull($key);
+        }
+    }
+
+    public function deleteEducation($educationId): void
+    {
+        $admissionService = new AdmissionService();
+        $admissionService->deleteEducation($educationId);
+
+        $this->redirect(
+            route(
+                'admission.education',
+                ['admission_personal_profile' => $this->admissionPersonalProfile->id]
+            )
+        );
     }
 }

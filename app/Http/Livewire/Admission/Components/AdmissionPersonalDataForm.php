@@ -136,7 +136,7 @@ class AdmissionPersonalDataForm extends Component
 
         $fill = [
             'campus' => (int)$this->admissionPersonalProfile->campus_id,
-            'internet_status' => InternetStatus::from($this->admissionPersonalProfile->internet_status)->label,
+            'internet_status' => $this->admissionPersonalProfile->internet_status,
         ];
 
         $this->fill(

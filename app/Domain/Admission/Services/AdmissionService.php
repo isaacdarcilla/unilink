@@ -9,7 +9,6 @@ use App\Domain\Admission\Dto\CreateAdmissionProfileDto;
 use App\Domain\Admission\Dto\CreateHealthDto;
 use App\Domain\Admission\Enums\AdmissionApplicationProgress;
 use App\Domain\Admission\Enums\AdmissionApplicationStatus;
-use App\Domain\Admission\Enums\FamilyType;
 use App\Domain\Admission\Models\AdmissionEducation;
 use App\Domain\Admission\Models\AdmissionFamilyBackground;
 use App\Domain\Admission\Models\AdmissionPhysicalHealth;
@@ -154,8 +153,9 @@ class AdmissionService
         CreateHealthDto $dto,
         AdmissionPersonalProfile|int $profile
     ): AdmissionPhysicalHealth|null {
-        return AdmissionPhysicalHealth::create([
+        return AdmissionPhysicalHealth::updateOrCreate([
             'admission_personal_profile_id' => $profile,
+        ], [
             'height' => $dto->height,
             'weight' => $dto->weight,
             'facial_marks' => $dto->facial_marks,

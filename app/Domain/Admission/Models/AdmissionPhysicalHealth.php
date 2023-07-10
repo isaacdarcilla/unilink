@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @method static create(array $array)
+ * @method static updateOrCreate(AdmissionPersonalProfile[]|int[] $array, array $array1)
  */
 class AdmissionPhysicalHealth extends Model
 {

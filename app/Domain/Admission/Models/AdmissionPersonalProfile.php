@@ -4,6 +4,7 @@ namespace Domain\Admission\Models;
 
 use App\Domain\Admission\Models\AdmissionEducation;
 use App\Domain\Admission\Models\AdmissionFamilyBackground;
+use App\Domain\Admission\Models\AdmissionPhysicalHealth;
 use Closure;
 use Domain\AcademicYear\Models\AcademicYear;
 use Domain\Campus\Models\Campus;
@@ -39,6 +40,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property mixed $campus_id
  * @property mixed|null $admission_educations
  * @property mixed|null $admission_family_backgrounds
+ * @property mixed|null $admission_physical_health
  * @method static create(array $array)
  * @method static when(bool $role, Closure $param)
  * @method static pluck(string $string)
@@ -72,6 +74,11 @@ class AdmissionPersonalProfile extends Model
     public function admission_family_backgrounds(): HasMany
     {
         return $this->hasMany(AdmissionFamilyBackground::class);
+    }
+
+    public function admission_physical_health(): HasOne
+    {
+        return $this->hasOne(AdmissionPhysicalHealth::class);
     }
 
     public function campus(): BelongsTo

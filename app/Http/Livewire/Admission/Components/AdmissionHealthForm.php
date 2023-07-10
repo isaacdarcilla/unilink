@@ -46,6 +46,17 @@ class AdmissionHealthForm extends Component
         $this->rules = $requests->rules();
     }
 
+    public function mount(): void
+    {
+        $health = $this->admissionPersonalProfile?->admission_physical_health;
+
+        if ($health) {
+            $this->fill(
+                $health->attributesToArray()
+            );
+        }
+    }
+
     public function render(): View
     {
         return view('livewire.admission.components.admission-health-form');

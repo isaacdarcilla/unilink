@@ -51,14 +51,9 @@
                 @endphp
                 <tr class="bg-white border-b hover:bg-white bg-gradient-to-bl from-slate-100 via-slate-100 to-gray-100">
                     <td class="px-6 py-4">
-                        <x-dropdown align="left">
-                            <x-slot name="trigger">
-                                <x-button sm icon="menu-alt-2" outline info/>
-                            </x-slot>
-                            <x-dropdown.item :href="$url">
-                                {{ $applicant->application_progress === AdmissionApplicationProgress::completed()->value ? 'View Application' : 'Continue Application' }}
-                            </x-dropdown.item>
-                        </x-dropdown>
+                        <x-button :href="$url" sm icon="arrow-narrow-right" outline info>
+                            {{ $applicant->application_progress === AdmissionApplicationProgress::completed()->value ? 'View' : 'Continue' }}
+                        </x-button>
                     </td>
                     <td class="px-6 py-4 underline">
                         #{{ $applicant->id }}

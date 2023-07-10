@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admission\Components;
 use App\Admin\Models\User;
 use App\Domain\Admission\Dto\CreateAdmissionEducationDto;
 use App\Domain\Admission\Enums\AdmissionApplicationProgress;
+use App\Domain\Admission\Enums\AdmissionApplicationStatus;
 use App\Domain\Admission\Requests\AdmissionEducationDataRequest;
 use App\Domain\Admission\Services\AdmissionService;
 use Domain\Admission\Models\AdmissionPersonalProfile;
@@ -44,6 +45,8 @@ class AdmissionEducationForm extends Component
 
     public bool $educationFilled = false;
 
+    public bool $disableInputs = false;
+
     public function boot(): void
     {
         $requests = new AdmissionEducationDataRequest();
@@ -59,6 +62,13 @@ class AdmissionEducationForm extends Component
 
         if ($educations->isNotEmpty()) {
             $this->educationFilled = true;
+
+            $this->disableInputs = disable_admission_inputs(
+                AdmissionApplicationStatus::from(
+                    $this->admissionPersonalProfile?->application_status
+                )->value
+            );
+
             $this->fillEducationInput($educations);
         }
 

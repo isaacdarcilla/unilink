@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admission\Components;
 use App\Admin\Models\User;
 use App\Domain\Admission\Dto\CreateHealthDto;
 use App\Domain\Admission\Enums\AdmissionApplicationProgress;
+use App\Domain\Admission\Enums\AdmissionApplicationStatus;
 use App\Domain\Admission\Requests\AdmissionHealthDataRequest;
 use App\Domain\Admission\Services\AdmissionService;
 use Domain\Admission\Models\AdmissionPersonalProfile;
@@ -37,6 +38,8 @@ class AdmissionHealthForm extends Component
 
     public string $emergency_contact_number;
 
+    public bool $disableInputs = false;
+
     public AdmissionPersonalProfile $admissionPersonalProfile;
 
     public function boot(): void
@@ -51,6 +54,12 @@ class AdmissionHealthForm extends Component
         $health = $this->admissionPersonalProfile?->admission_physical_health;
 
         if ($health) {
+            $this->disableInputs = disable_admission_inputs(
+                AdmissionApplicationStatus::from(
+                    $this->admissionPersonalProfile?->application_status
+                )->value
+            );
+
             $this->fill(
                 $health->attributesToArray()
             );

@@ -41,6 +41,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property mixed|null $admission_educations
  * @property mixed|null $admission_family_backgrounds
  * @property mixed|null $admission_physical_health
+ * @property mixed|null $application_status
  * @method static create(array $array)
  * @method static when(bool $role, Closure $param)
  * @method static pluck(string $string)

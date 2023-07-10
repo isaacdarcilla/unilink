@@ -5,13 +5,13 @@ namespace App\Http\Livewire\Admission\Components;
 use App\Admin\Models\User;
 use App\Domain\AcademicYear\Services\AcademicYearService;
 use App\Domain\Admission\Dto\CreateAdmissionProfileDto;
+use App\Domain\Admission\Enums\AdmissionApplicationStatus;
 use App\Domain\Admission\Requests\AdmissionPersonalDataRequest;
 use App\Domain\Admission\Services\AdmissionService;
 use App\Domain\Campus\Services\CampusService;
 use Domain\AcademicYear\Enums\AcademicYearStatus;
 use Domain\AcademicYear\Enums\ModuleType;
 use Domain\AcademicYear\Models\AcademicYear;
-use Domain\Admission\Enums\InternetStatus;
 use Domain\Admission\Models\AdmissionPersonalProfile;
 use Domain\Campus\Enums\CampusStatus;
 use Domain\Program\Enums\ProgramStatus;
@@ -119,6 +119,8 @@ class AdmissionPersonalDataForm extends Component
 
     public AdmissionPersonalProfile $admissionPersonalProfile;
 
+    public bool $disableInputs = false;
+
     public function mount(): void
     {
         $programService = new ProgramService();
@@ -134,18 +136,26 @@ class AdmissionPersonalDataForm extends Component
 
         $this->view = request()->has('view');
 
-        $fill = [
-            'campus' => (int)$this->admissionPersonalProfile->campus_id,
-            'internet_status' => $this->admissionPersonalProfile->internet_status,
-        ];
+        if ($this->admissionPersonalProfile->application_status) {
+            $fill = [
+                'campus' => (int)$this->admissionPersonalProfile->campus_id,
+                'internet_status' => $this->admissionPersonalProfile->internet_status,
+            ];
 
-        $this->fill(
-            array_merge(
-                $fill,
-                $this->admissionPersonalProfile
-                    ->attributesToArray()
-            )
-        );
+            $this->disableInputs = disable_admission_inputs(
+                AdmissionApplicationStatus::from(
+                    $this->admissionPersonalProfile?->application_status
+                )->value
+            );
+
+            $this->fill(
+                array_merge(
+                    $fill,
+                    $this->admissionPersonalProfile
+                        ->attributesToArray()
+                )
+            );
+        }
     }
 
     public function render(): View

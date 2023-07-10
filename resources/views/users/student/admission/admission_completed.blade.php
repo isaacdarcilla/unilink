@@ -22,7 +22,7 @@
 
                         <div class="text-center mx-auto mb-5">
                             <a href="{{ route('admission.index') }}">
-                                <x-button class="pb-5" info sm label="Go to Dashboard"/>
+                                <x-button info sm label="Go to Dashboard"/>
                             </a>
                         </div>
                         <div class="py-4"></div>

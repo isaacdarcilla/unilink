@@ -5,6 +5,7 @@ use App\Admin\Models\Barangay;
 use App\Admin\Models\City;
 use App\Admin\Models\Province;
 use App\Admin\Models\Region;
+use App\Domain\Admission\Enums\AdmissionApplicationStatus;
 use App\Domain\Level\Enums\LevelStatus;
 use App\Domain\Level\Models\Level;
 use Illuminate\Database\Eloquent\Collection;
@@ -162,5 +163,33 @@ if (!function_exists('get_levels')) {
         }
 
         return Level::whereId($level_id)->first();
+    }
+}
+
+if (!function_exists('is_url_numeric')) {
+    /**
+     * Check if the last segment of URL is numeric
+     * @return string|null
+     */
+    function is_url_numeric(): string|null
+    {
+        $segments = explode('/', request()->path());
+        $data = end($segments);
+        return is_numeric($data) ? $data : null;
+    }
+}
+
+if (!function_exists('disable_admission_inputs')) {
+    /**
+     * Disable admission inputs base on status
+     * @param  string|int  $status
+     * @return bool
+     */
+    function disable_admission_inputs(string|int $status): bool
+    {
+        return match ($status) {
+            AdmissionApplicationStatus::application_approved()->value => false,
+            default => true,
+        };
     }
 }

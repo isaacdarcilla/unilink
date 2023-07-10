@@ -1,9 +1,7 @@
 @props(['active'])
 
 @php
-    $segments = explode('/', request()->path());
-    $data = end($segments);
-    $id = is_numeric($data) ? $data : null;
+    $id = is_url_numeric();
 @endphp
 
 <ol wire:ignore

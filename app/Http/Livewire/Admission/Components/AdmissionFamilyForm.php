@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admission\Components;
 use App\Admin\Models\User;
 use App\Domain\Admission\Dto\CreateAdmissionFamilyDto;
 use App\Domain\Admission\Enums\AdmissionApplicationProgress;
+use App\Domain\Admission\Enums\AdmissionApplicationStatus;
 use App\Domain\Admission\Requests\AdmissionFamilyDataRequest;
 use App\Domain\Admission\Services\AdmissionService;
 use Domain\Admission\Models\AdmissionPersonalProfile;
@@ -55,6 +56,8 @@ class AdmissionFamilyForm extends Component
 
     public bool $familyFilled = false;
 
+    public bool $disableInputs = false;
+
     public function boot(): void
     {
         $requests = new AdmissionFamilyDataRequest();
@@ -69,6 +72,13 @@ class AdmissionFamilyForm extends Component
 
         if ($families->isNotEmpty()) {
             $this->familyFilled = true;
+
+            $this->disableInputs = disable_admission_inputs(
+                AdmissionApplicationStatus::from(
+                    $this->admissionPersonalProfile?->application_status
+                )->value
+            );
+
             $this->fillFamilyInput($families);
         }
 

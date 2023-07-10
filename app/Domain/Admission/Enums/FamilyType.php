@@ -14,9 +14,9 @@ class FamilyType extends Enum
     protected static function values(): array
     {
         return [
-            'father' => 1,
-            'mother' => 2,
-            'guardian' => 3,
+            'father' => 'Father',
+            'mother' => 'Mother',
+            'guardian' => 'Guardian',
         ];
     }
 

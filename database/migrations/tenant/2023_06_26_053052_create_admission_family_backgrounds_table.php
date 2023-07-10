@@ -13,14 +13,14 @@ return new class extends Migration {
         Schema::create('admission_family_backgrounds', function (Blueprint $table) {
             $table->id();
             $table->foreignId('admission_personal_profile_id')->constrained(null, 'id', 'family_background_profile_id');
-            $table->integer('type')->nullable()->comment('1 = father, 2 = mother');
+            $table->string('type')->nullable()->comment('father, mother');
             $table->string('last_name')->nullable();
             $table->string('first_name')->nullable();
             $table->string('middle_name')->nullable();
             $table->text('address')->nullable();
             $table->text('email_address')->nullable();
             $table->text('mobile_number')->nullable();
-            $table->integer('highest_educational_attainment')->nullable();
+            $table->string('highest_educational_attainment')->nullable();
             $table->string('occupation')->nullable();
             $table->string('monthly_income')->nullable();
             $table->string('company')->nullable();

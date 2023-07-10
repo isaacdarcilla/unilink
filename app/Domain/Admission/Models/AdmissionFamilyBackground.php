@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @method static updateOrCreate(array $array, array $array1)
+ * @method static find(int $familyId)
  */
 class AdmissionFamilyBackground extends Model
 {
@@ -17,11 +18,6 @@ class AdmissionFamilyBackground extends Model
     use SoftDeletes;
 
     protected $guarded = [];
-
-    protected $casts = [
-        'type' => 'integer',
-        'highest_educational_attainment' => 'integer',
-    ];
 
     public function admission_personal_profile(): BelongsTo
     {

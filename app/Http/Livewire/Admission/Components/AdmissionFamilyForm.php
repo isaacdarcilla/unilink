@@ -10,6 +10,7 @@ use App\Domain\Admission\Services\AdmissionService;
 use Domain\Admission\Models\AdmissionPersonalProfile;
 use Exception;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 use Livewire\Component;
 use WireUi\Traits\Actions;
@@ -52,6 +53,8 @@ class AdmissionFamilyForm extends Component
 
     public Collection $inputs;
 
+    public bool $familyFilled = false;
+
     public function boot(): void
     {
         $requests = new AdmissionFamilyDataRequest();
@@ -62,8 +65,35 @@ class AdmissionFamilyForm extends Component
 
     public function mount(): void
     {
+        $families = collect($this->admissionPersonalProfile?->admission_family_backgrounds);
+
+        if ($families->isNotEmpty()) {
+            $this->familyFilled = true;
+            $this->fillFamilyInput($families);
+        }
+
+        if ($families->isEmpty()) {
+            $this->familyFilled = false;
+            $this->fill([
+                'inputs' => collect([['type' => '']]),
+            ]);
+        }
+    }
+
+    public function fillFamilyInput(Collection $families): void
+    {
+        $data = [];
+
+        $families?->each(function ($column) use (&$data) {
+            $item = [];
+            foreach ($column->toArray() as $property => $value) {
+                $item[$property] = $value;
+            }
+            $data[] = $item;
+        });
+
         $this->fill([
-            'inputs' => collect([['type' => '']]),
+            'inputs' => collect($data),
         ]);
     }
 
@@ -103,6 +133,7 @@ class AdmissionFamilyForm extends Component
                 )
             );
         } catch (Exception $exception) {
+            Log::debug($exception);
             $this->notification()->error(
                 'An error occurred',
                 str($exception->getMessage())->limit()
@@ -115,8 +146,33 @@ class AdmissionFamilyForm extends Component
         $this->inputs->push(['type' => '']);
     }
 
-    public function removeInput($key): void
+    public function removeInput($key, $familyId = null): void
     {
-        $this->inputs->pull($key);
+        if ($familyId) {
+            $this->dialog()->confirm([
+                'title' => 'Are you sure?',
+                'description' => 'Delete this background?',
+                'acceptLabel' => 'Yes, delete it',
+                'method' => 'deleteFamily',
+                'params' => $familyId,
+            ]);
+        }
+
+        if (!$familyId) {
+            $this->inputs->pull($key);
+        }
+    }
+
+    public function deleteFamily($familyId): void
+    {
+        $admissionService = new AdmissionService();
+        $admissionService->deleteFamily($familyId);
+
+        $this->redirect(
+            route(
+                'admission.family',
+                ['admission_personal_profile' => $this->admissionPersonalProfile->id]
+            )
+        );
     }
 }

@@ -10,7 +10,6 @@ use App\Domain\Admission\Dto\CreateHealthDto;
 use App\Domain\Admission\Enums\AdmissionApplicationProgress;
 use App\Domain\Admission\Enums\AdmissionApplicationStatus;
 use App\Domain\Admission\Enums\FamilyType;
-use App\Domain\Admission\Enums\HighestEducationEnum;
 use App\Domain\Admission\Models\AdmissionEducation;
 use App\Domain\Admission\Models\AdmissionFamilyBackground;
 use App\Domain\Admission\Models\AdmissionPhysicalHealth;
@@ -120,12 +119,20 @@ class AdmissionService
         return $education;
     }
 
+    public function deleteFamily(int $familyId): ?AdmissionFamilyBackground
+    {
+        $family = AdmissionFamilyBackground::find($familyId);
+        $family->delete();
+
+        return $family;
+    }
+
     public function storeFamily(CreateAdmissionFamilyDto $dto, AdmissionPersonalProfile|int $profile)
     {
         return AdmissionFamilyBackground::updateOrCreate(
             [
                 'admission_personal_profile_id' => $profile,
-                'type' => FamilyType::from($dto->type)->value,
+                'type' => $dto->type,
             ],
             [
                 'first_name' => $dto->first_name,
@@ -133,9 +140,8 @@ class AdmissionService
                 'middle_name' => $dto->middle_name,
                 'address' => $dto->address,
                 'mobile_number' => $dto->mobile_number,
-                'highest_educational_attainment' => HighestEducationEnum::from(
-                    $dto->highest_educational_attainment
-                )->value,
+                'email_address' => $dto->email_address,
+                'highest_educational_attainment' => $dto->highest_educational_attainment,
                 'occupation' => $dto->occupation,
                 'monthly_income' => $dto->monthly_income,
                 'company' => $dto->company,

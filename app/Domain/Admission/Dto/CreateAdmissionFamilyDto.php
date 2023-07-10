@@ -5,7 +5,7 @@ namespace App\Domain\Admission\Dto;
 class CreateAdmissionFamilyDto
 {
     public function __construct(
-        public string|int $type,
+        public string $type,
         public string $last_name,
         public string $first_name,
         public ?string $middle_name,

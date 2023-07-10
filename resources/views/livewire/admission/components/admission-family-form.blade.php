@@ -54,7 +54,7 @@
                                      id="input_{{$key}}_highest_educational_attainment"
                                      wire:model.defer="inputs.{{$key}}.highest_educational_attainment"
                     >
-                        <option disabled selected>select educational...</option>
+                        <option value="" disabled selected>select educational...</option>
                         @foreach(HighestEducationEnum::toLabels() as $education)
                             <option value="{{ $education }}">{{ $education }}</option>
                         @endforeach
@@ -69,15 +69,15 @@
                              placeholder="{{ __('monthly income') }}"/>
                     <x-input label="{{ __('Company') }}"
                              id="input_{{$key}}_company"
-                             wire:model.defer="inputs.{{$key}}."
+                             wire:model.defer="inputs.{{$key}}.company"
                              placeholder="{{ __('company') }}"/>
                     <x-input label="{{ __('Company Address') }}"
                              id="input_{{$key}}_company_address"
                              wire:model.defer="inputs.{{$key}}.company_address"
                              placeholder="{{ __('company address') }}"/>
                 </div>
-                @if($key > 0)
-                    <span role="button" wire:click="removeInput({{$key}})"
+                @if($key > 0 || $familyFilled)
+                    <span role="button" wire:click="removeInput({{$key}}, {{ $input['id'] ?? null }})"
                           class="text-red-600 text-sm mx-3">
                             <b>Remove Family Background</b>
                         </span>

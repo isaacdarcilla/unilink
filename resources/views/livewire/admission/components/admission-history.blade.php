@@ -10,6 +10,18 @@
             @endforeach
         </x-native-select>
     </div>
+    @if($userExamination)
+        <x-alert title="Examination Available"
+                 message="Entrance examination link for A.Y. {{ $active->description }} is available. Please take your examination below."
+                 class="text-green-500 border bg-green-100 border-green-300 font-semibold mt-3">
+            <div class="flex mt-3">
+                <x-button href="{{ route('admission.examination.index', $userExamination->id) }}" sm
+                          icon="arrow-narrow-right" outline positive>
+                    Start Examination
+                </x-button>
+            </div>
+        </x-alert>
+    @endif
     <div class="overflow-x-auto hide-scrollbar shadow-md rounded-lg mt-2 bg-gradient-to-bl from-slate-100 via-slate-100 to-gray-100 border-0">
         <table class="w-full text-sm text-left text-gray-500 hide-scrollbar">
             @if(count($applications) > 0)

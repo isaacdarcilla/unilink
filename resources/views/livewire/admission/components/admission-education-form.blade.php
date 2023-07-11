@@ -2,9 +2,9 @@
     <x-stepper active="education"/>
     <x-card class="-space-y-2 bg-gradient-to-bl from-slate-100 via-slate-100 to-gray-100">
         @if($disableInputs)
-            <x-label class="mb-3 p-3 text-red-500 font-semibold">
-                Input forms are temporarily disabled and editing is not allowed because your application is FOR REVIEW.
-            </x-label>
+            <x-alert title="Application Status"
+                     message="Input forms are temporarily disabled and editing is not allowed."
+                     class="text-red-500 border bg-red-100 border-red-300 font-semibold mx-3"/>
         @endif
         <div class="flex justify-between items-center p-3">
             <x-label class="italic font-bold">

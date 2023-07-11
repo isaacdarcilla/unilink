@@ -193,3 +193,19 @@ if (!function_exists('disable_admission_inputs')) {
         };
     }
 }
+
+if (!function_exists('application_button_label')) {
+    /**
+     * Disable admission inputs base on status
+     * @param  string|int  $status
+     * @return string
+     */
+    function application_button_label(string|int $status): string
+    {
+        return match ($status) {
+            AdmissionApplicationStatus::on_exam()->value => 'Take Exam',
+            AdmissionApplicationStatus::exam_submitted()->value => 'View Exam',
+            default => 'View',
+        };
+    }
+}

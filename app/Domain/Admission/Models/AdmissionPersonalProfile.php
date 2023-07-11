@@ -2,6 +2,7 @@
 
 namespace Domain\Admission\Models;
 
+use App\Admin\Models\User;
 use App\Domain\Admission\Models\AdmissionEducation;
 use App\Domain\Admission\Models\AdmissionFamilyBackground;
 use App\Domain\Admission\Models\AdmissionPhysicalHealth;
@@ -65,6 +66,11 @@ class AdmissionPersonalProfile extends Model
     public function academic_year(): BelongsTo
     {
         return $this->belongsTo(AcademicYear::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function admission_educations(): HasMany

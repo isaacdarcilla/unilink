@@ -21,9 +21,17 @@
                             reach out through your mobile number. Good luck!</p>
 
                         <div class="text-center mx-auto mb-5">
-                            <a href="{{ route('admission.index') }}">
-                                <x-button info sm label="Go to Dashboard"/>
-                            </a>
+                            <div class="flex justify-center gap-2">
+                                <a href="{{ route('admission.index') }}">
+                                    <x-button info sm label="Go to Dashboard"/>
+                                </a>
+                                @php
+                                    $id = is_url_numeric();
+                                @endphp
+                                <a href="{{ route('admission.personal_data', ['admission_personal_profile' => $id, 'view' => 'enabled']) }}">
+                                    <x-button info outline sm label="View Application"/>
+                                </a>
+                            </div>
                         </div>
                         <div class="py-4"></div>
                     </x-card>

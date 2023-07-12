@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * @property mixed $answer
+ * @property mixed $choices
+ */
 class AdmissionQuestionnaire extends Model
 {
     use HasFactory;

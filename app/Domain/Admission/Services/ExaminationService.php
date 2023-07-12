@@ -4,9 +4,12 @@ namespace App\Domain\Admission\Services;
 
 use App\Admin\Models\User;
 use App\Domain\Admission\Enums\ExaminationStatus;
+use App\Domain\Admission\Enums\QuestionnaireStatus;
 use App\Domain\Admission\Models\AdmissionExamination;
+use App\Domain\Admission\Models\AdmissionQuestionnaire;
 use Domain\AcademicYear\Models\AcademicYear;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Support\Collection;
 
 class ExaminationService
 {
@@ -18,6 +21,20 @@ class ExaminationService
             'user_id' => $user->id,
             'academic_year_id' => $academicYear->id,
             'status' => ExaminationStatus::pending()->value
+        ])->first();
+    }
+
+    public function getQuestionnaires(QuestionnaireStatus $status): Collection
+    {
+        return AdmissionQuestionnaire::where([
+            'status' => $status->value
+        ])->get();
+    }
+
+    public function currentQuestion(int|string $questionId): AdmissionQuestionnaire
+    {
+        return AdmissionQuestionnaire::where([
+            'id' => $questionId
         ])->first();
     }
 }

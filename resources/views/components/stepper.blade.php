@@ -5,7 +5,7 @@
 @endphp
 
 <ol wire:ignore
-    class="flex overflow-x-auto hide-scrollbar items-center p-3 space-x-2 text-sm font-medium text-center text-gray-500 bg-white border border-gray-200 rounded-t-lg shadow-sm sm:text-base sm:p-4 sm:space-x-4">
+    class="flex overflow-x-auto soft-scrollbar items-center p-3 space-x-2 text-sm font-medium text-center text-gray-500 bg-white border border-gray-200 rounded-t-lg shadow-sm sm:text-base sm:p-4 sm:space-x-4">
     <li class="{{ $active === 'personal' ? 'text-blue-600' : '' }}">
         <a class="flex items-center hover:underline"
            href="{{ route('admission.personal_data', ['admission_personal_profile' => $id, 'view' => 'enabled']) }}">

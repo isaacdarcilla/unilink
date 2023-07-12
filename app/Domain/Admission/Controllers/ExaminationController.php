@@ -23,6 +23,8 @@ class ExaminationController extends Controller
             ModuleType::admission()
         );
 
+        abort_if($admissionExamination->user_id !== auth()->id(), 403);
+
         return view('users.student.examination.admission_examination', compact('active', 'admissionExamination'));
     }
 }

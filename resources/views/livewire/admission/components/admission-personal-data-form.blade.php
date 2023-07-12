@@ -12,9 +12,9 @@
                      class="text-red-500 border bg-red-100 border-red-300 font-semibold mx-3"/>
         @endif
         <x-label class="italic font-bold p-3">
-            {{ $applications->count() >= 1 && !$view || !$id ? '' : 'Fields with * are required.'}}
+            {{ $applications->count() >= 1 && !$view && !$id ? '' : 'Fields with * are required.'}}
         </x-label>
-        @if($applications->count() >= 1 && !$view || !$id)
+            @if($applications->count() >= 1 && !$view && !$id)
             <div class="text-center mx-auto">
                 <img class="text-center mx-auto pt-4" src="{{ asset('assets/goal.png') }}" alt=""
                      width="70">

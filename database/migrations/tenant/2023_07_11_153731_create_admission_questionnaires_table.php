@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->text('questionnaire_description')->nullable();
             $table->json('choices')->nullable();
             $table->integer('points')->nullable()->default(1);
+            $table->integer('status')->nullable()->default(1)->comment('1 - active, 0 - inactive');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -15,8 +15,10 @@
                  message="Entrance examination link for A.Y. {{ $active->description }} is available. Please take your examination below."
                  class="text-green-500 border bg-green-100 border-green-300 font-semibold mt-3">
             <div class="flex mt-3">
-                <x-button href="{{ route('admission.examination.index', $userExamination->id) }}" sm
-                          icon="arrow-narrow-right" outline positive>
+                <x-button
+                        href="{{ route('admission.examination.index', ['admission_examination' => $userExamination->id]) }}?question=1&key=1"
+                        sm
+                        icon="arrow-narrow-right" outline positive>
                     Start Examination
                 </x-button>
             </div>

@@ -4,10 +4,11 @@
             <div class="overflow-hidden sm:rounded-lg space-y-4">
                 <div class="flex justify-between items-center align-middle -mt-4 pt-3">
                     <x-label link class="font-bolder text-[16px]">Entrance Examination
+                        <b>A.Y. {{ $active->description }}</b>
                     </x-label>
                     <a href="{{ route('admission.index') }}" class="py-3 pr-1">
                         <x-button negative sm icon="x">
-                            Exit Examination
+                            Exit <span class="hidden sm:inline-flex">Examination</span>
                         </x-button>
                     </a>
                 </div>

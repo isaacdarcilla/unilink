@@ -9,7 +9,7 @@
 
                 <p class="text-lg">Start your Entrance Examination</p>
                 <p class="text-sm">Carefully read the questions and select the correct answer in the given selection of
-                    choices.<br/>Click on the <b>'Start Examination'</b> button to process. Good luck!</p>
+                    choices.<br/>Click on the <b>'Start Examination'</b> button to proceed. Good luck!</p>
                 <x-button type="button" wire:click="startExam" info>
                     Start Examination
                 </x-button>

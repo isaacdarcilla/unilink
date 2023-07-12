@@ -21,7 +21,7 @@ class ExaminationService
             'user_id' => $user->id,
             'academic_year_id' => $academicYear->id,
             'status' => ExaminationStatus::pending()->value
-        ])->first();
+        ])->orWhere('status', ExaminationStatus::on_going()->value)->first();
     }
 
     public function getQuestionnaires(QuestionnaireStatus $status): Collection
@@ -29,6 +29,17 @@ class ExaminationService
         return AdmissionQuestionnaire::where([
             'status' => $status->value
         ])->get();
+    }
+
+    public function setExaminationStatus(
+        ExaminationStatus $status,
+        int|string $admissionExamination
+    ): AdmissionExamination {
+        $exam = AdmissionExamination::find($admissionExamination);
+        $exam->status = $status->value;
+        $exam->save();
+
+        return $exam;
     }
 
     public function currentQuestion(int|string $questionId): AdmissionQuestionnaire

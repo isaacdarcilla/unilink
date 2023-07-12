@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property mixed $user_id
+ * @property mixed $id
+ * @method static find(int|string $admissionExamination)
  */
 class AdmissionExamination extends Model
 {

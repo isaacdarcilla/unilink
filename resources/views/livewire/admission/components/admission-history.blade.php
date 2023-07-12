@@ -19,7 +19,7 @@
                         href="{{ route('admission.examination.index', ['admission_examination' => $userExamination->id]) }}?question=1&key=1"
                         sm
                         icon="arrow-narrow-right" outline positive>
-                    Start Examination
+                    Go to Examination
                 </x-button>
             </div>
         </x-alert>

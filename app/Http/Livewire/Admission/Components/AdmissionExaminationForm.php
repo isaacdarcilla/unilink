@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admission\Components;
 
+use App\Domain\Admission\Enums\ExaminationStatus;
 use App\Domain\Admission\Enums\QuestionnaireStatus;
 use App\Domain\Admission\Models\AdmissionExamination;
 use App\Domain\Admission\Models\AdmissionQuestionnaire;
@@ -16,21 +17,26 @@ class AdmissionExaminationForm extends Component
 
     public ?AdmissionQuestionnaire $currentQuestion;
 
+    private ExaminationService $examinationService;
+
     public Collection $questionnaires;
 
     public ?string $answer = null;
 
     public bool $correct;
 
+    public function boot(): void
+    {
+        $this->examinationService = new ExaminationService();
+    }
+
     public function mount(): void
     {
-        $examinationService = new ExaminationService();
-
-        $this->currentQuestion = $examinationService->currentQuestion(
+        $this->currentQuestion = $this->examinationService->currentQuestion(
             request('question')
         );
 
-        $this->questionnaires = $examinationService->getQuestionnaires(
+        $this->questionnaires = $this->examinationService->getQuestionnaires(
             QuestionnaireStatus::active()
         );
     }
@@ -47,5 +53,21 @@ class AdmissionExaminationForm extends Component
         ]);
 
         $this->correct = $this->answer == $this->currentQuestion->choices['answer'];
+    }
+
+    public function startExam(): void
+    {
+        $this->examinationService->setExaminationStatus(
+            ExaminationStatus::on_going(),
+            $this->admissionExamination->id
+        );
+
+        $this->redirect(
+            route('admission.examination.index', [
+                'admission_examination' => $this->admissionExamination->id,
+                'question' => 1,
+                'key' => 1
+            ])
+        );
     }
 }

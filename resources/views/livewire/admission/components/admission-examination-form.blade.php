@@ -44,6 +44,12 @@
                         </x-button>
                     </div>
                 </div>
+
+                <div class="text-center mx-auto pt-5">
+                    <small class="text-gray-400">TIP: You can navigate to the other questions by clicking the <b>Question
+                            Stepper</b> above.</small>
+                </div>
+
             </form>
         @endif
     </x-card>

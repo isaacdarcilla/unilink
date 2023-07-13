@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @property mixed $answer
  * @property mixed $choices
+ * @method static pluck(string $string)
  */
 class AdmissionQuestionnaire extends Model
 {

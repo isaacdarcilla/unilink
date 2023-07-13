@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             AdmissionPhysicalHealthSeeder::class,
             AdmissionQuestionnaireSeeder::class,
             AdmissionExaminationSeeder::class,
+            AdmissionExaminationAnswerSeeder::class,
         ]);
     }
 }

@@ -9,22 +9,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-/**
- * @property mixed $user_id
- * @property mixed $id
- * @method static find(int|string $admissionExamination)
- * @method static pluck(string $string)
- */
-class AdmissionExamination extends Model
+class AdmissionExaminationAnswer extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
     protected $guarded = [];
-
-    protected $casts = [
-        'total_points' => 'integer'
-    ];
 
     public function academic_year(): BelongsTo
     {
@@ -34,5 +24,15 @@ class AdmissionExamination extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function admission_questionnaire(): BelongsTo
+    {
+        return $this->belongsTo(AdmissionQuestionnaire::class);
+    }
+
+    public function admission_examination(): BelongsTo
+    {
+        return $this->belongsTo(AdmissionExamination::class);
     }
 }

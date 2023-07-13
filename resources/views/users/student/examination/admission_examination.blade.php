@@ -13,7 +13,7 @@
                     </a>
                 </div>
             </div>
-            @livewire('admission.components.admission-examination-form', ['admissionExamination' => $admissionExamination])
+            @livewire('admission.components.admission-examination-form', ['admissionExamination' => $admissionExamination, 'active' => $active])
         </div>
     </div>
 </x-app-layout>

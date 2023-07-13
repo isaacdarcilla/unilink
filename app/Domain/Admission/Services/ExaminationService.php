@@ -3,9 +3,11 @@
 namespace App\Domain\Admission\Services;
 
 use App\Admin\Models\User;
+use App\Domain\Admission\Dto\CreateAdmissionExaminationAnswerDto;
 use App\Domain\Admission\Enums\ExaminationStatus;
 use App\Domain\Admission\Enums\QuestionnaireStatus;
 use App\Domain\Admission\Models\AdmissionExamination;
+use App\Domain\Admission\Models\AdmissionExaminationAnswer;
 use App\Domain\Admission\Models\AdmissionQuestionnaire;
 use Domain\AcademicYear\Models\AcademicYear;
 use Illuminate\Contracts\Auth\Authenticatable;
@@ -47,5 +49,18 @@ class ExaminationService
         return AdmissionQuestionnaire::where([
             'id' => $questionId
         ])->first();
+    }
+
+    public function storeAnswer(CreateAdmissionExaminationAnswerDto $dto): AdmissionExaminationAnswer
+    {
+        return AdmissionExaminationAnswer::create([
+            'user_id' => $dto->user_id,
+            'academic_year_id' => $dto->academic_year_id,
+            'admission_questionnaire_id' => $dto->admission_questionnaire_id,
+            'admission_examination_id' => $dto->admission_examination_id,
+            'answer' => $dto->answer,
+            'gathered_points' => $dto->gathered_points,
+            'is_correct' => $dto->is_correct
+        ]);
     }
 }

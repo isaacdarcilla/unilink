@@ -4,6 +4,7 @@ namespace App\Domain\Admission\Services;
 
 use App\Admin\Models\User;
 use App\Domain\Admission\Dto\CreateAdmissionExaminationAnswerDto;
+use App\Domain\Admission\Enums\CorrectAnswer;
 use App\Domain\Admission\Enums\ExaminationStatus;
 use App\Domain\Admission\Enums\QuestionnaireStatus;
 use App\Domain\Admission\Models\AdmissionExamination;
@@ -62,7 +63,10 @@ class ExaminationService
             'admission_examination_id' => $dto->admission_examination_id,
         ], [
             'answer' => $dto->answer,
+            'answer_text' => $dto->answer_text,
             'gathered_points' => $dto->gathered_points,
+            'correct_answer' => $dto->correct_answer,
+            'correct_answer_text' => $dto->correct_answer_text,
             'is_correct' => $dto->is_correct
         ]);
     }
@@ -79,5 +83,29 @@ class ExaminationService
         ])->with([
             'admission_questionnaire'
         ])->orderBy('admission_questionnaire_id')->get();
+    }
+
+    public function computeExaminationResult(
+        AdmissionExamination $admissionExamination,
+        CorrectAnswer $isCorrect,
+        int $totalItemPoints
+    ): int {
+        $answers = AdmissionExaminationAnswer::where([
+            'admission_examination_id' => $admissionExamination->id,
+            'is_correct' => $isCorrect->value,
+        ])->get();
+
+        $score = ($answers->count() / $totalItemPoints) * 100;
+
+        $this->setExaminationStatus(
+            $score >= $admissionExamination->passing_score ? ExaminationStatus::passed() : ExaminationStatus::failed(),
+            $admissionExamination->id
+        );
+
+        $admissionExamination->update([
+            'total_points' => $score,
+        ]);
+
+        return $score;
     }
 }

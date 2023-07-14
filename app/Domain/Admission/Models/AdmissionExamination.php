@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @property mixed $user_id
  * @property mixed $id
+ * @property mixed $passing_score
  * @method static find(int|string $admissionExamination)
  * @method static pluck(string $string)
  */

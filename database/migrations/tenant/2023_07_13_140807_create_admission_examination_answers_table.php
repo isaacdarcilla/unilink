@@ -17,6 +17,9 @@ return new class extends Migration {
             $table->foreignId('admission_questionnaire_id')->constrained();
             $table->foreignId('admission_examination_id')->constrained();
             $table->integer('answer')->nullable()->comment('The array key of the choice');
+            $table->string('answer_text')->nullable()->comment('Users answer');
+            $table->integer('correct_answer')->nullable()->comment('Array key');
+            $table->string('correct_answer_text')->nullable()->comment('Text');
             $table->integer('gathered_points')->nullable();
             $table->boolean('is_correct')->nullable();
             $table->timestamps();

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admission\Components;
 
 use App\Domain\Admission\Dto\CreateAdmissionExaminationAnswerDto;
+use App\Domain\Admission\Enums\CorrectAnswer;
 use App\Domain\Admission\Enums\ExaminationStatus;
 use App\Domain\Admission\Enums\QuestionnaireStatus;
 use App\Domain\Admission\Models\AdmissionExamination;
@@ -73,7 +74,10 @@ class AdmissionExaminationForm extends Component
             'admission_questionnaire_id' => $this->currentQuestion->id,
             'admission_examination_id' => $this->admissionExamination->id,
             'answer' => $this->answer,
+            'answer_text' => $this->currentQuestion->choices['choices'][$this->answer],
             'gathered_points' => $this->correct ? $this->currentQuestion->points : 0,
+            'correct_answer' => $this->currentQuestion->choices['answer'],
+            'correct_answer_text' => $this->currentQuestion->choices['choices'][$this->currentQuestion->choices['answer']],
             'is_correct' => $this->correct,
         ];
 
@@ -118,9 +122,10 @@ class AdmissionExaminationForm extends Component
 
     public function finishExamination(): void
     {
-        $this->examinationService->setExaminationStatus(
-            ExaminationStatus::taken(),
-            $this->admissionExamination->id
+        $this->examinationService->computeExaminationResult(
+            $this->admissionExamination,
+            CorrectAnswer::yes(),
+            $this->questionnaires->sum('points'),
         );
 
         $this->redirect(

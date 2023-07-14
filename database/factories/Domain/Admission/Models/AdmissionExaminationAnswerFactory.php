@@ -28,7 +28,10 @@ class AdmissionExaminationAnswerFactory extends Factory
                 AdmissionExamination::pluck('id')
             ),
             'answer' => 0,
+            'answer_text' => 'Choice 1',
             'gathered_points' => 1,
+            'correct_answer' => 0,
+            'correct_answer_text' => 'Choice 1',
             'is_correct' => true,
         ];
     }

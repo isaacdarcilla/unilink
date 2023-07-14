@@ -81,9 +81,9 @@
                     <x-icon name="check-circle" class="w-6 h-6 text-green-500"/>
                     <p class="font-bold">Finish Examination</p>
                     <small class="text-justify font-semibold">
-                        Tap on the 'Finish Examination' button below to submit your entrance examination. Results will
+                        Tap on the 'Submit Examination' button below to submit your entrance examination. Results will
                         be generated
-                        automatically after finishing the examination.
+                        automatically after submitting the examination.
                     </small>
                 </div>
                 <div class="pt-3 p-3">
@@ -92,21 +92,15 @@
                             <li>
                                 <small>Question #{{ $loop->iteration }}
                                     : {{ $questionnaire->questionnaire }}</small>
-                                @foreach($questionnaire->choices['choices'] as $keyQuestion => $c)
-                                    @if($questionnaire->admission_examination_answer)
-                                        @if($questionnaire->admission_examination_answer->answer === $keyQuestion)
-                                            <p class="font-bold">{{ $c }}</p>
-                                        @endif
-                                    @else
-                                        @if($loop->first)
-                                            <p class="font-bold text-sm text-red-600">No answer.
-                                                <a href="{{ route('admission.examination.index', ['admission_examination' => $admissionExamination->id]) }}?question={{ $questionnaire->id }}&key={{ $loop->parent->iteration }}"
-                                                   class="font-medium cursor-pointer text-gray-500 hover:text-blue-500 hover:underline">Add
-                                                    answer?</a>
-                                            </p>
-                                        @endif
-                                    @endif
-                                @endforeach
+                                @if($questionnaire->admission_examination_answer)
+                                    <p class="font-bold">{{ $questionnaire->admission_examination_answer->answer_text }}</p>
+                                @else
+                                    <p class="font-bold text-sm text-red-600">No answer.
+                                        <a href="{{ route('admission.examination.index', ['admission_examination' => $admissionExamination->id]) }}?question={{ $questionnaire->id }}&key={{ $loop->iteration }}"
+                                           class="font-medium cursor-pointer text-gray-500 hover:text-blue-500 hover:underline">Add
+                                            answer?</a>
+                                    </p>
+                                @endif
                             </li>
                         @endforeach
                     </ol>
@@ -115,7 +109,7 @@
                     <div class="flex justify-between items-center p-3">
                         <div class="mt-2">
                             <x-button type="button" wire:click="finishDialog" green>
-                                Finish Examination
+                                Submit Examination
                             </x-button>
                         </div>
                     </div>

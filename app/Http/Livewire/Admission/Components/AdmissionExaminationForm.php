@@ -116,7 +116,20 @@ class AdmissionExaminationForm extends Component
         ]);
     }
 
-    public function finishExamination()
+    public function finishExamination(): void
     {
+        $this->examinationService->setExaminationStatus(
+            ExaminationStatus::taken(),
+            $this->admissionExamination->id
+        );
+
+        $this->redirect(
+            route('admission.examination.index', [
+                'admission_examination' => $this->admissionExamination->id,
+                'question' => 0,
+                'key' => 0,
+                'exam' => 'finish'
+            ])
+        );
     }
 }

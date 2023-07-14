@@ -111,13 +111,15 @@
                         @endforeach
                     </ol>
                 </div>
-                <div class="flex justify-between items-center p-3">
-                    <div class="mt-2">
-                        <x-button type="button" wire:click="finishDialog" green>
-                            Finish Examination
-                        </x-button>
+                @if($admissionExamination->status === \App\Domain\Admission\Enums\ExaminationStatus::pending()->value || $admissionExamination->status === \App\Domain\Admission\Enums\ExaminationStatus::on_going()->value)
+                    <div class="flex justify-between items-center p-3">
+                        <div class="mt-2">
+                            <x-button type="button" wire:click="finishDialog" green>
+                                Finish Examination
+                            </x-button>
+                        </div>
                     </div>
-                </div>
+                @endif
             @endif
         @endif
     </x-card>

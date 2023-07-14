@@ -4,7 +4,6 @@ namespace App\Domain\Admission\Controllers;
 
 use App\Domain\AcademicYear\Services\AcademicYearService;
 use App\Domain\Admission\Models\AdmissionExamination;
-use App\Domain\Admission\Services\ExaminationService;
 use App\Http\Controllers\Controller;
 use Domain\AcademicYear\Enums\AcademicYearStatus;
 use Domain\AcademicYear\Enums\ModuleType;
@@ -15,7 +14,6 @@ class ExaminationController extends Controller
 {
     public function __construct(
         private readonly AcademicYearService $academicYearService,
-        private readonly ExaminationService $examinationService,
     ) {
     }
 

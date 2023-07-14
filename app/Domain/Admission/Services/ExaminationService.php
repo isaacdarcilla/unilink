@@ -44,23 +44,40 @@ class ExaminationService
         return $exam;
     }
 
-    public function currentQuestion(int|string $questionId): AdmissionQuestionnaire
+    public function currentQuestion(int|string $questionId): ?AdmissionQuestionnaire
     {
         return AdmissionQuestionnaire::where([
             'id' => $questionId
-        ])->first();
+        ])->with([
+            'admission_examination_answer'
+        ])?->first();
     }
 
     public function storeAnswer(CreateAdmissionExaminationAnswerDto $dto): AdmissionExaminationAnswer
     {
-        return AdmissionExaminationAnswer::create([
+        return AdmissionExaminationAnswer::updateOrCreate([
             'user_id' => $dto->user_id,
             'academic_year_id' => $dto->academic_year_id,
             'admission_questionnaire_id' => $dto->admission_questionnaire_id,
             'admission_examination_id' => $dto->admission_examination_id,
+        ], [
             'answer' => $dto->answer,
             'gathered_points' => $dto->gathered_points,
             'is_correct' => $dto->is_correct
         ]);
+    }
+
+    public function getUserExamAnswers(
+        ?User $user,
+        AcademicYear $academicYear,
+        AdmissionExamination $admissionExamination
+    ) {
+        return AdmissionExaminationAnswer::where([
+            'user_id' => $user->id,
+            'academic_year_id' => $academicYear->id,
+            'admission_examination_id' => $admissionExamination->id
+        ])->with([
+            'admission_questionnaire'
+        ])->orderBy('admission_questionnaire_id')->get();
     }
 }

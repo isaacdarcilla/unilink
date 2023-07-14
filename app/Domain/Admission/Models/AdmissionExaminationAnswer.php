@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @method static create(array $array)
+ * @method static updateOrCreate(array $array, array $array1)
  */
 class AdmissionExaminationAnswer extends Model
 {

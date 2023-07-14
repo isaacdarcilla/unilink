@@ -12,9 +12,12 @@ use Domain\AcademicYear\Models\AcademicYear;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 use Livewire\Component;
+use WireUi\Traits\Actions;
 
 class AdmissionExaminationForm extends Component
 {
+    use Actions;
+
     public AdmissionExamination $admissionExamination;
 
     public ?AcademicYear $active;
@@ -47,7 +50,13 @@ class AdmissionExaminationForm extends Component
 
     public function render(): View
     {
-        return view('livewire.admission.components.admission-examination-form');
+        $answers = $this->examinationService->getUserExamAnswers(
+            auth()->user(),
+            $this->active,
+            $this->admissionExamination
+        );
+
+        return view('livewire.admission.components.admission-examination-form', compact('answers'));
     }
 
     public function submit(): void
@@ -71,7 +80,14 @@ class AdmissionExaminationForm extends Component
         $this->examinationService->storeAnswer(
             CreateAdmissionExaminationAnswerDto::fromArray($data)
         );
-        // TODO: Implement redirect here
+
+        $this->redirect(
+            route('admission.examination.index', [
+                'admission_examination' => $this->admissionExamination->id,
+                'question' => $this->currentQuestion->id + 1,
+                'key' => $this->currentQuestion->id + 1,
+            ])
+        );
     }
 
     public function startExam(): void
@@ -88,5 +104,19 @@ class AdmissionExaminationForm extends Component
                 'key' => 1
             ])
         );
+    }
+
+    public function finishDialog(): void
+    {
+        $this->dialog()->confirm([
+            'title' => 'Are you sure?',
+            'description' => 'This action can not be undone. Your examination results can be viewed instantly.',
+            'acceptLabel' => 'Yes, submit',
+            'method' => 'finishExamination',
+        ]);
+    }
+
+    public function finishExamination()
+    {
     }
 }

@@ -4,6 +4,7 @@ namespace App\Domain\Admission\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -23,4 +24,9 @@ class AdmissionQuestionnaire extends Model
     protected $casts = [
         'choices' => 'array'
     ];
+
+    public function admission_examination_answer(): HasOne
+    {
+        return $this->hasOne(AdmissionExaminationAnswer::class);
+    }
 }

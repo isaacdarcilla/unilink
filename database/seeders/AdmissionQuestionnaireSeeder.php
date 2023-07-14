@@ -12,6 +12,6 @@ class AdmissionQuestionnaireSeeder extends Seeder
      */
     public function run(): void
     {
-        AdmissionQuestionnaire::factory(30)->create();
+        AdmissionQuestionnaire::factory(5)->create();
     }
 }

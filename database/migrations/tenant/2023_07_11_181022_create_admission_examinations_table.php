@@ -16,7 +16,8 @@ return new class extends Migration {
             $table->foreignId('academic_year_id')->constrained();
             $table->string('status')->nullable()->default('pending')->comment('pending, taken, passed, failed');
             $table->integer('total_points')->nullable();
-            $table->integer('passing_score')->nullable(80)->comment('percentage of passing');
+            $table->integer('passing_score')->nullable(75)->comment('percentage of passing');
+            $table->timestamp('submitted_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

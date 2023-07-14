@@ -114,7 +114,7 @@ class AdmissionExaminationForm extends Component
     {
         $this->dialog()->confirm([
             'title' => 'Are you sure?',
-            'description' => 'This action can not be undone. Your examination results can be viewed instantly.',
+            'description' => 'This action can not be undone. Please review your answers if you still have time or click submit to proceed.',
             'acceptLabel' => 'Yes, submit',
             'method' => 'finishExamination',
         ]);

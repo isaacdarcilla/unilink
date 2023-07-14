@@ -104,6 +104,7 @@ class ExaminationService
 
         $admissionExamination->update([
             'total_points' => $score,
+            'submitted_at' => now()
         ]);
 
         return $score;

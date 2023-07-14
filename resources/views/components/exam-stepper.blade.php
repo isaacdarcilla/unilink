@@ -27,7 +27,7 @@
     <li wire:ignore class="{{ request()->has('exam') ? 'text-green-500' : '' }}">
         <a class="flex items-center hover:underline"
            href="{{ route('admission.examination.index', ['admission_examination' => $exam_id]) }}?question={{ $items->count() + 1 }}&key={{ $items->count() + 1 }}&exam=finish">
-            Finish Exam
+            Finish <span class="hidden sm:inline-flex">Exam</span>
             <span class="flex items-center justify-center w-5 h-5 ml-2 text-xs border {{ request()->has('exam') ? 'border-green-600' : 'border-gray-500' }} rounded-full shrink-0">
                 <x-icon name="check" class="w-4 h-4"/>
             </span>

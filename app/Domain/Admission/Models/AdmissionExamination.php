@@ -24,7 +24,8 @@ class AdmissionExamination extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'total_points' => 'integer'
+        'total_points' => 'integer',
+        'submitted_at' => 'datetime',
     ];
 
     public function academic_year(): BelongsTo

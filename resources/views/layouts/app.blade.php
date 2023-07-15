@@ -22,7 +22,7 @@
 <div class="min-h-screen bg-zinc-100">
     @livewire('navigation-menu')
 
-    <main>
+    <main class="soft-scrollbar">
         {{ $slot }}
     </main>
 </div>

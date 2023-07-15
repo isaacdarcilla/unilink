@@ -4,6 +4,7 @@ namespace App\Domain\Admission\Models;
 
 use App\Admin\Models\User;
 use Domain\AcademicYear\Models\AcademicYear;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -13,6 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property mixed $user_id
  * @property mixed $id
  * @property mixed $passing_score
+ * @property mixed $submitted_at
  * @method static find(int|string $admissionExamination)
  * @method static pluck(string $string)
  */
@@ -36,5 +38,12 @@ class AdmissionExamination extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    protected function submissionDate(): Attribute
+    {
+        return new Attribute(
+            get: fn() => $this->submitted_at->format('M d, Y h:i:s A'),
+        );
     }
 }

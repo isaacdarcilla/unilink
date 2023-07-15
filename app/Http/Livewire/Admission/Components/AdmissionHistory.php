@@ -50,11 +50,16 @@ class AdmissionHistory extends Component
             auth()->user(),
         );
 
+        $userExaminations = $this->examinationService->getUserExaminations(
+            $this->filter,
+            auth()->user(),
+        );
+
         $applications = $this->admissionService->getAdmissions(academicYearId: $this->filter);
 
         return view(
             'livewire.admission.components.admission-history',
-            compact('applications', 'academicYears', 'userExamination')
+            compact('applications', 'academicYears', 'userExamination', 'userExaminations')
         );
     }
 }

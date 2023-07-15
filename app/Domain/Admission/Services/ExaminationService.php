@@ -27,6 +27,17 @@ class ExaminationService
         ])->orWhere('status', ExaminationStatus::on_going()->value)->first();
     }
 
+    public function getUserExaminations(
+        int $academicYearId,
+        User|Authenticatable|null $user
+    ): Collection {
+        return AdmissionExamination::where([
+            'user_id' => $user->id,
+            'academic_year_id' => $academicYearId,
+            'status' => ExaminationStatus::passed()->value
+        ])->orWhere('status', ExaminationStatus::failed()->value)->get();
+    }
+
     public function getQuestionnaires(QuestionnaireStatus $status): Collection
     {
         return AdmissionQuestionnaire::where([

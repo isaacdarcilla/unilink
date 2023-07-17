@@ -8,6 +8,7 @@ use Spatie\Enum\Enum;
  * @method static self admission()
  * @method static self enrollment()
  * @method static self grading()
+ * @method static self guidance()
  */
 class ModuleType extends Enum
 {
@@ -17,6 +18,7 @@ class ModuleType extends Enum
             'admission' => 1,
             'enrollment' => 2,
             'grading' => 3,
+            'guidance' => 4,
         ];
     }
 
@@ -26,6 +28,7 @@ class ModuleType extends Enum
             'admission' => 'Admission',
             'enrollment' => 'Enrollment',
             'grading' => 'Grading',
+            'guidance' => 'Guidance',
         ];
     }
 }

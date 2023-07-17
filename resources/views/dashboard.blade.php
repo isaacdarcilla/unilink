@@ -28,8 +28,8 @@
                                 Fill up your Individual Student Profile required by the Guidance Counseling Testing
                                 Office
                             </x-label>
-                            <a href="{{route('admission.index') }}">
-                                <x-button info label="{{ $role ? 'Fill Form' : 'View Applications' }}" class="mt-2"
+                            <a href="{{route('guidance.index') }}">
+                                <x-button info label="{{ $role ? 'Fill Form' : 'View Profile' }}" class="mt-2"
                                           right-icon="arrow-right"/>
                             </a>
                         </div>

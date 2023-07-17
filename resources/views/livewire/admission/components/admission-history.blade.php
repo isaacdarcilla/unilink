@@ -177,7 +177,7 @@
                 @empty
                     <tr class="bg-white border-b hover:bg-gray-50 dark:bg-gray-900 dark:border-gray-700 my-10">
                         <td colspan="8" class="mx-auto text-center p-4 py-8">
-                            No examination yet.
+                            No examination yet. You will receive an examination<br/>link to your email.
                         </td>
                     </tr>
                 @endforelse

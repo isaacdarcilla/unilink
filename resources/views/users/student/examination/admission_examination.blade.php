@@ -7,8 +7,10 @@
                         <b>A.Y. {{ $active->description }}</b>
                     </x-label>
                     <a href="{{ route('admission.index') }}" class="py-3 pr-1">
-                        <x-button negative sm icon="x">
-                            Exit <span class="hidden sm:inline-flex">Examination</span>
+                        <x-button white sm icon="x">
+                            <p class="text-red-500">
+                                Exit <span class="hidden sm:inline-flex">Examination</span>
+                            </p>
                         </x-button>
                     </a>
                 </div>

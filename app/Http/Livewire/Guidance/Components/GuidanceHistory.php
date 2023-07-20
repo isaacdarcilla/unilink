@@ -3,8 +3,6 @@
 namespace App\Http\Livewire\Guidance\Components;
 
 use App\Domain\AcademicYear\Services\AcademicYearService;
-use App\Domain\Admission\Services\AdmissionService;
-use App\Domain\Admission\Services\ExaminationService;
 use Domain\AcademicYear\Enums\AcademicYearStatus;
 use Domain\AcademicYear\Enums\ModuleType;
 use Domain\AcademicYear\Models\AcademicYear;

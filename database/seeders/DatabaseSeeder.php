@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             AdmissionQuestionnaireSeeder::class,
             AdmissionExaminationSeeder::class,
             AdmissionExaminationAnswerSeeder::class,
+            CollegeSeeder::class,
         ]);
     }
 }

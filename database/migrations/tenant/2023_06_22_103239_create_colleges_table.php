@@ -12,8 +12,10 @@ return new class extends Migration {
     {
         Schema::create('colleges', function (Blueprint $table) {
             $table->id();
+            $table->string('user_id')->nullable()->comment('User ID of Dean');
             $table->string('name')->nullable();
             $table->string('short_name')->nullable();
+            $table->string('status')->nullable()->comment('active, inactive');
             $table->timestamps();
             $table->softDeletes();
         });

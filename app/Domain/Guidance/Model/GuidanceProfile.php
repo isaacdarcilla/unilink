@@ -3,6 +3,7 @@
 namespace App\Domain\Guidance\Model;
 
 use App\Admin\Models\User;
+use App\Domain\College\Models\College;
 use Closure;
 use Domain\AcademicYear\Models\AcademicYear;
 use Domain\Campus\Models\Campus;
@@ -64,6 +65,12 @@ class GuidanceProfile extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function college(): BelongsTo
+    {
+        return $this->belongsTo(College::class);
+    }
+
 
     protected function fullName(): Attribute
     {

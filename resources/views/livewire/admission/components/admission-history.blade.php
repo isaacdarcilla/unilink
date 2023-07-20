@@ -24,7 +24,7 @@
             </div>
         </x-alert>
     @endif
-    <div class="overflow-x-auto hide-scrollbar shadow-md rounded-lg mt-2 bg-gradient-to-bl from-slate-100 via-slate-100 to-gray-100 border-0">
+    <div class="overflow-x-auto shadow-md rounded-lg mt-2 bg-gradient-to-bl from-slate-100 via-slate-100 to-gray-100 border-0">
         <table class="w-full text-sm text-left text-gray-500 hide-scrollbar">
             @if(count($applications) > 0)
                 <thead class="text-xs text-gray-700 uppercase bg-white">
@@ -113,7 +113,7 @@
                 for <b>A.Y. {{ $active->description }}</b>
             @endif
         </x-label>
-        <div class="mt-4 overflow-x-auto hide-scrollbar shadow-md rounded-lg bg-gradient-to-bl from-slate-100 via-slate-100 to-gray-100 border-0">
+        <div class="mt-4 overflow-x-auto shadow-md rounded-lg bg-gradient-to-bl from-slate-100 via-slate-100 to-gray-100 border-0">
             <table class="w-full text-sm text-left text-gray-500 hide-scrollbar">
                 @if(count($userExaminations) > 0)
                     <thead class="text-xs text-gray-700 uppercase bg-white">

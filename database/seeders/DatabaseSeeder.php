@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Domain\Admission\Models\AdmissionFamilyBackground;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -29,6 +28,7 @@ class DatabaseSeeder extends Seeder
             AdmissionExaminationSeeder::class,
             AdmissionExaminationAnswerSeeder::class,
             CollegeSeeder::class,
+            YearLevelSeeder::class,
         ]);
     }
 }

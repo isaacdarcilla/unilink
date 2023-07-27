@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
             AdmissionExaminationAnswerSeeder::class,
             CollegeSeeder::class,
             YearLevelSeeder::class,
+            BlockSeeder::class,
         ]);
     }
 }

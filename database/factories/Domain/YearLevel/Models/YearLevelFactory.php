@@ -17,7 +17,7 @@ class YearLevelFactory extends Factory
             'name' => $this->faker->randomElement(
                 ['First Year', 'Second Year', 'Third Year', ' Fourth Year', 'Fifth Year']
             ),
-            'short' => '1st',
+            'short_name' => '1st',
             'status' => 1,
         ];
     }

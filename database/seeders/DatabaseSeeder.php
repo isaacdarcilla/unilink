@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
             YearLevelSeeder::class,
             BlockSeeder::class,
             SemesterSeeder::class,
+            GuidanceProfileSeeder::class,
         ]);
     }
 }

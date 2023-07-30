@@ -2,13 +2,16 @@
 
 namespace App\Domain\College\Models;
 
-use App\Domain\Guidance\Model\GuidanceProfile;
+use App\Domain\Guidance\Models\GuidanceProfile;
 use App\Domain\YearLevel\Models\YearLevel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * @method static pluck(string $string)
+ */
 class College extends Model
 {
     use HasFactory;

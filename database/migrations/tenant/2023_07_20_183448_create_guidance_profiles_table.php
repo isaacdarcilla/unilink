@@ -31,8 +31,6 @@ return new class extends Migration {
 
             $table->string('student_type')->nullable()->comment('old and new');
 
-            // TODO: Guidance profile data
-
             $table->text('profile_photo')->nullable();
             $table->string('first_name');
             $table->string('middle_name')->nullable();

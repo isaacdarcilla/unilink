@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Domain\Guidance\Models\GuidanceProfile;
 use Illuminate\Database\Seeder;
 
 class GuidanceProfileSeeder extends Seeder
@@ -12,6 +12,6 @@ class GuidanceProfileSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        GuidanceProfile::factory(30)->create();
     }
 }

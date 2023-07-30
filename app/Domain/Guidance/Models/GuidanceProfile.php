@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Guidance\Model;
+namespace App\Domain\Guidance\Models;
 
 use App\Admin\Models\User;
 use App\Domain\College\Models\College;

@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -71,6 +72,10 @@ class GuidanceProfile extends Model
         return $this->belongsTo(College::class);
     }
 
+    public function guidance_family_background(): HasOne
+    {
+        return $this->hasOne(GuidanceFamilyBackground::class);
+    }
 
     protected function fullName(): Attribute
     {

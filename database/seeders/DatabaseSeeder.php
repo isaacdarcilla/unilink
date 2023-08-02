@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Domain\Guidance\Models\GuidanceFamilyBackground;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -32,6 +33,7 @@ class DatabaseSeeder extends Seeder
             BlockSeeder::class,
             SemesterSeeder::class,
             GuidanceProfileSeeder::class,
+            GuidanceFamilyBackground::class,
         ]);
     }
 }

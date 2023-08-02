@@ -148,13 +148,15 @@ class AdmissionPersonalDataForm extends Component
                 )->value
             );
 
-            $this->fill(
-                array_merge(
-                    $fill,
-                    $this->admissionPersonalProfile
-                        ->attributesToArray()
-                )
-            );
+            rescue(function () use ($fill) {
+                $this->fill(
+                    array_merge(
+                        $fill,
+                        $this->admissionPersonalProfile
+                            ->attributesToArray()
+                    )
+                );
+            });
         }
     }
 

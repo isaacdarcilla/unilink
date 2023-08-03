@@ -14,6 +14,10 @@ class GuidanceSocialQuestion extends Model
 
     protected $guarded = [];
 
+    protected $casts = [
+        'question_key' => 'integer',
+    ];
+
     public function guidance_profile(): BelongsTo
     {
         return $this->belongsTo(GuidanceProfile::class);

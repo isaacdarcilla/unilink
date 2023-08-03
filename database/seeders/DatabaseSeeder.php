@@ -35,6 +35,7 @@ class DatabaseSeeder extends Seeder
             GuidanceFamilyBackgroundSeeder::class,
             GuidanceFamilySiblingSeeder::class,
             GuidanceSocialQuestionSeeder::class,
+            GuidanceHealthBackgroundSeeder::class,
         ]);
     }
 }

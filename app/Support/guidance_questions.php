@@ -129,3 +129,45 @@ if (!function_exists('guidance_questions')) {
         ];
     }
 }
+
+
+if (!function_exists('guidance_health_questions')) {
+    /**
+     * Get health guidance questions
+     * @return array
+     */
+    function guidance_health_questions(): array
+    {
+        return [
+            1 => [
+                'type' => 'select',
+                'title' => 'What is the condition of your general health?',
+                'description' => null,
+                'options' => [
+                    'Excellent',
+                    'Good',
+                    'Fair',
+                    'Poor',
+                ],
+            ],
+            2 => [
+                'type' => 'select',
+                'title' => 'Do you have any serious illness?',
+                'description' => null,
+                'options' => [
+                    'Yes',
+                    'No',
+                ],
+            ],
+            3 => [
+                'type' => 'select',
+                'title' => 'Have you been hospitalized/operated due to an illness? ',
+                'description' => null,
+                'options' => [
+                    'Yes',
+                    'No',
+                ],
+            ],
+        ];
+    }
+}

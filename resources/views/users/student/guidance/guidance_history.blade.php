@@ -8,7 +8,7 @@
                             for <b>A.Y. {{ $active->description }}</b>
                         @endif
                     </x-label>
-                    <a href="{{ route('admission.personal_data') }}" class="py-3 pr-1">
+                    <a href="{{ route('guidance.guidance_profile') }}" class="py-3 pr-1">
                         <x-button info sm icon="plus">
                             Fill Form <span class="hidden sm:inline-flex"> A.Y. {{ $active->description }}</span>
                         </x-button>

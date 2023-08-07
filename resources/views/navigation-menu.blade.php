@@ -44,6 +44,7 @@
                     <x-nav-link class="font-bold" href="{{ route('guidance.index') }}"
                                 :active="request()->routeIs([
                                     'guidance.index',
+                                    'guidance.guidance_profile',
                                 ])">
                         <div class="mb-1 mr-1">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
@@ -136,7 +137,7 @@
                 {{ __('Admission') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link href="{{ route('guidance.index') }}"
-                                   :active="request()->routeIs(['guidance.index'])">
+                                   :active="request()->routeIs(['guidance.index', 'guidance.guidance_profile'])">
                 {{ __('Guidance') }}
             </x-responsive-nav-link>
         </div>

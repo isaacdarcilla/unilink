@@ -19,7 +19,7 @@ Route::middleware([
 ])->group(function () {
     Route::controller(GuidanceController::class)->prefix('guidance')->group(function () {
         Route::get('/', 'index')->name('guidance.index');
-        Route::get('/profile/{guidance_profile?}/{user?}', 'guidance_profile')->name(
+        Route::get('/personal_profile/{guidance_profile?}/{user?}', 'guidance_profile')->name(
             'guidance.guidance_profile'
         );
     });

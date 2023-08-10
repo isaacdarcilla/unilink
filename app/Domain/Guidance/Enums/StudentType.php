@@ -11,5 +11,12 @@ use Spatie\Enum\Enum;
  */
 class StudentType extends Enum
 {
-
+    protected static function labels(): array
+    {
+        return [
+            'new' => 'New Student',
+            'old' => 'Old Student',
+            'transferee' => 'Transferee',
+        ];
+    }
 }

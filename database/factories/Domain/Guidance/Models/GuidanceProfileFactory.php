@@ -14,6 +14,7 @@ use Domain\AcademicYear\Enums\ModuleType;
 use Domain\AcademicYear\Models\AcademicYear;
 use Domain\Admission\Enums\GenderPreferenceEnum;
 use Domain\Campus\Models\Campus;
+use Domain\Program\Models\Program;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class GuidanceProfileFactory extends Factory
@@ -27,6 +28,7 @@ class GuidanceProfileFactory extends Factory
             'academic_year_id' => $this->faker->randomElement(
                 AcademicYear::where('module_type', ModuleType::guidance()->value)->pluck('id')
             ),
+            'program_id' => $this->faker->randomElement(Program::pluck('id')),
             'campus_id' => $this->faker->randomElement(Campus::pluck('id')),
             'college_id' => $this->faker->randomElement(College::pluck('id')),
             'year_level_id' => $this->faker->randomElement(YearLevel::pluck('id')),

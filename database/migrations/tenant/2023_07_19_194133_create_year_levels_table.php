@@ -13,6 +13,7 @@ return new class extends Migration {
         Schema::create('year_levels', function (Blueprint $table) {
             $table->id();
             $table->foreignId('college_id')->constrained();
+            // TODO: Must have program_id
             $table->integer('position')->nullable();
             $table->string('name')->nullable();
             $table->string('short_name')->nullable();

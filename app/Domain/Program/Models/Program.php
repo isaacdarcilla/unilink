@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @method static whereStatus(\Domain\Program\Enums\ProgramStatus $programStatus)
+ * @method static pluck(string $string)
  */
 class Program extends Model
 {

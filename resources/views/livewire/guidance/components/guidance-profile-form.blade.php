@@ -23,6 +23,14 @@
                             option-value="id"
                     />
                     <x-select
+                            label="{{ __('Program *') }}"
+                            placeholder="select program.."
+                            :options="$programs"
+                            wire:model="program_id"
+                            option-label="name"
+                            option-value="id"
+                    />
+                    <x-select
                             label="{{ __('Year Level *') }}"
                             placeholder="select year level..."
                             :options="$yearLevels"

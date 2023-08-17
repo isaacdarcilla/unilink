@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->foreignId('campus_id')->constrained();
 
             $table->foreignId('college_id')->constrained();
+            $table->foreignId('program_id')->constrained();
             $table->foreignId('year_level_id')->constrained();
             $table->foreignId('block_id')->constrained();
             $table->foreignId('semester_id')->constrained();

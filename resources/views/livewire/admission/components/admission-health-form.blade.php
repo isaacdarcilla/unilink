@@ -11,17 +11,17 @@
                 Fields with * are required.
             </x-label>
         </div>
-        <form wire:submit.prevent="submit">
+            <form wire:submit="submit">
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 p-3">
                 <x-input label="{{ __('Height *') }}" :disabled="$disableInputs"
-                         wire:model.defer="height"
+                         wire:model="height"
                          placeholder="{{ __('height in cm') }}"/>
                 <x-input label="{{ __('Weight *') }}" :disabled="$disableInputs"
-                         wire:model.defer="weight"
+                         wire:model="weight"
                          placeholder="{{ __('weight in kg') }}"/>
                 <x-select label="{{ __('Do you have any physical disability or condition? *') }}"
                           :disabled="$disableInputs"
-                          wire:model.defer="physical_condition"
+                          wire:model="physical_condition"
                           placeholder="{{ __('do you have any physical condition...')}}">
                     <x-select.option label="Yes" value="yes"/>
                     <x-select.option label="No" value="no"/>
@@ -29,18 +29,18 @@
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-1 gap-4 p-3">
                 <x-textarea label="{{ __('Any Facial Distinctive Marks: *') }}" :disabled="$disableInputs"
-                            wire:model.defer="facial_marks"
+                            wire:model="facial_marks"
                             placeholder="{{ __('write description here...') }}"/>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 p-3">
                 <x-input label="{{ __('Person to be notified in case of emergency *') }}" :disabled="$disableInputs"
-                         wire:model.defer="emergency_contact"
+                         wire:model="emergency_contact"
                          placeholder="{{ __('emergency contact\'s name') }}"/>
                 <x-input label="{{ __('Mobile Number *') }}" :disabled="$disableInputs"
-                         wire:model.defer="emergency_contact_number"
+                         wire:model="emergency_contact_number"
                          placeholder="{{ __('emergency contact\'s mobile number') }}"/>
                 <x-select label="{{ __('Relationship *') }}" :disabled="$disableInputs"
-                          wire:model.defer="relationship" placeholder="{{ __('relationship')}}">
+                          wire:model="relationship" placeholder="{{ __('relationship')}}">
                     <x-select.option label="Mother" value="Mother"/>
                     <x-select.option label="Father" value="Father"/>
                     <x-select.option label="Guardian" value="Guardian"/>
@@ -50,7 +50,7 @@
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-1 gap-4 p-3">
                 <x-textarea label="{{ __('Address *') }}" :disabled="$disableInputs"
-                            wire:model.defer="emergency_contact_address"
+                            wire:model="emergency_contact_address"
                             placeholder="{{ __('emergency contact\'s full address') }}"/>
             </div>
 

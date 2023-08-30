@@ -11,12 +11,12 @@
         <div class="col-span-6 sm:col-span-4">
             <x-inputs.password id="current_password" type="password" class="mt-1 block w-full"
                                placeholder="current password"
-                               wire:model.defer="state.current_password" autocomplete="current-password"/>
+                               wire:model="state.current_password" autocomplete="current-password"/>
             <x-input-error for="current_password" class="mt-2"/>
         </div>
 
         <div class="col-span-6 sm:col-span-4">
-            <x-inputs.password id="password" type="password" class="mt-1 block w-full" wire:model.defer="state.password"
+            <x-inputs.password id="password" type="password" class="mt-1 block w-full" wire:model="state.password"
                                placeholder="new password"
                                autocomplete="new-password"/>
             <x-input-error for="password" class="mt-2"/>
@@ -25,7 +25,7 @@
         <div class="col-span-6 sm:col-span-4">
             <x-inputs.password id="password_confirmation" type="password" class="mt-1 block w-full"
                                placeholder="confirm new password"
-                               wire:model.defer="state.password_confirmation" autocomplete="new-password"/>
+                               wire:model="state.password_confirmation" autocomplete="new-password"/>
             <x-input-error for="password_confirmation" class="mt-2"/>
         </div>
     </x-slot>

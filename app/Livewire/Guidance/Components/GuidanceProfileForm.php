@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Guidance\Components;
+namespace App\Livewire\Guidance\Components;
 
 use App\Admin\Models\User;
 use App\Domain\College\Services\CollegeService;

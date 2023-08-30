@@ -29,7 +29,7 @@
                     </div>
                 @endif
 
-                <form wire:submit.prevent="submit" class="space-y-4 p-3">
+                    <form wire:submit="submit" class="space-y-4 p-3">
                     <div wire:ignore class="font-bold flex justify-between">
                         <p>Question #{{ request('key') }}</p>
                         @if(!$currentQuestion->admission_examination_answer)
@@ -42,7 +42,7 @@
                     @if(!$currentQuestion->admission_examination_answer)
                         @foreach($currentQuestion->choices['choices'] as $key => $choice)
                             <x-radio id="right-label-{{ $key }}" label="{{ $choice }}" value="{{ $key }}"
-                                     wire:model="answer"/>
+                                     wire:model.live="answer"/>
                         @endforeach
                     @endif
 

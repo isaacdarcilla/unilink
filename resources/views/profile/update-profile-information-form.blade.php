@@ -10,43 +10,43 @@
     <x-slot name="form">
         <div class="col-span-6 sm:col-span-4">
             <x-input id="prefix_name" type="text" class="mt-1 block w-full" placeholder="prefix name"
-                     wire:model.defer="state.prefix_name"/>
+                     wire:model="state.prefix_name"/>
             <x-input-error for="prefix_name" class="mt-2"/>
         </div>
 
         <div class="col-span-6 sm:col-span-4">
             <x-input id="first_name" type="text" class="mt-1 block w-full" placeholder="first name"
-                     wire:model.defer="state.first_name" autocomplete="first_name"/>
+                     wire:model="state.first_name" autocomplete="first_name"/>
             <x-input-error for="first_name" class="mt-2"/>
         </div>
 
         <div class="col-span-6 sm:col-span-4">
             <x-input id="middle_name" type="text" class="mt-1 block w-full" placeholder="middle name"
-                     wire:model.defer="state.middle_name"/>
+                     wire:model="state.middle_name"/>
             <x-input-error for="middle_name" class="mt-2"/>
         </div>
 
         <div class="col-span-6 sm:col-span-4">
             <x-input id="last_name" type="text" class="mt-1 block w-full" placeholder="last name"
-                     wire:model.defer="state.last_name"/>
+                     wire:model="state.last_name"/>
             <x-input-error for="last_name" class="mt-2"/>
         </div>
 
         <div class="col-span-6 sm:col-span-4">
             <x-input id="suffix_name" type="text" class="mt-1 block w-full" placeholder="suffix name"
-                     wire:model.defer="state.suffix_name"/>
+                     wire:model="state.suffix_name"/>
             <x-input-error for="suffix_name" class="mt-2"/>
         </div>
 
         <div class="col-span-6 sm:col-span-4">
             <x-input id="phone_number" type="text" class="mt-1 block w-full" placeholder="phone number"
-                     wire:model.defer="state.phone_number"/>
+                     wire:model="state.phone_number"/>
             <x-input-error for="phone_number" class="mt-2"/>
         </div>
 
         <div class="col-span-6 sm:col-span-4">
             <x-input id="email" type="email" class="mt-1 block w-full" placeholder="you@email.com"
-                     wire:model.defer="state.email"
+                     wire:model="state.email"
                      autocomplete="email"/>
             <x-input-error for="email" class="mt-2"/>
 

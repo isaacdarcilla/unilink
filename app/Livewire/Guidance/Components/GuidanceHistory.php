@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Guidance\Components;
+namespace App\Livewire\Guidance\Components;
 
 use App\Domain\AcademicYear\Services\AcademicYearService;
 use Domain\AcademicYear\Enums\AcademicYearStatus;

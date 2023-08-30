@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admission\Components;
+namespace App\Livewire\Admission\Components;
 
 use App\Domain\AcademicYear\Services\AcademicYearService;
 use App\Domain\Admission\Services\AdmissionService;

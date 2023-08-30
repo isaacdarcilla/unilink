@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admission\Components;
+namespace App\Livewire\Admission\Components;
 
 use App\Domain\Admission\Dto\CreateAdmissionExaminationAnswerDto;
 use App\Domain\Admission\Enums\CorrectAnswer;

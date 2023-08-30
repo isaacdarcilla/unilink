@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admission\Components;
+namespace App\Livewire\Admission\Components;
 
 use App\Admin\Models\User;
 use App\Domain\Admission\Dto\CreateAdmissionEducationDto;

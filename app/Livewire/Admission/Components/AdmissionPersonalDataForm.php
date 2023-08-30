@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admission\Components;
+namespace App\Livewire\Admission\Components;
 
 use App\Admin\Models\User;
 use App\Domain\AcademicYear\Services\AcademicYearService;
@@ -21,11 +21,13 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
+use Livewire\WithPagination;
 use WireUi\Traits\Actions;
 
 class AdmissionPersonalDataForm extends Component
 {
     use Actions;
+    use WithPagination;
 
     public ?User $user;
 

@@ -14,13 +14,13 @@
                 Add <span class="sm:inline-flex hidden">Education</span>
             </x-button>
         </div>
-        <form wire:submit.prevent="submit">
+            <form wire:submit="submit">
             @foreach($inputs as $key => $input)
                 <div class="grid grid-cols-1 sm:grid-cols-6 gap-4 p-3">
                     <x-native-select label="{{ __('Level *') }}"
                                      :disabled="$disableInputs"
                                      id="input_{{$key}}_level"
-                                     wire:model.defer="inputs.{{$key}}.level"
+                                     wire:model="inputs.{{$key}}.level"
                                      placeholder="select level...">
                         <option value="" disabled selected>select level...</option>
                         @foreach($levels as $level)
@@ -30,27 +30,27 @@
                     <x-input label="{{ __('School Attended *') }}"
                              :disabled="$disableInputs"
                              id="input_{{$key}}_school"
-                             wire:model.defer="inputs.{{$key}}.school"
+                             wire:model="inputs.{{$key}}.school"
                              placeholder="{{ __('school attended') }}"/>
                     <x-input label="{{ __('Degree Received *') }}"
                              :disabled="$disableInputs"
                              id="input_{{$key}}_degree"
-                             wire:model.defer="inputs.{{$key}}.degree"
+                             wire:model="inputs.{{$key}}.degree"
                              placeholder="{{ __('degree received') }}"/>
                     <x-input label="{{ __('Inclusive Date From *') }}"
                              :disabled="$disableInputs"
                              id="input_{{$key}}_inclusive_dates_from"
-                             wire:model.defer="inputs.{{$key}}.inclusive_dates_from"
+                             wire:model="inputs.{{$key}}.inclusive_dates_from"
                              placeholder="{{ __('e.g. 09/20/1997') }}"/>
                     <x-input label="{{ __('Inclusive Date To *') }}"
                              :disabled="$disableInputs"
                              id="input_{{$key}}_inclusive_dates_to"
-                             wire:model.defer="inputs.{{$key}}.inclusive_dates_to"
+                             wire:model="inputs.{{$key}}.inclusive_dates_to"
                              placeholder="{{ __('e.g. 09/21/1997') }}"/>
                     <x-input label="{{ __('Honors Received') }}"
                              :disabled="$disableInputs"
                              id="input_{{$key}}_honors"
-                             wire:model.defer="inputs.{{$key}}.honors"
+                             wire:model="inputs.{{$key}}.honors"
                              placeholder="{{ __('honors received') }}"/>
                     @if(!$disableInputs)
                         @if($key > 0 || $educationFilled)
